@@ -80,6 +80,7 @@
             text-decoration: underline;
         }
 
+        /* Chatbot Styling */
         .chat-bubble {
             max-width: 80%;
             padding: 10px 15px;
@@ -304,8 +305,21 @@
         </div>
     </div>
 
-    <!-- Chatbot Button -->
+    <!-- Chatbot Container & Window -->
     <div id="chatbot-container" class="fixed bottom-6 right-6 z-[60] flex flex-col items-end">
+        <div id="chatbot-window" class="hidden w-80 h-96 bg-black border-2 border-white mb-4 flex flex-col shadow-2xl">
+            <div class="p-4 border-b border-white font-bold flex justify-between items-center">
+                <span>LUNAR ASSISTANT</span>
+                <button onclick="toggleChat()" class="text-xl">×</button>
+            </div>
+            <div id="chat-messages" class="flex-grow overflow-y-auto p-4 flex flex-col space-y-2">
+                <div class="chat-bubble chat-bot">Hallo! Wie kann ich dir heute helfen?</div>
+            </div>
+            <div class="p-2 border-t border-white grid grid-cols-1 gap-1 text-[10px]">
+                <button onclick="askBot('price')" class="text-left p-1 hover:bg-white hover:text-black border border-white/30 uppercase">Was kostet eine Website?</button>
+                <button onclick="askBot('duration')" class="text-left p-1 hover:bg-white hover:text-black border border-white/30 uppercase">Wie lange dauert es?</button>
+            </div>
+        </div>
         <button onclick="toggleChat()" class="w-16 h-16 bg-white text-black rounded-full flex items-center justify-center shadow-xl hover:scale-110 transition-transform">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" /></svg>
         </button>
@@ -332,6 +346,31 @@
             const modal = document.getElementById(id);
             modal.style.display = modal.style.display === "block" ? "none" : "block";
             document.body.style.overflow = modal.style.display === "block" ? "hidden" : "auto";
+        }
+
+        // Chatbot Logik
+        function toggleChat() {
+            const chatWin = document.getElementById('chatbot-window');
+            chatWin.classList.toggle('hidden');
+        }
+
+        function addMessage(text, isBot = true) {
+            const container = document.getElementById('chat-messages');
+            const div = document.createElement('div');
+            div.className = `chat-bubble ${isBot ? 'chat-bot' : 'chat-user'}`;
+            div.innerText = text;
+            container.appendChild(div);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        const responses = {
+            price: { q: "Was kostet eine Website?", a: "Im Aktionszeitraum nur 499€!" },
+            duration: { q: "Wie lange dauert es?", a: "In der Regel maximal 14 Tage." }
+        };
+
+        function askBot(key) {
+            addMessage(responses[key].q, false);
+            setTimeout(() => addMessage(responses[key].a, true), 500);
         }
 
         window.onload = () => gsap.from("nav", { y: -100, opacity: 0, duration: 1 });
