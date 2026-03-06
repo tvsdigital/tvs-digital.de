@@ -217,6 +217,15 @@
                 <input type="text" name="name" placeholder="Name" required class="p-4 border-2 border-black focus:outline-none focus:bg-black focus:text-white transition-all">
                 <input type="email" name="email" placeholder="E-Mail" required class="p-4 border-2 border-black focus:outline-none focus:bg-black focus:text-white transition-all">
                 <textarea name="message" placeholder="Nachricht" rows="4" required class="p-4 border-2 border-black focus:outline-none focus:bg-black focus:text-white transition-all"></textarea>
+                
+                <!-- DSGVO Checkbox -->
+                <div class="flex items-start space-x-3 py-2">
+                    <input type="checkbox" id="dsgvo" name="dsgvo_consent" required class="mt-1 w-4 h-4 accent-black cursor-pointer">
+                    <label for="dsgvo" class="text-xs font-medium leading-relaxed cursor-pointer opacity-80">
+                        Ich stimme zu, dass meine Angaben aus dem Kontaktformular zur Beantwortung meiner Anfrage erhoben und verarbeitet werden. Die Daten werden nach abgeschlossener Bearbeitung Ihrer Anfrage gelöscht. Hinweis: Sie können Ihre Einwilligung jederzeit für die Zukunft per E-Mail an kontakt@lunar-studio.de widerrufen. Detaillierte Informationen finden Sie in unserer <button type="button" onclick="toggleModal('datenschutz')" class="underline hover:text-black">Datenschutzerklärung</button>.
+                    </label>
+                </div>
+
                 <button type="submit" class="p-4 bg-black text-white font-extrabold uppercase hover:bg-transparent hover:text-black border-2 border-black transition-all">Senden</button>
             </form>
         </div>
