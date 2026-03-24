@@ -3,497 +3,497 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lunar Studio | Webentwicklung & Design Oldenburg</title>
+    <title>Lunar Studio | Exklusives Webdesign & Webentwicklung Oldenburg & Niedersachsen</title>
+    <meta name="description" content="Lunar Studio: Professionelles Webdesign & High-End Webentwicklung in Oldenburg, Ammerland, Cloppenburg & Niedersachsen. Maßarbeit statt Baukasten. Jetzt Eröffnungsangebot sichern!">
+    <meta name="keywords" content="Webdesign Oldenburg, Webentwicklung Wardenburg, Webdesign Ammerland, Bad Zwischenahn, Cloppenburg, Niedersachsen, UI/UX Design, SEO Agentur">
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <!-- Calendly link widget -->
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Calendly Widget -->
     <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
     <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-    
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@800&family=Plus+Jakarta+Sans:wght@400;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
         
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #000000;
-            color: #FFFFFF;
+            font-family: 'Inter', sans-serif;
+            background-color: #000;
+            color: #fff;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-variant-numeric: tabular-nums;
+            font-feature-settings: "lnum", "tnum", "case", "ss01";
         }
 
-        .versal-eszett {
-            font-family: 'Inter', sans-serif;
-            text-transform: none !important;
-            font-variant-ligatures: common-ligatures;
-            letter-spacing: 0.05em;
+        .mono-border { border: 1px solid #fff; }
+        .mono-bg-hover:hover { background-color: #fff; color: #000; }
+        
+        .fade-in { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #fff; }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .text-outline {
-            -webkit-text-stroke: 1px #FFFFFF;
-            color: transparent;
+        /* Adaptive Chatbot Styles */
+        .chat-glass {
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
         }
 
-        .custom-cursor {
-            width: 20px;
-            height: 20px;
-            border: 2px solid #FFFFFF;
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.1s ease;
+        @keyframes pulse-white {
+            0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
         }
+        .cta-pulse { animation: pulse-white 2s infinite; }
 
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 100;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.95);
-        }
-
-        .btn-hover:hover {
-            background-color: #FFFFFF;
-            color: #000000;
-            transform: translateY(-2px);
-        }
-
-        /* Styling für die rechtlichen Texte in den Modals */
-        .modal-content-text h3 {
-            font-weight: 800;
+        .hero-title {
             text-transform: uppercase;
-            margin-top: 1.5rem;
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
-        }
-        .modal-content-text p {
-            font-size: 0.9rem;
-            line-height: 1.6;
-            opacity: 0.8;
-            margin-bottom: 1rem;
-        }
-        .modal-content-text a {
-            text-decoration: underline;
+            font-weight: 900;
+            letter-spacing: -0.05em;
         }
 
-        /* Chatbot Styling */
-        .chat-bubble {
-            max-width: 80%;
-            padding: 10px 15px;
-            border-radius: 20px;
-            margin-bottom: 10px;
-            font-size: 0.9rem;
+        .hero-title span.no-ss {
+            text-transform: none;
         }
 
-        .chat-user {
-            background: #FFFFFF;
-            color: #000000;
-            align-self: flex-end;
-            border-bottom-right-radius: 2px;
-        }
+        /* Legal Content Styling */
+        .legal-content h4 { font-weight: 800; text-transform: uppercase; margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 0.875rem; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 2px; }
+        .legal-content p { margin-bottom: 0.75rem; color: rgba(0,0,0,0.7); line-height: 1.6; }
+        .legal-content strong { color: #000; }
 
-        .chat-bot {
-            border: 1px solid #FFFFFF;
-            color: #FFFFFF;
-            align-self: flex-start;
-            border-bottom-left-radius: 2px;
-        }
-
-        /* DSGVO Checkbox Styling */
-        .checkbox-container {
+        /* Image Placeholder Stylling */
+        .project-img-placeholder {
+            background: linear-gradient(135deg, #111 0%, #222 100%);
             display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            margin-top: 8px;
-            margin-bottom: 16px;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
         }
-
-        .checkbox-container input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            margin-top: 4px;
-            cursor: pointer;
-            accent-color: #000;
-        }
-
-        .checkbox-label {
-            font-size: 0.75rem;
-            line-height: 1.4;
-            opacity: 0.7;
-            cursor: pointer;
-        }
-
-        .checkbox-label a {
-            text-decoration: underline;
-        }
-
-        /* Cookie Banner Styling */
-        #cookie-banner {
-            transform: translateY(100%);
-            opacity: 0;
-        }
-
-        /* Promo Modal Animation */
-        #promo-modal {
-            display: none;
-            opacity: 0;
-        }
-
-        .promo-highlight {
-            background-color: #FFFFFF;
-            color: #000000;
-            padding: 0 4px;
-            font-weight: 800;
+        .project-img-placeholder::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.4) 100%);
         }
     </style>
 </head>
 <body>
 
-    <div class="custom-cursor hidden md:block"></div>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-card border-b border-white/10 py-4 px-6 flex justify-between items-center">
+        <div class="text-2xl font-black tracking-tighter">LUNAR<span class="text-white/50">STUDIO</span></div>
+        <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest font-light">
+            <a href="#leistungen" class="hover:text-white/60 transition">Leistungen</a>
+            <a href="#portfolio" class="hover:text-white/60 transition">Portfolio</a>
+            <a href="#kontakt" class="hover:text-white/60 transition">Kontakt</a>
+        </div>
+        <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/kontakt-lunar-studio/30min'});return false;" class="px-5 py-2 text-xs border border-white uppercase tracking-widest mono-bg-hover transition">Termin buchen</button>
+    </nav>
 
-    <!-- Promo Popup (Opening Offer) -->
-    <div id="promo-modal" class="fixed inset-0 z-[110] flex items-center justify-center p-6 bg-black/90 backdrop-blur-sm">
-        <div id="promo-content" class="max-w-xl w-full border-4 border-white bg-black p-8 md:p-12 text-center relative">
-            <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-white text-black px-4 py-1 font-black uppercase text-xs tracking-tighter">
-                Limited Offer
-            </div>
-            <h2 class="text-3xl md:text-5xl font-extrabold uppercase leading-tight mb-6">
-                Eröffnungs-<br>angebot
-            </h2>
-            <p class="text-lg md:text-xl font-light mb-8 leading-relaxed">
-                Deine <span class="promo-highlight uppercase">premium</span> Website für nur <span class="font-extrabold text-2xl md:text-3xl underline decoration-4">499€</span> - inkl. SEO für maximale <span class="promo-highlight uppercase">Sichtbarkeit</span>, einzigartigem Design und vollem launch <span class="promo-highlight uppercase">support</span>.
-            </p>
-            <div class="flex flex-col md:flex-row gap-4">
-                <button onclick="closePromo(); setTimeout(() => document.getElementById('contact').scrollIntoView(), 100);" class="flex-1 px-8 py-4 bg-white text-black font-black uppercase hover:bg-transparent hover:text-white border-2 border-white transition-all">
-                    Jetzt anfragen!
-                </button>
-                <button onclick="closePromo()" class="px-8 py-4 border-2 border-white/30 text-white/50 font-bold uppercase hover:border-white hover:text-white transition-all">
-                    Schließen
-                </button>
+    <!-- Eröffnungs-PopUp -->
+    <div id="promo-popup" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 hidden p-4">
+        <div class="max-w-md w-full glass-card p-8 border border-white relative text-center">
+            <button onclick="closePopup()" class="absolute top-4 right-4 text-white hover:rotate-90 transition-transform"><i data-lucide="x"></i></button>
+            <h3 class="text-3xl font-black mb-4 leading-tight uppercase">Exklusiver Eröffnungsdeal</h3>
+            <p class="text-white/70 mb-6 text-lg">Jede Website bis zum 30.04. für nur <span class="text-white font-bold underline">499€</span>.</p>
+            <p class="text-xs uppercase tracking-widest mb-8 text-white/50">Limitierte Kapazitäten – Jetzt sichern!</p>
+            <div class="flex flex-col space-y-3">
+                <a href="#kontakt" onclick="closePopup()" class="w-full bg-white text-black py-4 font-bold uppercase tracking-widest hover:bg-black hover:text-white border border-white transition text-center">Jetzt anfragen</a>
+                <button onclick="closePopup()" class="text-xs text-white/40 uppercase underline">Vielleicht später</button>
             </div>
         </div>
     </div>
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 mix-blend-difference py-4 md:py-6 px-6 md:px-10 flex justify-between items-center">
-        <a href="#" class="text-xl md:text-2xl font-extrabold tracking-tighter">LUNAR STUDIO</a>
-        <div class="hidden md:flex space-x-8 font-bold text-sm uppercase tracking-widest">
-            <a href="#services" class="hover:underline">Leistungen</a>
-            <a href="#about" class="hover:underline">Über Uns</a>
-            <a href="#contact" class="hover:underline">Kontakt</a>
-        </div>
-        <div class="md:hidden">
-             <a href="#contact" class="text-xs font-bold uppercase border border-white px-3 py-1">Kontakt</a>
-        </div>
-    </nav>
-
     <!-- Hero Section -->
-    <section class="min-h-screen flex flex-col justify-center items-center px-6 text-center">
-        <h1 class="text-5xl md:text-9xl font-extrabold uppercase leading-[0.9] reveal">
-            Digitales<br>
-            <span class="text-outline">Handwerk</span>
-        </h1>
-        <p class="mt-8 text-base md:text-xl max-w-2xl font-light reveal opacity-90">
-            Webentwicklung, Chatbots und Designlösungen für Oldenburg und das Oldenburger Land. Wir transformieren Visionen in messbare Erfolge.
-        </p>
-        <div class="mt-12 flex flex-col md:flex-row w-full md:w-auto space-y-4 md:space-y-0 md:space-x-6 reveal">
-            <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/kontakt-lunar-studio/30min'});return false;" class="w-full md:w-auto px-8 py-4 border-2 border-white font-bold uppercase btn-hover transition-all">
-                Termin vereinbaren
-            </button>
-            <a href="#services" class="w-full md:w-auto px-8 py-4 bg-white text-black font-bold uppercase hover:bg-transparent hover:text-white border-2 border-white transition-all text-center">
-                Leistungen entdecken
-            </a>
+    <section class="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-20">
+        <div class="fade-in">
+            <h1 class="hero-title text-5xl md:text-8xl mb-6 leading-none">
+                MA<span class="no-ss">ß</span>ARBEIT STATT <br><span class="text-transparent" style="-webkit-text-stroke: 1px white;">BAUKASTEN</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-lg md:text-xl text-white/60 font-light mb-10">
+                Ihr digitaler Fingerabdruck. Wir entwickeln High-End-Websites für Unternehmen in Oldenburg & Niedersachsen, die mehr als nur eine Visitenkarte wollen: Echte Performance.
+            </p>
+            <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 justify-center">
+                <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/kontakt-lunar-studio/30min'});return false;" class="px-8 py-4 bg-white text-black font-bold uppercase tracking-widest cta-pulse hover:invert transition">Erstgespräch buchen</button>
+                <a href="#leistungen" class="px-8 py-4 border border-white font-bold uppercase tracking-widest mono-bg-hover transition">Unsere Expertise</a>
+            </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="py-20 md:py-24 px-6 md:px-20 bg-white text-black">
+    <!-- Leistungen -->
+    <section id="leistungen" class="py-24 px-6 bg-white text-black">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-4xl md:text-7xl font-extrabold uppercase mb-12 md:mb-16">Was wir tun.</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-12">
-                <div class="service-card p-8 md:p-10 border-4 border-black hover:bg-black hover:text-white transition-all duration-500 group">
-                    <span class="text-3xl md:text-4xl font-bold mb-4 md:mb-6 block">01</span>
-                    <h3 class="text-xl md:text-2xl font-extrabold uppercase mb-4">Webentwicklung</h3>
-                    <p class="font-medium opacity-80 text-sm md:text-base">Full-Service Development - Schnell, sicher und SEO-optimiert für maximale Sichtbarkeit.</p>
+            <div class="grid md:grid-cols-2 gap-16 items-center mb-20">
+                <div class="fade-in">
+                    <h2 class="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6">Exzellenz als <br>Standard.</h2>
+                    <p class="text-xl text-black/70 mb-8">Baukasten-Systeme sind langsam und unpersönlich. Wir bieten exklusive Lösungen, die Ihren ROI maximieren und Ihre Marke als Autorität positionieren.</p>
                 </div>
-                <div class="service-card p-8 md:p-10 border-4 border-black hover:bg-black hover:text-white transition-all duration-500">
-                    <span class="text-3xl md:text-4xl font-bold mb-4 md:mb-6 block">02</span>
-                    <h3 class="text-xl md:text-2xl font-extrabold uppercase mb-4">Chatbots</h3>
-                    <p class="font-medium opacity-80 text-sm md:text-base">Individuelle Chatbot-Lösungen, die Ihren Kundenservice automatisieren und 24/7 Anfragen bearbeiten.</p>
-                </div>
-                <div class="service-card p-8 md:p-10 border-4 border-black hover:bg-black hover:text-white transition-all duration-500">
-                    <span class="text-3xl md:text-4xl font-bold mb-4 md:mb-6 block">03</span>
-                    <h3 class="text-xl md:text-2xl font-extrabold uppercase mb-4">Designlösungen</h3>
-                    <p class="font-medium opacity-80 text-sm md:text-base">Corporate Design, Marketing-Assets und UI/UX-Konzepte, die im Gedächtnis bleiben.</p>
+                <div class="grid grid-cols-1 gap-6 fade-in">
+                    <div class="p-8 border border-black hover:bg-black hover:text-white transition group">
+                        <h3 class="text-2xl font-bold mb-2">Premium Webentwicklung</h3>
+                        <p class="text-sm opacity-70">Maßgeschneiderter Code für maximale Performance. Perfekt optimiert für Webdesign in Oldenburg.</p>
+                    </div>
+                    <div class="p-8 border border-black hover:bg-black hover:text-white transition group">
+                        <h3 class="text-2xl font-bold mb-2">KI-Chatbots & Automation</h3>
+                        <p class="text-sm opacity-70">Effiziente Kundenkommunikation und Lead-Generierung rund um die Uhr.</p>
+                    </div>
+                    <div class="p-8 border border-black hover:bg-black hover:text-white transition group">
+                        <h3 class="text-2xl font-bold mb-2">High-End UI/UX Design</h3>
+                        <p class="text-sm opacity-70">Psychologisch fundierte Designkonzepte, die Besucher in zahlende Kunden verwandeln.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Maßarbeit Sektion -->
-    <section id="about" class="py-20 md:py-24 px-6 md:px-20">
+    <!-- Value Props -->
+    <section class="py-24 px-6 bg-black">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 text-center">
+            <div class="fade-in">
+                <div class="mb-6 flex justify-center"><i data-lucide="zap" class="w-12 h-12"></i></div>
+                <h4 class="text-xl font-bold mb-4 uppercase">Echte SEO-Power</h4>
+                <p class="text-white/60 text-sm">Optimiert für Oldenburg, Ammerland und Cloppenburg. Wir bringen Sie nach vorne.</p>
+            </div>
+            <div class="fade-in">
+                <div class="mb-6 flex justify-center"><i data-lucide="shield-check" class="w-12 h-12"></i></div>
+                <h4 class="text-xl font-bold mb-4 uppercase">Grenzenlose Funktionen</h4>
+                <p class="text-white/60 text-sm">Keine Limits durch Themes. Wir bauen exakt das, was Ihr Business benötigt.</p>
+            </div>
+            <div class="fade-in">
+                <div class="mb-6 flex justify-center"><i data-lucide="clock" class="w-12 h-12"></i></div>
+                <h4 class="text-xl font-bold mb-4 uppercase">14-Tage-Versprechen</h4>
+                <p class="text-white/60 text-sm">Schnelle Umsetzung ohne Qualitätsverlust. Ihr Projekt steht in Rekordzeit.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section id="portfolio" class="py-24 px-6 bg-white text-black">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-3xl md:text-6xl font-extrabold mb-12 md:mb-16 text-center reveal versal-eszett">
-                MA&#7838;ARBEIT STATT BAUKASTEN.
-            </h2>
+            <h2 class="text-4xl font-black mb-12 uppercase text-center">Referenzen</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Projekt 1 -->
+                <div class="relative group cursor-pointer overflow-hidden border border-black" onclick="openModal('alpha')">
+                    <div class="project-img-placeholder aspect-video group-hover:scale-105 transition-transform duration-700">
+                        <i data-lucide="shopping-bag" class="w-16 h-16 text-white/10"></i>
+                        <span class="absolute inset-0 flex items-center justify-center text-white font-black uppercase tracking-[0.3em] text-xs opacity-40 group-hover:opacity-100 transition-opacity">[Bild von E-Commerce Shop]</span>
+                    </div>
+                    <div class="p-6 bg-white flex justify-between items-center">
+                        <div>
+                            <h3 class="font-bold uppercase text-lg">Online-Shop System</h3>
+                            <p class="text-xs opacity-60">Custom Code / E-Commerce / SEO</p>
+                        </div>
+                        <i data-lucide="arrow-up-right" class="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </div>
+                </div>
+                <!-- Projekt 2 -->
+                <div class="relative group cursor-pointer overflow-hidden border border-black" onclick="openModal('beta')">
+                    <div class="project-img-placeholder aspect-video group-hover:scale-105 transition-transform duration-700">
+                        <i data-lucide="users" class="w-16 h-16 text-white/10"></i>
+                        <span class="absolute inset-0 flex items-center justify-center text-white font-black uppercase tracking-[0.3em] text-xs opacity-40 group-hover:opacity-100 transition-opacity">[Bild von Recruiting Portal]</span>
+                    </div>
+                    <div class="p-6 bg-white flex justify-between items-center">
+                        <div>
+                            <h3 class="font-bold uppercase text-lg">Recruiting Portal</h3>
+                            <p class="text-xs opacity-60">Full-Stack / HR Automation</p>
+                        </div>
+                        <i data-lucide="arrow-up-right" class="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Detail Modal -->
+    <div id="portfolio-modal" class="fixed inset-0 z-[110] bg-black/95 hidden items-center justify-center p-6">
+        <div class="max-w-4xl w-full bg-white text-black relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal()" class="fixed top-10 right-10 text-white z-[120] hover:rotate-90 transition-transform bg-black/50 p-2 rounded-full"><i data-lucide="x"></i></button>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-                <div class="reveal border border-white/20 p-8 flex flex-col items-center text-center hover:bg-white hover:text-black transition-colors duration-500">
-                    <div class="mb-6">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <!-- Modal Image Header -->
+            <div id="modal-img-container" class="project-img-placeholder h-[300px] md:h-[450px]">
+                <span id="modal-img-label" class="text-white font-black uppercase tracking-widest opacity-30 text-center px-4"></span>
+            </div>
+
+            <div class="p-8 md:p-12">
+                <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-8">
+                    <div class="flex-1">
+                        <h3 id="modal-title" class="text-4xl font-black uppercase mb-4 tracking-tighter"></h3>
+                        <p id="modal-desc" class="text-lg opacity-80 mb-8 leading-relaxed"></p>
                     </div>
-                    <h3 class="text-xl font-extrabold uppercase mb-4">Einzigartigkeit</h3>
-                    <p class="text-sm opacity-80 font-light leading-relaxed">Keine Standard-Themes von der Stange. Wir entwickeln Designs, die exakt auf deine Markenidentität zugeschnitten sind.</p>
+                    <div class="w-full md:w-64 space-y-6 pt-2">
+                        <div>
+                            <span class="block text-[10px] uppercase tracking-widest font-black text-black/40 mb-1">Technologien</span>
+                            <div id="modal-tech" class="flex flex-wrap gap-2"></div>
+                        </div>
+                        <div>
+                            <span class="block text-[10px] uppercase tracking-widest font-black text-black/40 mb-1">Standort</span>
+                            <p id="modal-location" class="text-sm font-bold uppercase"></p>
+                        </div>
+                    </div>
                 </div>
-                <div class="reveal border border-white/20 p-8 flex flex-col items-center text-center hover:bg-white hover:text-black transition-colors duration-500">
-                    <div class="mb-6">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                    </div>
-                    <h3 class="text-xl font-extrabold uppercase mb-4">Echte SEO Power</h3>
-                    <p class="text-sm opacity-80 font-light leading-relaxed">Wir optimieren nicht nur Keywords. Saubere Architektur und Code-Struktur garantieren Top-Platzierungen bei Google.</p>
-                </div>
-                <div class="reveal border border-white/20 p-8 flex flex-col items-center text-center hover:bg-white hover:text-black transition-colors duration-500">
-                    <div class="mb-6">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                    </div>
-                    <h3 class="text-xl font-extrabold uppercase mb-4">Grenzenlose Funktionen</h3>
-                    <p class="text-sm opacity-80 font-light leading-relaxed">Ob spezielle Schnittstellen oder komplexe Logik: Wir implementieren genau das, was dein Prozess wirklich benötigt.</p>
-                </div>
-                <div class="reveal border border-white/20 p-8 flex flex-col items-center text-center hover:bg-white hover:text-black transition-colors duration-500">
-                    <div class="mb-6">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                    </div>
-                    <h3 class="text-xl font-extrabold uppercase mb-4">Performance</h3>
-                    <p class="text-sm opacity-80 font-light leading-relaxed">Sekundenschnelle Ladezeiten durch modernste Tech-Stacks. Wir minimieren den Ballast für maximale Nutzererfahrung.</p>
+                <div class="mt-12 pt-8 border-t border-black/10">
+                    <button onclick="closeModal()" class="w-full border border-black py-4 uppercase font-bold mono-bg-hover transition">Projekt schließen</button>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 md:py-24 px-6 md:px-20 bg-white text-black">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
-            <div>
-                <h2 class="text-4xl md:text-7xl font-extrabold uppercase mb-6">Hallo sagen.</h2>
-                <p class="text-lg md:text-xl mb-8">Bereit für den nächsten Schritt? Lassen Sie uns über Ihr Projekt sprechen.</p>
-                <div class="space-y-4 text-base md:text-lg">
-                    <p class="font-extrabold uppercase">ICH FREUE MICH ÜBER IHRE ANFRAGE!</p>
-                    <p class="font-bold uppercase">kontakt@lunar-studio.de</p>
-                    <p class="font-bold uppercase">+49 162 7472104</p>
-                </div>
+    <!-- Kontakt Section -->
+    <section id="kontakt" class="py-24 px-6 bg-black text-white">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-6xl font-black uppercase mb-4">Projekt anfragen</h2>
             </div>
-            <form action="https://formspree.io/f/mnjjanjg" method="POST" class="flex flex-col space-y-4">
-                <input type="text" name="name" placeholder="Name" required class="p-4 border-2 border-black focus:outline-none focus:bg-black focus:text-white transition-all">
-                <input type="email" name="email" placeholder="E-Mail" required class="p-4 border-2 border-black focus:outline-none focus:bg-black focus:text-white transition-all">
-                <textarea name="message" placeholder="Nachricht" rows="4" required class="p-4 border-2 border-black focus:outline-none focus:bg-black focus:text-white transition-all"></textarea>
-                
-                <!-- DSGVO Checkbox -->
-                <div class="checkbox-container">
-                    <input type="checkbox" id="dsgvo" name="dsgvo" required>
-                    <label for="dsgvo" class="checkbox-label">
-                        Ich stimme zu, dass meine Angaben aus dem Kontaktformular zur Beantwortung meiner Anfrage erhoben und verarbeitet werden. Die Daten werden nach abgeschlossener Bearbeitung Ihrer Anfrage gelöscht. Hinweis: Sie können Ihre Einwilligung jederzeit für die Zukunft per E-Mail an kontakt@lunar-studio.de widerrufen. Detaillierte Informationen finden Sie in unserer <a href="#" onclick="toggleModal('datenschutz'); return false;">Datenschutzerklärung</a>.
-                    </label>
+            
+            <form action="https://formspree.io/f/mnjjanjg" method="POST" class="space-y-6">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <input type="text" name="name" placeholder="Name" required class="w-full bg-transparent border-b border-white/30 py-4 focus:border-white outline-none transition">
+                    <input type="email" name="email" placeholder="E-Mail" required class="w-full bg-transparent border-b border-white/30 py-4 focus:border-white outline-none transition">
                 </div>
-
-                <button type="submit" class="p-4 bg-black text-white font-extrabold uppercase hover:bg-transparent hover:text-black border-2 border-black transition-all">Senden</button>
+                <textarea name="message" placeholder="Ihr Vorhaben..." rows="4" required class="w-full bg-transparent border-b border-white/30 py-4 focus:border-white outline-none transition"></textarea>
+                
+                <div class="flex items-start space-x-3 text-xs text-white/50">
+                    <input type="checkbox" id="dsgvo" required class="mt-1 accent-white">
+                    <label for="dsgvo">Ich habe die Datenschutzbestimmungen gelesen und akzeptiere die Speicherung meiner Daten zwecks Kontaktaufnahme.</label>
+                </div>
+                
+                <button type="submit" class="w-full bg-white text-black py-5 font-black uppercase tracking-widest hover:invert transition">Anfrage senden</button>
             </form>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-10 px-6 md:px-10 border-t border-white/20 flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0 text-[10px] md:text-xs uppercase font-bold tracking-widest">
-        <div>© 2026 Lunar Studio</div>
-        <div class="flex flex-wrap justify-center gap-4 md:gap-6">
-            <a href="https://instagram.com/lunarstudio.de/" target="_blank" class="hover:underline">Instagram</a>
-            <button onclick="toggleModal('impressum')" class="hover:underline uppercase">Impressum</button>
-            <button onclick="toggleModal('datenschutz')" class="hover:underline uppercase">Datenschutz</button>
-        </div>
-    </footer>
-
-    <!-- Modals (Impressum/Datenschutz) -->
-    <div id="impressum" class="modal overflow-y-auto">
-        <div class="min-h-screen flex items-center justify-center p-6 md:p-10">
-            <div class="max-w-2xl w-full border-4 border-white p-8 md:p-10 bg-black text-white modal-content-text">
-                <h2 class="text-3xl md:text-4xl font-extrabold mb-6 uppercase">Impressum</h2>
-                <p>Lunar Studio<br>Tim von Seggern<br>Korsorsstraße 162<br>26203 Wardenburg</p>
-                <h3>Kontakt</h3>
-                <p>Telefon: +49 162 7472104<br>E-Mail: kontakt@lunar-studio.de</p>
-                
-                <h3>Umsatzsteuer-ID</h3>
-                <p>Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br>DE?????????</p>
-                
-                <h3>Redaktionell verantwortlich</h3>
-                <p>Tim von Seggern<br>Korsorsstraße 162<br>26203 Wardenburg</p>
-
-                <h3>EU-Streitschlichtung</h3>
-                <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr/" target="_blank">https://ec.europa.eu/consumers/odr/</a>. Unsere E-Mail-Adresse finden Sie oben im Impressum.</p>
-
-                <h3>Verbraucherstreitbeilegung / Universalschlichtungsstelle</h3>
-                <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
-                
-                <button onclick="toggleModal('impressum')" class="mt-8 px-6 py-2 border-2 border-white font-bold uppercase btn-hover transition-all">Schließen</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="datenschutz" class="modal overflow-y-auto">
-        <div class="min-h-screen flex items-center justify-center p-6 md:p-10">
-            <div class="max-w-3xl w-full border-4 border-white p-8 md:p-10 bg-black text-white modal-content-text">
-                <h2 class="text-3xl md:text-4xl font-extrabold mb-6 uppercase">Datenschutz</h2>
-                <p class="opacity-70 italic mb-6 text-xs">Stand: März 2026</p>
-                
-                <h3>1. Datenschutz auf einen Blick</h3>
-                <p>Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.</p>
-                
-                <h3>2. Datenerfassung auf dieser Website</h3>
-                <p>Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Impressum dieser Website entnehmen. Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen (z. B. durch Eingabe in ein Kontaktformular). Andere Daten werden automatisch beim Besuch der Website durch unsere IT-Systeme erfasst (z. B. Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs).</p>
-
-                <h3>3. Hosting & Bereitstellung der Website (Strato & GitHub)</h3>
-                <p>Unsere Website wird bei externen Dienstleistern gehostet:</p>
-                <p><strong>A) Strato:</strong> Wir nutzen für den Betrieb unserer Domain und E-Mail-Dienste die Strato AG (Otto-Ostrowski-Straße 7, 10249 Berlin). Wenn Sie unsere Website besuchen oder uns eine E-Mail senden, werden Daten auf den Servern von Strato verarbeitet. Strato erhebt Logfiles (z.B. IP-Adressen), um den sicheren Betrieb der Infrastruktur zu gewährleisten. Die Nutzung von Strato erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer sicheren Bereitstellung unseres Onlineangebots).</p>
-                <p><strong>B) GitHub Pages:</strong> Die statischen Inhalte dieser Website werden über GitHub Pages bereitgestellt (GitHub Inc., 88 Colin P. Kelly Jr. St, San Francisco, CA 94107, USA). Hierbei können IP-Adressen der Besucher an GitHub übermittelt werden, um die Auslieferung der Website-Daten technisch zu ermöglichen. Die Rechtsgrundlage hierfür ist ebenfalls Art. 6 Abs. 1 lit. f DSGVO.</p>
-                
-                <h3>4. Ihre Rechte</h3>
-                <p>Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung oder Löschung dieser Daten zu verlangen. Hierzu sowie zu weiteren Fragen zum Thema Datenschutz können Sie sich jederzeit unter der im Impressum angegebenen Adresse an uns wenden.</p>
-
-                <h3>5. Kontaktformular (Formspree)</h3>
-                <p>Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Wir nutzen für die Verarbeitung unserer Kontaktformulare den Dienst **Formspree** (Formspree Inc., 430 Mission St., San Francisco, CA 94105, USA). Die von Ihnen eingegebenen Daten werden an Formspree übermittelt und dort verarbeitet. Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO oder unserem berechtigten Interesse (Art. 6 Abs. 1 lit. f DSGVO).</p>
-
-                <h3>6. Terminbuchung (Calendly)</h3>
-                <p>Auf unserer Website nutzen wir das Tool **Calendly** (Calendly LLC, 271 17th St NW, 10th Floor, Atlanta, GA 30363, USA) zur Terminplanung. Wenn Sie einen Termin buchen, werden Name und E-Mail-Adresse an Calendly übertragen. Die Nutzung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO (effiziente Terminplanung) oder Art. 6 Abs. 1 lit. b DSGVO.</p>
-
-                <h3>7. Cookies</h3>
-                <p>Diese Website verwendet technisch notwendige Cookies, um Grundfunktionen sicherzustellen. Sie können Ihren Browser so einstellen, dass Sie über das Setzen von Cookies informiert werden und Cookies nur im Einzelfall erlauben.</p>
-                
-                <button onclick="toggleModal('datenschutz')" class="mt-8 px-6 py-2 border-2 border-white font-bold uppercase btn-hover transition-all">Schließen</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Chatbot -->
-    <div id="chatbot-container" class="fixed bottom-6 right-6 z-[60] flex flex-col items-end">
-        <div id="chatbot-window" class="hidden w-[85vw] md:w-80 h-96 bg-black border-2 border-white mb-4 flex flex-col shadow-2xl">
-            <div class="p-4 border-b border-white font-bold flex justify-between items-center">
-                <span>LUNAR ASSISTANT</span>
-                <button onclick="toggleChat()" class="text-xl">×</button>
-            </div>
-            <div id="chat-messages" class="flex-grow overflow-y-auto p-4 flex flex-col space-y-2">
-                <div class="chat-bubble chat-bot">Hallo! Wie kann ich dir heute helfen?</div>
-            </div>
-            <div class="p-2 border-t border-white grid grid-cols-1 gap-1 text-[10px]">
-                <button onclick="askBot('price')" class="text-left p-1 hover:bg-white hover:text-black border border-white/30 uppercase">Was kostet eine Website?</button>
-                <button onclick="askBot('duration')" class="text-left p-1 hover:bg-white hover:text-black border border-white/30 uppercase">Wie lange dauert ein Projekt?</button>
-            </div>
-        </div>
-        <button onclick="toggleChat()" class="w-14 h-14 md:w-16 md:h-16 bg-white text-black rounded-full flex items-center justify-center shadow-xl hover:scale-110 transition-transform">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 md:h-8 md:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" /></svg>
+    <!-- Adaptive Chatbot -->
+    <div class="fixed bottom-6 right-6 z-[120]">
+        <button id="chatbot-toggle" class="bg-white text-black p-4 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center">
+            <i data-lucide="message-square"></i>
         </button>
+        <div id="chatbot-window" class="absolute bottom-20 right-0 w-80 chat-glass p-6 hidden flex flex-col rounded-lg">
+            <div class="flex justify-between items-center mb-4 border-b border-white/10 pb-2">
+                <span class="font-bold text-sm tracking-widest uppercase text-white">LUNAR ASSISTANT</span>
+                <button onclick="toggleChatbot()" class="text-white/50 hover:text-white transition"><i data-lucide="minus"></i></button>
+            </div>
+            <div id="chat-messages" class="h-48 overflow-y-auto space-y-3 mb-4 text-[11px] scroll-smooth pr-2 text-white/90">
+                <div class="bg-white/10 p-3 rounded-tr-xl rounded-bl-xl rounded-br-xl">Willkommen bei Lunar Studio. Wie kann ich Ihr digitales Projekt unterstützen?</div>
+            </div>
+            <div class="flex flex-col space-y-2">
+                <button onclick="askBot('Wie viel kostet eine Website?')" class="text-left text-[10px] p-2 bg-white/5 border border-white/10 hover:bg-white/20 hover:border-white/40 text-white/70 hover:text-white transition uppercase tracking-tighter">Wie viel kostet eine Website?</button>
+                <button onclick="askBot('Wie lange dauert ein Projekt?')" class="text-left text-[10px] p-2 bg-white/5 border border-white/10 hover:bg-white/20 hover:border-white/40 text-white/70 hover:text-white transition uppercase tracking-tighter">Wie lange dauert ein Projekt?</button>
+            </div>
+        </div>
     </div>
 
     <!-- Cookie Banner -->
-    <div id="cookie-banner" class="fixed bottom-6 left-6 z-[70] w-[90vw] md:w-80 bg-black border-2 border-white p-6 shadow-2xl">
-        <h4 class="text-sm font-extrabold uppercase mb-2 tracking-widest">Cookies & Privatsphäre</h4>
-        <p class="text-[10px] leading-relaxed opacity-80 uppercase mb-4">
-            Wir nutzen Cookies, um Ihr Erlebnis zu verbessern. Details in der <button onclick="toggleModal('datenschutz')" class="underline">Datenschutzerklärung</button>.
-        </p>
-        <div class="flex flex-col space-y-2">
-            <button onclick="closeCookieBanner()" class="w-full py-2 bg-white text-black text-[10px] font-extrabold uppercase border border-white hover:bg-transparent hover:text-white transition-all">Akzeptieren</button>
-            <button onclick="closeCookieBanner()" class="w-full py-2 bg-transparent text-white text-[10px] font-extrabold uppercase border border-white/30 hover:border-white transition-all">Ablehnen</button>
+    <div id="cookie-banner" class="fixed bottom-0 w-full z-[130] glass-card border-t border-white/10 py-4 px-6 flex flex-col md:flex-row justify-between items-center hidden">
+        <p class="text-[10px] uppercase tracking-widest mb-4 md:mb-0 opacity-60">Wir nutzen Cookies zur Optimierung Ihrer Erfahrung. Seriös & Sicher.</p>
+        <div class="flex space-x-4">
+            <button onclick="handleCookies(false)" class="px-4 py-2 text-[10px] border border-white/30 uppercase tracking-widest hover:border-white transition">Ablehnen</button>
+            <button onclick="handleCookies(true)" class="px-4 py-2 text-[10px] border border-white uppercase tracking-widest mono-bg-hover transition">Akzeptieren</button>
         </div>
     </div>
 
+    <!-- Legal Modals -->
+    <div id="legal-modal" class="fixed inset-0 z-[150] bg-black/95 hidden items-center justify-center p-6">
+        <div class="max-w-3xl w-full bg-white text-black p-8 md:p-12 relative max-h-[90vh] overflow-y-auto rounded-sm">
+            <button onclick="closeLegal()" class="absolute top-6 right-6 text-black hover:rotate-90 transition-transform"><i data-lucide="x"></i></button>
+            <div id="legal-content-target" class="legal-content text-sm">
+                <!-- Content injected via JS -->
+            </div>
+            <div class="mt-12 pt-6 border-t border-black/10 text-center">
+                <button onclick="closeLegal()" class="text-[10px] font-black uppercase tracking-widest border border-black px-8 py-3 mono-bg-hover transition">Fenster schließen</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 border-t border-white/10 bg-black text-center md:text-left">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 items-center">
+            <div>
+                <div class="text-xl font-black mb-2">LUNAR STUDIO</div>
+                <p class="text-white/40 text-[10px] uppercase tracking-widest">&copy; 2026 Lunar Studio. Made in Lower Saxony.</p>
+            </div>
+            <div class="flex justify-center space-x-8 text-[10px] uppercase tracking-widest font-bold">
+                <button onclick="openLegal('impressum')" class="hover:underline">Impressum</button>
+                <button onclick="openLegal('datenschutz')" class="hover:underline">Datenschutz</button>
+            </div>
+            <div class="flex justify-center md:justify-end">
+                <a href="https://instagram.com/lunarstudio.de/" target="_blank" class="p-3 border border-white/20 hover:bg-white hover:text-black transition">
+                    <i data-lucide="instagram"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        const cursor = document.querySelector('.custom-cursor');
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
+        // Icons
+        lucide.createIcons();
 
-        gsap.registerPlugin(ScrollTrigger);
-        gsap.utils.toArray('.reveal').forEach((elem) => {
-            gsap.from(elem, {
-                opacity: 0,
-                y: 30,
-                duration: 0.8,
-                scrollTrigger: { trigger: elem, start: "top 95%" }
-            });
-        });
+        // Legal Content Objects
+        const legalData = {
+            impressum: `
+                <h3 class="text-3xl font-black uppercase mb-8">Impressum</h3>
+                <p><strong>Lunar Studio</strong><br>Tim von Seggern<br>Korsorsstraße 162<br>26203 Wardenburg</p>
+                <h4>Kontakt</h4>
+                <p>Telefon: +49 162 7472104<br>E-Mail: kontakt@lunar-studio.de</p>
+                <h4>Umsatzsteuer-ID</h4>
+                <p>Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br>DE?????????</p>
+                <h4>Redaktionell verantwortlich</h4>
+                <p>Tim von Seggern<br>Korsorsstraße 162<br>26203 Wardenburg</p>
+                <h4>EU-Streitschlichtung</h4>
+                <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr/" target="_blank" class="underline">https://ec.europa.eu/consumers/odr/</a>. Unsere E-Mail-Adresse finden Sie oben im Impressum.</p>
+                <h4>Verbraucherstreitbeilegung / Universalschlichtungsstelle</h4>
+                <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+            `,
+            datenschutz: `
+                <h3 class="text-3xl font-black uppercase mb-8">Datenschutz</h3>
+                <p>Stand: März 2026</p>
+                <h4>1. Datenschutz auf einen Blick</h4>
+                <p>Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.</p>
+                <h4>2. Datenerfassung auf dieser Website</h4>
+                <p>Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Impressum dieser Website entnehmen. Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen (z. B. durch Eingabe in ein Kontaktformular). Andere Daten werden automatisch beim Besuch der Website durch unsere IT-Systeme erfasst (z. B. Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs).</p>
+                <h4>3. Hosting & Bereitstellung der Website (Strato & GitHub)</h4>
+                <p><strong>A) Strato:</strong> Wir nutzen für den Betrieb unserer Domain und E-Mail-Dienste die Strato AG (Otto-Ostrowski-Straße 7, 10249 Berlin). Wenn Sie unsere Website besuchen oder uns eine E-Mail senden, werden Daten auf den Servern von Strato verarbeitet. Strato erhebt Logfiles (z.B. IP-Adressen), um den sicheren Betrieb der Infrastruktur zu gewährleisten. Die Nutzung von Strato erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO.</p>
+                <p><strong>B) GitHub Pages:</strong> Die statischen Inhalte dieser Website werden über GitHub Pages bereitgestellt (GitHub Inc., 88 Colin P. Kelly Jr. St, San Francisco, CA 94107, USA). Hierbei können IP-Adressen der Besucher an GitHub übermittelt werden. Die Rechtsgrundlage hierfür ist Art. 6 Abs. 1 lit. f DSGVO.</p>
+                <h4>4. Ihre Rechte</h4>
+                <p>Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung oder Löschung dieser Daten zu verlangen.</p>
+                <h4>5. Kontaktformular (Formspree)</h4>
+                <p>Wir nutzen für die Verarbeitung unserer Kontaktformulare den Dienst <strong>Formspree</strong> (Formspree Inc., 430 Mission St., San Francisco, CA 94105, USA). Die von Ihnen eingegebenen Daten werden an Formspree übermittelt und dort verarbeitet. Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO oder unserem berechtigten Interesse (Art. 6 Abs. 1 lit. f DSGVO).</p>
+                <h4>6. Terminbuchung (Calendly)</h4>
+                <p>Auf unserer Website nutzen wir das Tool <strong>Calendly</strong> (Calendly LLC, 271 17th St NW, 10th Floor, Atlanta, GA 30363, USA). Wenn Sie einen Termin buchen, werden Name und E-Mail-Adresse an Calendly übertragen. Die Nutzung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO oder Art. 6 Abs. 1 lit. b DSGVO.</p>
+                <h4>7. Cookies</h4>
+                <p>Diese Website verwendet technisch notwendige Cookies, um Grundfunktionen sicherzustellen. Sie können Ihren Browser so einstellen, dass Sie über das Setzen von Cookies informiert werden und Cookies nur im Einzelfall erlauben.</p>
+            `
+        };
 
-        function toggleModal(id) {
-            const modal = document.getElementById(id);
-            document.querySelectorAll('.modal').forEach(m => {
-                if(m.id !== id) m.style.display = "none";
-            });
-            
-            modal.style.display = modal.style.display === "block" ? "none" : "block";
-            document.body.style.overflow = modal.style.display === "block" ? "hidden" : "auto";
-        }
-
-        function closePromo() {
-            gsap.to("#promo-content", { scale: 0.8, opacity: 0, duration: 0.4, ease: "back.in" });
-            gsap.to("#promo-modal", { opacity: 0, duration: 0.5, onComplete: () => {
-                document.getElementById('promo-modal').style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }});
-        }
-
-        function toggleChat() {
-            const chatWin = document.getElementById('chatbot-window');
-            chatWin.classList.toggle('hidden');
-        }
-
-        function addMessage(text, isBot = true) {
-            const container = document.getElementById('chat-messages');
-            const div = document.createElement('div');
-            div.className = `chat-bubble ${isBot ? 'chat-bot' : 'chat-user'}`;
-            div.innerText = text;
-            container.appendChild(div);
-            container.scrollTop = container.scrollHeight;
-        }
-
-        const responses = {
-            price: { 
-                q: "Was kostet eine Website?", 
-                a: "Dank dem Eröffnungsangebot aktuell nur 499€!" 
+        // Project Portfolio Data
+        const projects = {
+            alpha: {
+                title: "E-Commerce Premium",
+                desc: "Ein hochperformanter Online-Shop für eine exklusive Fashion-Brand. Fokus auf Mobile-First-Experience, blitzschnelle Ladezeiten und ein nahtloses Check-out-System. Durch maßgeschneiderten Code konnten wir die Conversion-Rate um 40% steigern.",
+                imgLabel: "[Projekt-Screenshot: Premium Mode-Onlineshop]",
+                tech: ["Next.js", "Tailwind", "Shopify API"],
+                location: "Oldenburg"
             },
-            duration: { 
-                q: "Wie lange dauert ein Projekt?", 
-                a: "In der Regel ist deine Website innerhalb von 14 Tagen online!" 
+            beta: {
+                title: "Recruiting Portal",
+                desc: "Automatisierte Bewerbermanagement-Plattform für ein mittelständisches Unternehmen in Niedersachsen. Inklusive KI-Vorauswahl von Talenten und integriertem Kalender-System für Erstgespräche. Reduziert den administrativen Aufwand im HR um ca. 65%.",
+                imgLabel: "[Projekt-Screenshot: HR Dashboard & Bewerber-Portal]",
+                tech: ["React", "PostgreSQL", "Node.js"],
+                location: "Wardenburg"
             }
         };
 
-        function askBot(key) {
-            addMessage(responses[key].q, false);
-            setTimeout(() => addMessage(responses[key].a, true), 500);
-        }
+        // Scroll Animation
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { entry.target.classList.add('visible'); }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        function closeCookieBanner() {
-            gsap.to("#cookie-banner", { y: 50, opacity: 0, duration: 0.5, onComplete: () => {
-                document.getElementById('cookie-banner').style.display = 'none';
-            }});
-        }
-
-        window.onload = () => {
-            gsap.from("nav", { y: -100, opacity: 0, duration: 1 });
-            
-            // Promo Modal Animation
-            const promo = document.getElementById('promo-modal');
-            promo.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-            gsap.to(promo, { opacity: 1, duration: 0.5 });
-            gsap.from("#promo-content", { scale: 0.5, opacity: 0, duration: 0.8, ease: "elastic.out(1, 0.75)", delay: 0.5 });
-
-            // Cookie Banner delayed show
+        // Popups
+        window.addEventListener('load', () => {
             setTimeout(() => {
-                if(document.getElementById('cookie-banner').style.display !== 'none') {
-                    gsap.to("#cookie-banner", { y: 0, opacity: 1, duration: 1 });
+                const promo = document.getElementById('promo-popup');
+                if(promo) {
+                    promo.classList.remove('hidden');
+                    promo.classList.add('flex');
                 }
-            }, 3000);
-        };
+            }, 1500);
+            if (!localStorage.getItem('cookie-choice')) {
+                const banner = document.getElementById('cookie-banner');
+                if(banner) banner.classList.remove('hidden');
+            }
+        });
+
+        function closePopup() { document.getElementById('promo-popup').classList.add('hidden'); }
+        
+        function handleCookies(accepted) { 
+            localStorage.setItem('cookie-choice', accepted ? 'accepted' : 'declined'); 
+            document.getElementById('cookie-banner').classList.add('hidden'); 
+        }
+
+        // Portfolio Detail Modal
+        function openModal(projectId) {
+            const project = projects[projectId];
+            document.getElementById('modal-title').innerText = project.title;
+            document.getElementById('modal-desc').innerText = project.desc;
+            document.getElementById('modal-img-label').innerText = project.imgLabel;
+            document.getElementById('modal-location').innerText = project.location;
+            
+            const techContainer = document.getElementById('modal-tech');
+            techContainer.innerHTML = '';
+            project.tech.forEach(t => {
+                const span = document.createElement('span');
+                span.className = "text-[10px] font-bold border border-black/20 px-2 py-1 uppercase";
+                span.innerText = t;
+                techContainer.appendChild(span);
+            });
+
+            document.getElementById('portfolio-modal').classList.remove('hidden');
+            document.getElementById('portfolio-modal').classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal() {
+            document.getElementById('portfolio-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Legal Modals
+        function openLegal(type) {
+            const modal = document.getElementById('legal-modal');
+            const content = document.getElementById('legal-content-target');
+            content.innerHTML = legalData[type];
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLegal() {
+            document.getElementById('legal-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Chatbot Logic
+        function toggleChatbot() {
+            document.getElementById('chatbot-window').classList.toggle('hidden');
+        }
+        document.getElementById('chatbot-toggle').addEventListener('click', toggleChatbot);
+
+        function askBot(question) {
+            const container = document.getElementById('chat-messages');
+            const uMsg = document.createElement('div');
+            uMsg.className = "bg-white text-black p-3 rounded-tl-xl rounded-bl-xl rounded-br-xl text-right ml-8 mb-2 font-medium";
+            uMsg.innerText = question;
+            container.appendChild(uMsg);
+
+            let resp = "";
+            if (question.includes("kostet")) resp = "Unser aktuelles Eröffnungsangebot liegt bei 499€ pro Website – gültig bis zum 30. April.";
+            else if (question.includes("dauert")) resp = "Durch unsere effiziente Architektur realisieren wir Ihr Projekt meist innerhalb von 14 Tagen.";
+
+            setTimeout(() => {
+                const bMsg = document.createElement('div');
+                bMsg.className = "bg-white/10 p-3 rounded-tr-xl rounded-bl-xl rounded-br-xl mr-8 mb-2 text-white/90 border-l border-white/20";
+                bMsg.innerText = resp;
+                container.appendChild(bMsg);
+                container.scrollTop = container.scrollHeight;
+            }, 600);
+        }
     </script>
 </body>
 </html>
