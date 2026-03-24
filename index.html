@@ -185,80 +185,74 @@
 
     <!-- Portfolio -->
     <section id="portfolio" class="py-24 px-6 bg-white text-black">
-    <div class="max-w-7xl mx-auto">
-        <h2 class="text-4xl font-black mb-12 uppercase text-center">Referenzen</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <!-- Projekt 1 -->
-            <div class="relative group cursor-pointer overflow-hidden border border-black" onclick="openModal('alpha')">
-                <div class="project-img-placeholder aspect-video group-hover:scale-105 transition-transform duration-700 flex items-center justify-center bg-gray-100">
-                    <img src="mmuster.jpg" alt="Online-Shop System" class="w-full h-full object-cover">
-                </div>
-                <div class="p-6 bg-white flex justify-between items-center">
-                    <div>
-                        <h3 class="font-bold uppercase text-lg">Online-Shop System</h3>
-                        <p class="text-xs opacity-60">Custom Code / E-Commerce / SEO</p>
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-black mb-12 uppercase text-center">Referenzen</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Projekt 1 -->
+                <div class="relative group cursor-pointer overflow-hidden border border-black" onclick="openModal('alpha')">
+                    <div class="project-img-placeholder aspect-video group-hover:scale-105 transition-transform duration-700">
+                        <i data-lucide="shopping-bag" class="w-16 h-16 text-white/10"></i>
+                        <span class="absolute inset-0 flex items-center justify-center text-white font-black uppercase tracking-[0.3em] text-xs opacity-40 group-hover:opacity-100 transition-opacity">[Bild von E-Commerce Shop]</span>
                     </div>
-                    <i data-lucide="arrow-up-right" class="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    <div class="p-6 bg-white flex justify-between items-center">
+                        <div>
+                            <h3 class="font-bold uppercase text-lg">Online-Shop System</h3>
+                            <p class="text-xs opacity-60">Custom Code / E-Commerce / SEO</p>
+                        </div>
+                        <i data-lucide="arrow-up-right" class="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </div>
                 </div>
-            </div>
                 <!-- Projekt 2 -->
                 <div class="relative group cursor-pointer overflow-hidden border border-black" onclick="openModal('beta')">
-                <div class="project-img-placeholder aspect-video group-hover:scale-105 transition-transform duration-700 flex items-center justify-center bg-gray-100">
-                    <img src="musterpartner.jpg" alt="Recruiting Portal" class="w-full h-full object-cover">
-                </div>
-                <div class="p-6 bg-white flex justify-between items-center">
-                    <div>
-                        <h3 class="font-bold uppercase text-lg">Recruiting Portal</h3>
-                        <p class="text-xs opacity-60">Full-Stack / HR Automation</p>
+                    <div class="project-img-placeholder aspect-video group-hover:scale-105 transition-transform duration-700">
+                        <i data-lucide="users" class="w-16 h-16 text-white/10"></i>
+                        <span class="absolute inset-0 flex items-center justify-center text-white font-black uppercase tracking-[0.3em] text-xs opacity-40 group-hover:opacity-100 transition-opacity">[Bild von Recruiting Portal]</span>
                     </div>
-                    <i data-lucide="arrow-up-right" class="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    <div class="p-6 bg-white flex justify-between items-center">
+                        <div>
+                            <h3 class="font-bold uppercase text-lg">Recruiting Portal</h3>
+                            <p class="text-xs opacity-60">Full-Stack / HR Automation</p>
+                        </div>
+                        <i data-lucide="arrow-up-right" class="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </div>
                 </div>
             </div>
-
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Portfolio Detail Modal -->
     <div id="portfolio-modal" class="fixed inset-0 z-[110] bg-black/95 hidden items-center justify-center p-6">
-    <div class="max-w-4xl w-full bg-white text-black relative max-h-[90vh] overflow-y-auto rounded-sm shadow-2xl">
-        
-        <button onclick="closeModal()" class="fixed top-10 right-10 text-white z-[120] hover:rotate-90 transition-transform bg-black/50 p-2 rounded-full">
-            <i data-lucide="x"></i>
-        </button>
-        
-        <div id="modal-img-container" class="relative h-[300px] md:h-[450px] bg-gray-200 overflow-hidden">
-            <img id="modal-image" src="" alt="Projektbild" class="w-full h-full object-cover transition-opacity duration-500">
-            <div class="absolute inset-0 bg-black/20"></div> <span id="modal-img-label" class="absolute inset-0 flex items-center justify-center text-white font-black uppercase tracking-[0.2em] opacity-40 text-center px-4 pointer-events-none text-2xl"></span>
-        </div>
-
-        <div class="p-8 md:p-12">
-            <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-8">
-                <div class="flex-1">
-                    <h3 id="modal-title" class="text-4xl font-black uppercase mb-4 tracking-tighter"></h3>
-                    <p id="modal-desc" class="text-lg opacity-80 mb-8 leading-relaxed"></p>
-                </div>
-                
-                <div class="w-full md:w-64 space-y-6 pt-2">
-                    <div>
-                        <span class="block text-[10px] uppercase tracking-widest font-black text-black/40 mb-2">Technologien</span>
-                        <div id="modal-tech" class="flex flex-wrap gap-2"></div>
-                    </div>
-                    <div>
-                        <span class="block text-[10px] uppercase tracking-widest font-black text-black/40 mb-1">Standort</span>
-                        <p id="modal-location" class="text-sm font-bold uppercase"></p>
-                    </div>
-                </div>
+        <div class="max-w-4xl w-full bg-white text-black relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal()" class="fixed top-10 right-10 text-white z-[120] hover:rotate-90 transition-transform bg-black/50 p-2 rounded-full"><i data-lucide="x"></i></button>
+            
+            <!-- Modal Image Header -->
+            <div id="modal-img-container" class="project-img-placeholder h-[300px] md:h-[450px]">
+                <span id="modal-img-label" class="text-white font-black uppercase tracking-widest opacity-30 text-center px-4"></span>
             </div>
 
-            <div class="mt-12 pt-8 border-t border-black/10">
-                <button onclick="closeModal()" class="w-full border border-black py-4 uppercase font-bold hover:bg-black hover:text-white transition-colors duration-300">
-                    Projekt schließen
-                </button>
+            <div class="p-8 md:p-12">
+                <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-8">
+                    <div class="flex-1">
+                        <h3 id="modal-title" class="text-4xl font-black uppercase mb-4 tracking-tighter"></h3>
+                        <p id="modal-desc" class="text-lg opacity-80 mb-8 leading-relaxed"></p>
+                    </div>
+                    <div class="w-full md:w-64 space-y-6 pt-2">
+                        <div>
+                            <span class="block text-[10px] uppercase tracking-widest font-black text-black/40 mb-1">Technologien</span>
+                            <div id="modal-tech" class="flex flex-wrap gap-2"></div>
+                        </div>
+                        <div>
+                            <span class="block text-[10px] uppercase tracking-widest font-black text-black/40 mb-1">Standort</span>
+                            <p id="modal-location" class="text-sm font-bold uppercase"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-12 pt-8 border-t border-black/10">
+                    <button onclick="closeModal()" class="w-full border border-black py-4 uppercase font-bold mono-bg-hover transition">Projekt schließen</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
     <!-- Kontakt Section -->
     <section id="kontakt" class="py-24 px-6 bg-black text-white">
@@ -435,61 +429,32 @@
             document.getElementById('cookie-banner').classList.add('hidden'); 
         }
 
-        // Deine Projektdaten
-const projects = {
-    "projekt-1": {
-        title: "Musterprojekt Alpha",
-        description: "Dies ist eine detaillierte Beschreibung für dein erstes Portfolio-Element. Hier kannst du über die Herausforderungen und Lösungen des Projekts schreiben.",
-        image: "mmuster.jpg",
-        location: "Berlin, DE",
-        label: "Design & Concept",
-        tech: ["HTML", "Tailwind", "JS"]
-    },
-    "projekt-2": {
-        title: "Musterpartner Kooperation",
-        description: "Eine Zusammenarbeit mit unserem Partner, bei der moderne Ästhetik auf funktionale Architektur trifft.",
-        image: "musterpartner.jpg",
-        location: "Hamburg, DE",
-        label: "Architecture",
-        tech: ["Archicad", "Render", "Planning"]
-    }
-};
+        // Portfolio Detail Modal
+        function openModal(projectId) {
+            const project = projects[projectId];
+            document.getElementById('modal-title').innerText = project.title;
+            document.getElementById('modal-desc').innerText = project.desc;
+            document.getElementById('modal-img-label').innerText = project.imgLabel;
+            document.getElementById('modal-location').innerText = project.location;
+            
+            const techContainer = document.getElementById('modal-tech');
+            techContainer.innerHTML = '';
+            project.tech.forEach(t => {
+                const span = document.createElement('span');
+                span.className = "text-[10px] font-bold border border-black/20 px-2 py-1 uppercase";
+                span.innerText = t;
+                techContainer.appendChild(span);
+            });
 
-function openModal(projectId) {
-    const data = projects[projectId];
-    if (!data) return;
+            document.getElementById('portfolio-modal').classList.remove('hidden');
+            document.getElementById('portfolio-modal').classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal() {
+            document.getElementById('portfolio-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
 
-    // Elemente befüllen
-    document.getElementById('modal-title').innerText = data.title;
-    document.getElementById('modal-desc').innerText = data.description;
-    document.getElementById('modal-location').innerText = data.location;
-    document.getElementById('modal-img-label').innerText = data.label;
-    
-    // Bildquelle setzen
-    const img = document.getElementById('modal-image');
-    img.src = data.image;
-    img.alt = data.title;
-
-    // Tech-Badges generieren
-    const techBox = document.getElementById('modal-tech');
-    techBox.innerHTML = '';
-    data.tech.forEach(t => {
-        techBox.innerHTML += `<span class="px-2 py-1 bg-black text-white text-[9px] font-bold uppercase">${t}</span>`;
-    });
-
-    // Modal anzeigen
-    const modal = document.getElementById('portfolio-modal');
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
-    document.body.style.overflow = 'hidden'; // Scrollen stoppen
-}
-
-function closeModal() {
-    const modal = document.getElementById('portfolio-modal');
-    modal.classList.add('hidden');
-    modal.classList.remove('flex');
-    document.body.style.overflow = 'auto'; // Scrollen wieder an
-}
         // Legal Modals
         function openLegal(type) {
             const modal = document.getElementById('legal-modal');
