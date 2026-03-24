@@ -190,9 +190,8 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Projekt 1 -->
                 <div class="relative group cursor-pointer overflow-hidden border border-black" onclick="openModal('alpha')">
-                    <div class="project-img-placeholder aspect-video group-hover:scale-105 transition-transform duration-700">
-                        <i data-lucide="shopping-bag" class="w-16 h-16 text-white/10"></i>
-                        <span class="absolute inset-0 flex items-center justify-center text-white font-black uppercase tracking-[0.3em] text-xs opacity-40 group-hover:opacity-100 transition-opacity">[Bild von E-Commerce Shop]</span>
+                    <div class="aspect-video group-hover:scale-105 transition-transform duration-700 relative overflow-hidden bg-zinc-100">
+                        <img src="mmuster.jpg" alt="Online-Shop System" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6 bg-white flex justify-between items-center">
                         <div>
@@ -204,9 +203,8 @@
                 </div>
                 <!-- Projekt 2 -->
                 <div class="relative group cursor-pointer overflow-hidden border border-black" onclick="openModal('beta')">
-                    <div class="project-img-placeholder aspect-video group-hover:scale-105 transition-transform duration-700">
-                        <i data-lucide="users" class="w-16 h-16 text-white/10"></i>
-                        <span class="absolute inset-0 flex items-center justify-center text-white font-black uppercase tracking-[0.3em] text-xs opacity-40 group-hover:opacity-100 transition-opacity">[Bild von Recruiting Portal]</span>
+                    <div class="aspect-video group-hover:scale-105 transition-transform duration-700 relative overflow-hidden bg-zinc-100">
+                        <img src="musterpartner.jpg" alt="Recruiting Portal" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6 bg-white flex justify-between items-center">
                         <div>
@@ -226,8 +224,8 @@
             <button onclick="closeModal()" class="fixed top-10 right-10 text-white z-[120] hover:rotate-90 transition-transform bg-black/50 p-2 rounded-full"><i data-lucide="x"></i></button>
             
             <!-- Modal Image Header -->
-            <div id="modal-img-container" class="project-img-placeholder h-[300px] md:h-[450px]">
-                <span id="modal-img-label" class="text-white font-black uppercase tracking-widest opacity-30 text-center px-4"></span>
+            <div id="modal-img-container" class="h-[300px] md:h-[450px] overflow-hidden bg-zinc-100">
+                <img id="modal-img-src" src="" alt="Project Preview" class="w-full h-full object-cover">
             </div>
 
             <div class="p-8 md:p-12">
@@ -385,14 +383,14 @@
             alpha: {
                 title: "E-Commerce Premium",
                 desc: "Ein hochperformanter Online-Shop für eine exklusive Fashion-Brand. Fokus auf Mobile-First-Experience, blitzschnelle Ladezeiten und ein nahtloses Check-out-System. Durch maßgeschneiderten Code konnten wir die Conversion-Rate um 40% steigern.",
-                imgLabel: "[Projekt-Screenshot: Premium Mode-Onlineshop]",
+                img: "mmuster.jpg",
                 tech: ["Next.js", "Tailwind", "Shopify API"],
                 location: "Oldenburg"
             },
             beta: {
                 title: "Recruiting Portal",
                 desc: "Automatisierte Bewerbermanagement-Plattform für ein mittelständisches Unternehmen in Niedersachsen. Inklusive KI-Vorauswahl von Talenten und integriertem Kalender-System für Erstgespräche. Reduziert den administrativen Aufwand im HR um ca. 65%.",
-                imgLabel: "[Projekt-Screenshot: HR Dashboard & Bewerber-Portal]",
+                img: "musterpartner.jpg",
                 tech: ["React", "PostgreSQL", "Node.js"],
                 location: "Wardenburg"
             }
@@ -434,7 +432,7 @@
             const project = projects[projectId];
             document.getElementById('modal-title').innerText = project.title;
             document.getElementById('modal-desc').innerText = project.desc;
-            document.getElementById('modal-img-label').innerText = project.imgLabel;
+            document.getElementById('modal-img-src').src = project.img;
             document.getElementById('modal-location').innerText = project.location;
             
             const techContainer = document.getElementById('modal-tech');
