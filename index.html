@@ -185,40 +185,39 @@
 
     <!-- Portfolio -->
     <section id="portfolio" class="py-24 px-6 bg-white text-black">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-4xl font-black mb-12 uppercase text-center">Referenzen</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Projekt 1 -->
-                <div class="relative group cursor-pointer overflow-hidden border border-black" onclick="openModal('alpha')">
-                    <div class="project-img-placeholder aspect-video group-hover:scale-105 transition-transform duration-700">
-                        <i data-lucide="mmuster.jpg" class="w-16 h-16 text-white/10"></i>
-                        <span class="absolute inset-0 flex items-center justify-center text-white font-black uppercase tracking-[0.3em] text-xs opacity-40 group-hover:opacity-100 transition-opacity">[mmuster.jpg]</span>
-                    </div>
-                    <div class="p-6 bg-white flex justify-between items-center">
-                        <div>
-                            <h3 class="font-bold uppercase text-lg">Online-Shop System</h3>
-                            <p class="text-xs opacity-60">Custom Code / E-Commerce / SEO</p>
-                        </div>
-                        <i data-lucide="arrow-up-right" class="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                    </div>
+    <div class="max-w-7xl mx-auto">
+        <h2 class="text-4xl font-black mb-12 uppercase text-center">Referenzen</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Projekt 1 -->
+            <div class="relative group cursor-pointer overflow-hidden border border-black" onclick="openModal('alpha')">
+                <div class="project-img-placeholder aspect-video group-hover:scale-105 transition-transform duration-700 flex items-center justify-center bg-gray-100">
+                    <img src="mmuster.jpg" alt="Online-Shop System" class="w-full h-full object-cover">
                 </div>
-                <!-- Projekt 2 -->
-                <div class="relative group cursor-pointer overflow-hidden border border-black" onclick="openModal('beta')">
-                    <div class="project-img-placeholder aspect-video group-hover:scale-105 transition-transform duration-700">
-                        <i data-lucide="musterpartner.jpg" class="w-16 h-16 text-white/10"></i>
-                        <span class="absolute inset-0 flex items-center justify-center text-white font-black uppercase tracking-[0.3em] text-xs opacity-40 group-hover:opacity-100 transition-opacity">[musterpartner.jpg]</span>
+                <div class="p-6 bg-white flex justify-between items-center">
+                    <div>
+                        <h3 class="font-bold uppercase text-lg">Online-Shop System</h3>
+                        <p class="text-xs opacity-60">Custom Code / E-Commerce / SEO</p>
                     </div>
-                    <div class="p-6 bg-white flex justify-between items-center">
-                        <div>
-                            <h3 class="font-bold uppercase text-lg">Recruiting Portal</h3>
-                            <p class="text-xs opacity-60">Full-Stack / HR Automation</p>
-                        </div>
-                        <i data-lucide="arrow-up-right" class="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                    </div>
+                    <i data-lucide="arrow-up-right" class="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity"></i>
                 </div>
             </div>
+                <!-- Projekt 2 -->
+                <div class="relative group cursor-pointer overflow-hidden border border-black" onclick="openModal('beta')">
+                <div class="project-img-placeholder aspect-video group-hover:scale-105 transition-transform duration-700 flex items-center justify-center bg-gray-100">
+                    <img src="musterpartner.jpg" alt="Recruiting Portal" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6 bg-white flex justify-between items-center">
+                    <div>
+                        <h3 class="font-bold uppercase text-lg">Recruiting Portal</h3>
+                        <p class="text-xs opacity-60">Full-Stack / HR Automation</p>
+                    </div>
+                    <i data-lucide="arrow-up-right" class="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                </div>
+            </div>
+
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Portfolio Detail Modal -->
     <div id="portfolio-modal" class="fixed inset-0 z-[110] bg-black/95 hidden items-center justify-center p-6">
