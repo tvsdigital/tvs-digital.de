@@ -76,20 +76,9 @@
         .legal-content p { margin-bottom: 0.75rem; color: rgba(0,0,0,0.7); line-height: 1.6; }
         .legal-content strong { color: #000; }
 
-        /* Image Placeholder Stylling */
-        .project-img-placeholder {
-            background: linear-gradient(135deg, #111 0%, #222 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .project-img-placeholder::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.4) 100%);
+        /* Aspect Ratio adjustment for 1788x950 images */
+        .aspect-lunar {
+            aspect-ratio: 1788 / 950;
         }
     </style>
 </head>
@@ -190,7 +179,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Projekt 1 -->
                 <div class="relative group cursor-pointer overflow-hidden border border-black" onclick="openModal('alpha')">
-                    <div class="aspect-video group-hover:scale-105 transition-transform duration-700 relative overflow-hidden bg-zinc-100">
+                    <div class="aspect-lunar group-hover:scale-105 transition-transform duration-700 relative overflow-hidden bg-zinc-100">
                         <img src="mmuster.jpg" alt="Online-Shop System" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6 bg-white flex justify-between items-center">
@@ -203,7 +192,7 @@
                 </div>
                 <!-- Projekt 2 -->
                 <div class="relative group cursor-pointer overflow-hidden border border-black" onclick="openModal('beta')">
-                    <div class="aspect-video group-hover:scale-105 transition-transform duration-700 relative overflow-hidden bg-zinc-100">
+                    <div class="aspect-lunar group-hover:scale-105 transition-transform duration-700 relative overflow-hidden bg-zinc-100">
                         <img src="musterpartner.jpg" alt="Recruiting Portal" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6 bg-white flex justify-between items-center">
@@ -224,7 +213,7 @@
             <button onclick="closeModal()" class="fixed top-10 right-10 text-white z-[120] hover:rotate-90 transition-transform bg-black/50 p-2 rounded-full"><i data-lucide="x"></i></button>
             
             <!-- Modal Image Header -->
-            <div id="modal-img-container" class="h-[300px] md:h-[450px] overflow-hidden bg-zinc-100">
+            <div id="modal-img-container" class="aspect-lunar overflow-hidden bg-zinc-100">
                 <img id="modal-img-src" src="" alt="Project Preview" class="w-full h-full object-cover">
             </div>
 
