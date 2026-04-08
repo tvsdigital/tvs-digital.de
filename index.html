@@ -483,11 +483,30 @@
                 container.scrollTop = container.scrollHeight;
             }, 600);
         }
-    </script> <script src="https://unpkg.com/lucide@latest"></script>
-    
-    <script>
-        // Initialisiert alle Icons (auch das im Footer)
-        lucide.createIcons();
+
+        // --- ICON FIX START ---
+        function initIcons() {
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        }
+
+        // Icons beim Laden rendern
+        window.addEventListener('load', initIcons);
+
+        // Die vorhandenen Funktionen erweitern, damit Icons in Modals nachgeladen werden
+        const originalOpenModal = openModal;
+        openModal = function(projectId) {
+            originalOpenModal(projectId);
+            setTimeout(initIcons, 50); 
+        };
+
+        const originalOpenLegal = openLegal;
+        openLegal = function(type) {
+            originalOpenLegal(type);
+            setTimeout(initIcons, 50);
+        };
+        // --- ICON FIX ENDE ---
     </script>
 </body>
 </html>
