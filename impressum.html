@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Impressum — TVS Digital</title>
+<meta name="description" content="Impressum von TVS Digital – Angaben gemäß § 5 TMG.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<script src="https://code.iconify.design/iconify-icon/1.0.8/iconify-icon.min.js"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+--color-bg:#0F0F0E;
+--color-bg-elevated:#1A1917;
+--color-bg-card:#22211E;
+--color-surface:#2C2B27;
+--color-copper:#C17F59;
+--color-copper-light:#D4A07A;
+--color-gold:#C9A96E;
+--color-gold-light:#DFC08A;
+--color-cream:#F5F0EB;
+--color-cream-muted:#D9D2CA;
+--color-text:#F5F0EB;
+--color-text-muted:#9C9789;
+--color-text-subtle:#6B675E;
+--nav-bg:rgba(15,15,14,0.9);
+--overlay-bg:rgba(15,15,14,0.97);
+--noise-opacity:0.025;
+--font-display:'Playfair Display',Georgia,serif;
+--font-body:'Inter',system-ui,-apple-system,sans-serif;
+--ease-out-expo:cubic-bezier(0.16,1,0.3,1);
+}
+[data-theme="light"]{
+--color-bg:#F8F6F3;
+--color-bg-elevated:#EFECE6;
+--color-bg-card:#FFFFFF;
+--color-surface:#E5E0D8;
+--color-cream:#1A1816;
+--color-cream-muted:#3D3B37;
+--color-text:#2D2B28;
+--color-text-muted:#6B675E;
+--color-text-subtle:#8F8B82;
+--nav-bg:rgba(248,246,243,0.9);
+--overlay-bg:rgba(248,246,243,0.97);
+--noise-opacity:0.015;
+}
+html{scroll-behavior:smooth;font-size:16px;overflow-x:hidden}
+body{font-family:var(--font-body);background:var(--color-bg);color:var(--color-text);-webkit-font-smoothing:antialiased;transition:background-color 0.4s,color 0.4s;min-height:100vh;}
+a{color:var(--color-copper-light);text-decoration:none;transition:color 0.3s;}
+a:hover{color:var(--color-gold-light);}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--color-bg)}
+::-webkit-scrollbar-thumb{background:var(--color-surface);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--color-copper)}
+::selection{background:var(--color-copper);color:#F5F0EB}
+
+/* NOISE */
+body::before{content:'';position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:var(--noise-opacity);background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");background-repeat:repeat;transition:opacity 0.4s;}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 0;background:var(--nav-bg);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border-bottom:1px solid rgba(193,127,89,0.1);}
+.nav-inner{max-width:1320px;margin:0 auto;padding:0 clamp(1.5rem,4vw,3rem);display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-family:var(--font-display);font-size:1.5rem;font-weight:600;letter-spacing:0.12em;background:linear-gradient(135deg,var(--color-cream) 0%,var(--color-copper-light) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.nav-back{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);transition:color 0.3s;}
+.nav-back:hover{color:var(--color-copper-light);}
+.theme-btn{width:38px;height:38px;display:flex;align-items:center;justify-content:center;border-radius:50%;border:1px solid rgba(193,127,89,0.3);color:var(--color-copper-light);transition:all 0.3s;cursor:pointer;background:none;}
+.theme-btn:hover{border-color:var(--color-copper);background:rgba(193,127,89,0.08);}
+
+/* LAYOUT */
+.container{max-width:860px;margin:0 auto;padding:0 clamp(1.5rem,4vw,3rem);}
+
+/* HERO STRIP */
+.page-hero{
+  padding:clamp(7rem,14vh,10rem) 0 clamp(3rem,6vh,5rem);
+  position:relative;
+  overflow:hidden;
+}
+.page-hero::before{
+  content:'';position:absolute;top:-100px;right:-200px;
+  width:600px;height:600px;
+  background:radial-gradient(circle,rgba(193,127,89,0.05) 0%,transparent 70%);
+  pointer-events:none;
+}
+.page-hero-label{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--color-copper);margin-bottom:1.25rem;
+  opacity:0;animation:fadeUp 0.8s 0.2s var(--ease-out-expo) forwards;
+}
+.page-hero-label::before{content:'';width:30px;height:1px;background:linear-gradient(90deg,var(--color-copper),transparent);}
+.page-hero-title{
+  font-family:var(--font-display);
+  font-size:clamp(2.8rem,6vw,5rem);
+  font-weight:400;line-height:1.05;
+  letter-spacing:-0.02em;
+  color:var(--color-cream);
+  opacity:0;animation:fadeUp 0.9s 0.35s var(--ease-out-expo) forwards;
+}
+.page-hero-title em{font-style:italic;background:linear-gradient(135deg,var(--color-copper-light),var(--color-gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.page-hero-sub{
+  margin-top:1rem;
+  font-size:0.9rem;color:var(--color-text-muted);
+  opacity:0;animation:fadeUp 0.9s 0.5s var(--ease-out-expo) forwards;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* DIVIDER */
+.gradient-hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(193,127,89,0.3),transparent);margin:0;}
+
+/* CONTENT AREA */
+.imprint-content{
+  padding:clamp(3rem,6vh,5rem) 0 clamp(5rem,10vh,7rem);
+}
+.imprint-grid{
+  display:flex;
+  flex-direction:column;
+  gap:2rem;
+}
+
+/* SECTION CARD */
+.imprint-card{
+  background:var(--color-bg-elevated);
+  border-radius:16px;
+  padding:clamp(1.75rem,3vw,2.5rem);
+  position:relative;
+  overflow:hidden;
+  transition:background-color 0.4s;
+  opacity:0;transform:translateY(28px);
+  animation:fadeUp 0.7s var(--ease-out-expo) forwards;
+}
+.imprint-card:nth-child(1){animation-delay:0.1s}
+.imprint-card:nth-child(2){animation-delay:0.18s}
+.imprint-card:nth-child(3){animation-delay:0.26s}
+.imprint-card:nth-child(4){animation-delay:0.34s}
+.imprint-card:nth-child(5){animation-delay:0.42s}
+.imprint-card:nth-child(6){animation-delay:0.5s}
+
+/* Border gradient */
+.imprint-card::before{
+  content:'';position:absolute;inset:0;border-radius:16px;padding:1px;
+  background:linear-gradient(160deg,rgba(193,127,89,0.2),transparent 50%,transparent 50%,rgba(201,169,110,0.08));
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;
+}
+/* Accent glow top-left */
+.imprint-card::after{
+  content:'';position:absolute;top:-40px;left:-40px;
+  width:180px;height:180px;
+  background:radial-gradient(circle,rgba(193,127,89,0.04) 0%,transparent 70%);
+  pointer-events:none;
+}
+
+.imprint-card-header{
+  display:flex;align-items:center;gap:0.85rem;
+  margin-bottom:1.5rem;
+  padding-bottom:1.25rem;
+  border-bottom:1px solid rgba(193,127,89,0.08);
+}
+.imprint-card-icon{
+  width:42px;height:42px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:10px;
+  background:linear-gradient(135deg,rgba(193,127,89,0.12),rgba(193,127,89,0.04));
+  border:1px solid rgba(193,127,89,0.15);
+  color:var(--color-copper-light);
+  font-size:1.1rem;
+}
+.imprint-card-title{
+  font-family:var(--font-display);
+  font-size:1.15rem;font-weight:500;
+  color:var(--color-cream);
+  transition:color 0.4s;
+}
+
+/* Content typography */
+.imprint-body{font-size:0.9rem;line-height:1.85;color:var(--color-text-muted);}
+.imprint-body p{margin-bottom:0.5rem;}
+.imprint-body p:last-child{margin-bottom:0;}
+.imprint-body strong{color:var(--color-cream-muted);font-weight:500;}
+.imprint-body a{color:var(--color-copper-light);}
+.imprint-body a:hover{color:var(--color-gold-light);}
+
+/* NOTE BADGE */
+.imprint-note{
+  display:inline-flex;align-items:flex-start;gap:0.6rem;
+  margin-top:0.75rem;
+  padding:0.75rem 1rem;
+  background:rgba(193,127,89,0.06);
+  border:1px solid rgba(193,127,89,0.12);
+  border-radius:8px;
+  font-size:0.8rem;line-height:1.6;
+  color:var(--color-text-muted);
+  width:100%;
+}
+.imprint-note iconify-icon{color:var(--color-copper);flex-shrink:0;margin-top:2px;font-size:1rem;}
+
+/* FOOTER */
+.page-footer{
+  padding:2rem 0;
+  border-top:1px solid rgba(193,127,89,0.08);
+  background:var(--color-bg-elevated);
+  transition:background-color 0.4s;
+}
+.page-footer-inner{
+  max-width:1320px;margin:0 auto;padding:0 clamp(1.5rem,4vw,3rem);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+}
+.page-footer p{font-size:0.78rem;color:var(--color-text-subtle);}
+.page-footer-links{display:flex;gap:2rem;}
+.page-footer-links a{font-size:0.78rem;color:var(--color-text-subtle);transition:color 0.3s;}
+.page-footer-links a:hover{color:var(--color-cream);}
+
+@media(max-width:600px){
+  .page-hero-title{font-size:clamp(2.2rem,10vw,3rem)}
+  .nav-back span{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">TVS DIGITAL</a>
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <a href="index.html" class="nav-back">
+        <iconify-icon icon="solar:arrow-left-linear" style="font-size:1rem;"></iconify-icon>
+        <span>Zurück zur Startseite</span>
+      </a>
+      <button class="theme-btn" id="themeToggle" aria-label="Theme wechseln">
+        <iconify-icon icon="solar:sun-linear" style="font-size:1.1rem;display:none;" id="iconSun"></iconify-icon>
+        <iconify-icon icon="solar:moon-linear" style="font-size:1.1rem;" id="iconMoon"></iconify-icon>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Page Hero -->
+<div class="page-hero">
+  <div class="container">
+    <div class="page-hero-label">Rechtliches</div>
+    <h1 class="page-hero-title">Im<em>pressum</em></h1>
+    <p class="page-hero-sub">Angaben gemäß § 5 TMG</p>
+  </div>
+</div>
+
+<hr class="gradient-hr">
+
+<!-- Content -->
+<div class="imprint-content">
+  <div class="container">
+    <div class="imprint-grid">
+
+      <!-- Anbieter -->
+      <div class="imprint-card">
+        <div class="imprint-card-header">
+          <div class="imprint-card-icon"><iconify-icon icon="solar:user-bold"></iconify-icon></div>
+          <div class="imprint-card-title">Angaben gemäß § 5 TMG</div>
+        </div>
+        <div class="imprint-body">
+          <p><strong>Tim von Seggern</strong></p>
+          <p>Korsorsstraße 162</p>
+          <p>26203 Wardenburg</p>
+          <p>Deutschland</p>
+        </div>
+      </div>
+
+      <!-- Kontakt -->
+      <div class="imprint-card">
+        <div class="imprint-card-header">
+          <div class="imprint-card-icon"><iconify-icon icon="solar:phone-bold"></iconify-icon></div>
+          <div class="imprint-card-title">Kontakt</div>
+        </div>
+        <div class="imprint-body">
+          <p><strong>Telefon:</strong> <a href="tel:+491627472104">+49 162 7472104</a></p>
+          <p><strong>E-Mail:</strong> <a href="mailto:kontakt@tvs-digital.de">kontakt@tvs-digital.de</a></p>
+        </div>
+      </div>
+
+      <!-- Umsatzsteuer-ID -->
+      <div class="imprint-card">
+        <div class="imprint-card-header">
+          <div class="imprint-card-icon"><iconify-icon icon="solar:document-bold"></iconify-icon></div>
+          <div class="imprint-card-title">Umsatzsteuer-ID</div>
+        </div>
+        <div class="imprint-body">
+          <p>Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:</p>
+          <p><strong>DE?????????</strong></p>
+          <div class="imprint-note">
+            <iconify-icon icon="solar:info-circle-bold"></iconify-icon>
+            <span>Bitte trage hier deine Umsatzsteuer-ID ein, sobald sie vom Finanzamt vergeben wurde.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Redaktionell verantwortlich -->
+      <div class="imprint-card">
+        <div class="imprint-card-header">
+          <div class="imprint-card-icon"><iconify-icon icon="solar:pen-bold"></iconify-icon></div>
+          <div class="imprint-card-title">Redaktionell verantwortlich</div>
+        </div>
+        <div class="imprint-body">
+          <p><strong>Tim von Seggern</strong></p>
+          <p>Korsorsstraße 162</p>
+          <p>26203 Wardenburg</p>
+        </div>
+      </div>
+
+      <!-- EU-Streitschlichtung -->
+      <div class="imprint-card">
+        <div class="imprint-card-header">
+          <div class="imprint-card-icon"><iconify-icon icon="solar:global-bold"></iconify-icon></div>
+          <div class="imprint-card-title">EU-Streitschlichtung</div>
+        </div>
+        <div class="imprint-body">
+          <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:</p>
+          <p><a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr/</a></p>
+          <p style="margin-top:0.75rem;">Unsere E-Mail-Adresse finden Sie oben im Impressum.</p>
+        </div>
+      </div>
+
+      <!-- Verbraucherstreitbeilegung -->
+      <div class="imprint-card">
+        <div class="imprint-card-header">
+          <div class="imprint-card-icon"><iconify-icon icon="solar:shield-bold"></iconify-icon></div>
+          <div class="imprint-card-title">Verbraucherstreitbeilegung / Universalschlichtungsstelle</div>
+        </div>
+        <div class="imprint-body">
+          <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="page-footer">
+  <div class="page-footer-inner">
+    <p>© 2026 TVS Digital. Alle Rechte vorbehalten.</p>
+    <div class="page-footer-links">
+      <a href="#">Datenschutz</a>
+      <a href="index.html">Startseite</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const themeToggle = document.getElementById('themeToggle');
+const iconSun = document.getElementById('iconSun');
+const iconMoon = document.getElementById('iconMoon');
+themeToggle.addEventListener('click', () => {
+  const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+  document.documentElement.setAttribute('data-theme', isLight ? 'dark' : 'light');
+  iconSun.style.display = isLight ? 'none' : 'block';
+  iconMoon.style.display = isLight ? 'block' : 'none';
+});
+</script>
+</body>
+</html>

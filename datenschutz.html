@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Datenschutz — TVS Digital</title>
+<meta name="description" content="Datenschutzerklärung von TVS Digital gemäß DSGVO.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<script src="https://code.iconify.design/iconify-icon/1.0.8/iconify-icon.min.js"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+--color-bg:#0F0F0E;
+--color-bg-elevated:#1A1917;
+--color-copper:#C17F59;
+--color-copper-light:#D4A07A;
+--color-gold:#C9A96E;
+--color-gold-light:#DFC08A;
+--color-cream:#F5F0EB;
+--color-cream-muted:#D9D2CA;
+--color-text:#F5F0EB;
+--color-text-muted:#9C9789;
+--color-text-subtle:#6B675E;
+--nav-bg:rgba(15,15,14,0.9);
+--noise-opacity:0.025;
+--font-display:'Playfair Display',Georgia,serif;
+--font-body:'Inter',system-ui,-apple-system,sans-serif;
+--ease-out-expo:cubic-bezier(0.16,1,0.3,1);
+}
+[data-theme="light"]{
+--color-bg:#F8F6F3;
+--color-bg-elevated:#EFECE6;
+--color-cream:#1A1816;
+--color-cream-muted:#3D3B37;
+--color-text:#2D2B28;
+--color-text-muted:#6B675E;
+--color-text-subtle:#8F8B82;
+--nav-bg:rgba(248,246,243,0.9);
+--noise-opacity:0.015;
+}
+html{scroll-behavior:smooth;font-size:16px;overflow-x:hidden}
+body{font-family:var(--font-body);background:var(--color-bg);color:var(--color-text);-webkit-font-smoothing:antialiased;transition:background-color 0.4s,color 0.4s;min-height:100vh;}
+a{color:var(--color-copper-light);text-decoration:none;transition:color 0.3s;}
+a:hover{color:var(--color-gold-light);}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--color-bg)}
+::-webkit-scrollbar-thumb{background:#2C2B27;border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--color-copper)}
+::selection{background:var(--color-copper);color:#F5F0EB}
+body::before{content:'';position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:var(--noise-opacity);background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;transition:opacity 0.4s;}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 0;background:var(--nav-bg);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border-bottom:1px solid rgba(193,127,89,0.1);}
+.nav-inner{max-width:1320px;margin:0 auto;padding:0 clamp(1.5rem,4vw,3rem);display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-family:var(--font-display);font-size:1.5rem;font-weight:600;letter-spacing:0.12em;background:linear-gradient(135deg,var(--color-cream) 0%,var(--color-copper-light) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.nav-back{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);transition:color 0.3s;}
+.nav-back:hover{color:var(--color-copper-light);}
+.theme-btn{width:38px;height:38px;display:flex;align-items:center;justify-content:center;border-radius:50%;border:1px solid rgba(193,127,89,0.3);color:var(--color-copper-light);transition:all 0.3s;cursor:pointer;background:none;}
+.theme-btn:hover{border-color:var(--color-copper);background:rgba(193,127,89,0.08);}
+
+.container{max-width:860px;margin:0 auto;padding:0 clamp(1.5rem,4vw,3rem);}
+
+.page-hero{padding:clamp(7rem,14vh,10rem) 0 clamp(3rem,6vh,5rem);position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;top:-100px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(193,127,89,0.05) 0%,transparent 70%);pointer-events:none;}
+.page-hero-label{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-copper);margin-bottom:1.25rem;opacity:0;animation:fadeUp 0.8s 0.2s var(--ease-out-expo) forwards;}
+.page-hero-label::before{content:'';width:30px;height:1px;background:linear-gradient(90deg,var(--color-copper),transparent);}
+.page-hero-title{font-family:var(--font-display);font-size:clamp(2.8rem,6vw,5rem);font-weight:400;line-height:1.05;letter-spacing:-0.02em;color:var(--color-cream);opacity:0;animation:fadeUp 0.9s 0.35s var(--ease-out-expo) forwards;}
+.page-hero-title em{font-style:italic;background:linear-gradient(135deg,var(--color-copper-light),var(--color-gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.page-hero-sub{margin-top:1rem;font-size:0.9rem;color:var(--color-text-muted);opacity:0;animation:fadeUp 0.9s 0.5s var(--ease-out-expo) forwards;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+.gradient-hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(193,127,89,0.3),transparent);margin:0;}
+
+.toc-wrap{padding:clamp(2rem,4vh,3rem) 0 0;}
+.toc{background:var(--color-bg-elevated);border-radius:14px;padding:1.5rem 1.75rem;position:relative;overflow:hidden;border:1px solid rgba(193,127,89,0.1);opacity:0;animation:fadeUp 0.7s 0.6s var(--ease-out-expo) forwards;}
+.toc::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--color-copper),var(--color-gold));border-radius:3px 0 0 3px;}
+.toc-title{font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--color-copper);margin-bottom:1rem;}
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:0.45rem;}
+.toc-list li a{font-size:0.85rem;color:var(--color-text-muted);display:inline-flex;align-items:center;gap:0.4rem;transition:color 0.3s,gap 0.3s var(--ease-out-expo);}
+.toc-list li a:hover{color:var(--color-copper-light);gap:0.7rem;}
+.toc-list li a iconify-icon{font-size:0.75rem;opacity:0.6;}
+
+.imprint-content{padding:clamp(2.5rem,5vh,4rem) 0 clamp(5rem,10vh,7rem);}
+.imprint-grid{display:flex;flex-direction:column;gap:1.75rem;}
+
+.imprint-card{background:var(--color-bg-elevated);border-radius:16px;padding:clamp(1.75rem,3vw,2.5rem);position:relative;overflow:hidden;transition:background-color 0.4s;opacity:0;transform:translateY(28px);animation:fadeUp 0.7s var(--ease-out-expo) forwards;}
+.imprint-card:nth-child(1){animation-delay:0.05s}
+.imprint-card:nth-child(2){animation-delay:0.12s}
+.imprint-card:nth-child(3){animation-delay:0.19s}
+.imprint-card:nth-child(4){animation-delay:0.26s}
+.imprint-card:nth-child(5){animation-delay:0.33s}
+.imprint-card:nth-child(6){animation-delay:0.40s}
+.imprint-card:nth-child(7){animation-delay:0.47s}
+.imprint-card::before{content:'';position:absolute;inset:0;border-radius:16px;padding:1px;background:linear-gradient(160deg,rgba(193,127,89,0.2),transparent 50%,transparent 50%,rgba(201,169,110,0.08));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;}
+.imprint-card::after{content:'';position:absolute;top:-40px;left:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(193,127,89,0.04) 0%,transparent 70%);pointer-events:none;}
+
+.imprint-card-header{display:flex;align-items:center;gap:0.85rem;margin-bottom:1.5rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(193,127,89,0.08);}
+.imprint-card-icon{width:42px;height:42px;flex-shrink:0;display:flex;align-items:center;justify-content:center;border-radius:10px;background:linear-gradient(135deg,rgba(193,127,89,0.12),rgba(193,127,89,0.04));border:1px solid rgba(193,127,89,0.15);color:var(--color-copper-light);font-size:1.15rem;}
+.imprint-card-meta{display:flex;flex-direction:column;gap:0.1rem;}
+.imprint-card-number{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--color-copper);opacity:0.7;font-weight:500;}
+.imprint-card-title{font-family:var(--font-display);font-size:1.1rem;font-weight:500;color:var(--color-cream);transition:color 0.4s;line-height:1.3;}
+
+.imprint-body{font-size:0.88rem;line-height:1.9;color:var(--color-text-muted);}
+.imprint-body p{margin-bottom:0.85rem;}
+.imprint-body p:last-child{margin-bottom:0;}
+.imprint-body strong{color:var(--color-cream-muted);font-weight:500;}
+
+.imprint-sub{margin-top:1.25rem;}
+.imprint-sub + .imprint-sub{margin-top:1.1rem;}
+.imprint-sub-label{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-copper);margin-bottom:0.6rem;font-weight:500;}
+.imprint-sub-label::before{content:'';width:16px;height:1px;background:var(--color-copper);opacity:0.5;}
+
+.rights-list{list-style:none;display:flex;flex-direction:column;gap:0.55rem;margin-top:0.75rem;}
+.rights-list li{display:flex;align-items:flex-start;gap:0.75rem;font-size:0.87rem;line-height:1.6;color:var(--color-text-muted);}
+.rights-list li iconify-icon{color:var(--color-copper-light);flex-shrink:0;font-size:1rem;margin-top:2px;}
+
+.imprint-note{display:inline-flex;align-items:flex-start;gap:0.6rem;margin-top:1rem;padding:0.75rem 1rem;background:rgba(193,127,89,0.06);border:1px solid rgba(193,127,89,0.12);border-radius:8px;font-size:0.8rem;line-height:1.6;color:var(--color-text-muted);width:100%;}
+.imprint-note iconify-icon{color:var(--color-copper);flex-shrink:0;margin-top:2px;font-size:1rem;}
+
+.page-footer{padding:2rem 0;border-top:1px solid rgba(193,127,89,0.08);background:var(--color-bg-elevated);transition:background-color 0.4s;}
+.page-footer-inner{max-width:1320px;margin:0 auto;padding:0 clamp(1.5rem,4vw,3rem);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.page-footer p{font-size:0.78rem;color:var(--color-text-subtle);}
+.page-footer-links{display:flex;gap:2rem;}
+.page-footer-links a{font-size:0.78rem;color:var(--color-text-subtle);transition:color 0.3s;}
+.page-footer-links a:hover{color:var(--color-cream);}
+
+@media(max-width:600px){
+  .page-hero-title{font-size:clamp(2.2rem,10vw,3rem)}
+  .nav-back span{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">TVS DIGITAL</a>
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <a href="index.html" class="nav-back">
+        <iconify-icon icon="solar:arrow-left-linear" style="font-size:1rem;"></iconify-icon>
+        <span>Zurück zur Startseite</span>
+      </a>
+      <button class="theme-btn" id="themeToggle" aria-label="Theme wechseln">
+        <iconify-icon icon="solar:sun-linear" style="font-size:1.1rem;display:none;" id="iconSun"></iconify-icon>
+        <iconify-icon icon="solar:moon-linear" style="font-size:1.1rem;" id="iconMoon"></iconify-icon>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="page-hero-label">Rechtliches</div>
+    <h1 class="page-hero-title">Daten<em>schutz</em></h1>
+    <p class="page-hero-sub">Datenschutzerklärung gemäß DSGVO — Stand: 2024</p>
+  </div>
+</div>
+
+<hr class="gradient-hr">
+
+<div class="toc-wrap">
+  <div class="container">
+    <div class="toc">
+      <div class="toc-title">Inhaltsübersicht</div>
+      <ul class="toc-list">
+        <li><a href="#s1"><iconify-icon icon="solar:arrow-right-linear"></iconify-icon>1. Datenschutz auf einen Blick</a></li>
+        <li><a href="#s2"><iconify-icon icon="solar:arrow-right-linear"></iconify-icon>2. Datenerfassung auf dieser Website</a></li>
+        <li><a href="#s3"><iconify-icon icon="solar:arrow-right-linear"></iconify-icon>3. Hosting &amp; Bereitstellung (Strato &amp; GitHub)</a></li>
+        <li><a href="#s4"><iconify-icon icon="solar:arrow-right-linear"></iconify-icon>4. Ihre Rechte</a></li>
+        <li><a href="#s5"><iconify-icon icon="solar:arrow-right-linear"></iconify-icon>5. Kontaktformular (Formspree)</a></li>
+        <li><a href="#s6"><iconify-icon icon="solar:arrow-right-linear"></iconify-icon>6. Terminbuchung (Calendly)</a></li>
+        <li><a href="#s7"><iconify-icon icon="solar:arrow-right-linear"></iconify-icon>7. Cookies</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="imprint-content">
+  <div class="container">
+    <div class="imprint-grid">
+
+      <div class="imprint-card" id="s1">
+        <div class="imprint-card-header">
+          <div class="imprint-card-icon"><iconify-icon icon="solar:eye-bold"></iconify-icon></div>
+          <div class="imprint-card-meta">
+            <div class="imprint-card-number">01</div>
+            <div class="imprint-card-title">Datenschutz auf einen Blick</div>
+          </div>
+        </div>
+        <div class="imprint-body">
+          <p>Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.</p>
+        </div>
+      </div>
+
+      <div class="imprint-card" id="s2">
+        <div class="imprint-card-header">
+          <div class="imprint-card-icon"><iconify-icon icon="solar:database-bold"></iconify-icon></div>
+          <div class="imprint-card-meta">
+            <div class="imprint-card-number">02</div>
+            <div class="imprint-card-title">Datenerfassung auf dieser Website</div>
+          </div>
+        </div>
+        <div class="imprint-body">
+          <p>Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem <a href="impressum.html">Impressum</a> dieser Website entnehmen.</p>
+          <p>Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen (z. B. durch Eingabe in ein Kontaktformular). Andere Daten werden automatisch beim Besuch der Website durch unsere IT-Systeme erfasst (z. B. Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs).</p>
+        </div>
+      </div>
+
+      <div class="imprint-card" id="s3">
+        <div class="imprint-card-header">
+          <div class="imprint-card-icon"><iconify-icon icon="solar:server-bold"></iconify-icon></div>
+          <div class="imprint-card-meta">
+            <div class="imprint-card-number">03</div>
+            <div class="imprint-card-title">Hosting &amp; Bereitstellung der Website</div>
+          </div>
+        </div>
+        <div class="imprint-body">
+          <div class="imprint-sub">
+            <div class="imprint-sub-label">A) Strato</div>
+            <p>Wir nutzen für den Betrieb unserer Domain und E-Mail-Dienste die <strong>Strato AG</strong> (Otto-Ostrowski-Straße 7, 10249 Berlin). Wenn Sie unsere Website besuchen oder uns eine E-Mail senden, werden Daten auf den Servern von Strato verarbeitet. Strato erhebt Logfiles (z. B. IP-Adressen), um den sicheren Betrieb der Infrastruktur zu gewährleisten. Die Nutzung von Strato erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO.</p>
+          </div>
+          <div class="imprint-sub">
+            <div class="imprint-sub-label">B) GitHub Pages</div>
+            <p>Die statischen Inhalte dieser Website werden über <strong>GitHub Pages</strong> bereitgestellt (GitHub Inc., 88 Colin P. Kelly Jr. St, San Francisco, CA 94107, USA). Hierbei können IP-Adressen der Besucher an GitHub übermittelt werden. Die Rechtsgrundlage hierfür ist Art. 6 Abs. 1 lit. f DSGVO.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="imprint-card" id="s4">
+        <div class="imprint-card-header">
+          <div class="imprint-card-icon"><iconify-icon icon="solar:shield-user-bold"></iconify-icon></div>
+          <div class="imprint-card-meta">
+            <div class="imprint-card-number">04</div>
+            <div class="imprint-card-title">Ihre Rechte</div>
+          </div>
+        </div>
+        <div class="imprint-body">
+          <p>Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung oder Löschung dieser Daten zu verlangen. Hierzu sowie zu weiteren Fragen zum Thema Datenschutz können Sie sich jederzeit an uns wenden.</p>
+          <ul class="rights-list">
+            <li><iconify-icon icon="solar:check-circle-bold"></iconify-icon>Recht auf Auskunft (Art. 15 DSGVO)</li>
+            <li><iconify-icon icon="solar:check-circle-bold"></iconify-icon>Recht auf Berichtigung (Art. 16 DSGVO)</li>
+            <li><iconify-icon icon="solar:check-circle-bold"></iconify-icon>Recht auf Löschung (Art. 17 DSGVO)</li>
+            <li><iconify-icon icon="solar:check-circle-bold"></iconify-icon>Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
+            <li><iconify-icon icon="solar:check-circle-bold"></iconify-icon>Recht auf Datenübertragbarkeit (Art. 20 DSGVO)</li>
+            <li><iconify-icon icon="solar:check-circle-bold"></iconify-icon>Widerspruchsrecht (Art. 21 DSGVO)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="imprint-card" id="s5">
+        <div class="imprint-card-header">
+          <div class="imprint-card-icon"><iconify-icon icon="solar:letter-bold"></iconify-icon></div>
+          <div class="imprint-card-meta">
+            <div class="imprint-card-number">05</div>
+            <div class="imprint-card-title">Kontaktformular (Formspree)</div>
+          </div>
+        </div>
+        <div class="imprint-body">
+          <p>Wir nutzen für die Verarbeitung unserer Kontaktformulare den Dienst <strong>Formspree</strong> (Formspree Inc., 430 Mission St., San Francisco, CA 94105, USA). Die von Ihnen eingegebenen Daten werden an Formspree übermittelt und dort verarbeitet.</p>
+          <p>Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung) oder unserem berechtigten Interesse gemäß Art. 6 Abs. 1 lit. f DSGVO.</p>
+          <div class="imprint-note">
+            <iconify-icon icon="solar:info-circle-bold"></iconify-icon>
+            <span>Weitere Informationen: <a href="https://formspree.io/legal/privacy-policy" target="_blank" rel="noopener noreferrer">formspree.io/legal/privacy-policy</a></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="imprint-card" id="s6">
+        <div class="imprint-card-header">
+          <div class="imprint-card-icon"><iconify-icon icon="solar:calendar-bold"></iconify-icon></div>
+          <div class="imprint-card-meta">
+            <div class="imprint-card-number">06</div>
+            <div class="imprint-card-title">Terminbuchung (Calendly)</div>
+          </div>
+        </div>
+        <div class="imprint-body">
+          <p>Auf unserer Website nutzen wir das Tool <strong>Calendly</strong> (Calendly LLC, 271 17th St NW, 10th Floor, Atlanta, GA 30363, USA). Wenn Sie einen Termin buchen, werden Name und E-Mail-Adresse an Calendly übertragen.</p>
+          <p>Die Nutzung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer effizienten Terminverwaltung) oder Art. 6 Abs. 1 lit. b DSGVO, sofern die Buchung im Rahmen einer Vertragsanbahnung erfolgt.</p>
+          <div class="imprint-note">
+            <iconify-icon icon="solar:info-circle-bold"></iconify-icon>
+            <span>Weitere Informationen: <a href="https://calendly.com/privacy" target="_blank" rel="noopener noreferrer">calendly.com/privacy</a></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="imprint-card" id="s7">
+        <div class="imprint-card-header">
+          <div class="imprint-card-icon"><iconify-icon icon="solar:unread-bold"></iconify-icon></div>
+          <div class="imprint-card-meta">
+            <div class="imprint-card-number">07</div>
+            <div class="imprint-card-title">Cookies</div>
+          </div>
+        </div>
+        <div class="imprint-body">
+          <p>Diese Website verwendet technisch notwendige Cookies, um Grundfunktionen sicherzustellen. Diese Cookies sind für den Betrieb der Website erforderlich und können in Ihrem System nicht deaktiviert werden.</p>
+          <p>Sie können Ihren Browser so einstellen, dass Sie über das Setzen von Cookies informiert werden und Cookies nur im Einzelfall erlauben, die Annahme von Cookies für bestimmte Fälle oder generell ausschließen sowie das automatische Löschen der Cookies beim Schließen des Browsers aktivieren.</p>
+          <div class="imprint-note">
+            <iconify-icon icon="solar:info-circle-bold"></iconify-icon>
+            <span>Bei der Deaktivierung von Cookies kann die Funktionalität dieser Website eingeschränkt sein.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer class="page-footer">
+  <div class="page-footer-inner">
+    <p>© 2024 TVS Digital. Alle Rechte vorbehalten.</p>
+    <div class="page-footer-links">
+      <a href="impressum.html">Impressum</a>
+      <a href="index.html">Startseite</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const themeToggle = document.getElementById('themeToggle');
+const iconSun = document.getElementById('iconSun');
+const iconMoon = document.getElementById('iconMoon');
+themeToggle.addEventListener('click', () => {
+  const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+  document.documentElement.setAttribute('data-theme', isLight ? 'dark' : 'light');
+  iconSun.style.display = isLight ? 'none' : 'block';
+  iconMoon.style.display = isLight ? 'block' : 'none';
+});
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 90, behavior: 'smooth' });
+    }
+  });
+});
+</script>
+</body>
+</html>
