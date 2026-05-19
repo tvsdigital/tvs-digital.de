@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TVS Digital — Webseiten-Konfigurator</title>
+  <meta name="description" content="Konfigurieren Sie Ihre maßgeschneiderte Webseite mit dem TVS Digital Tool. Unverbindliches Angebot in wenigen Schritten.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  
+  <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.8/iconify-icon.min.js"></script>
+  
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --color-bg: #0F0F0E;
+      --color-bg-elevated: #1A1917;
+      --color-bg-card: #22211E;
+      --color-surface: #2C2B27;
+      --color-copper: #C17F59;
+      --color-copper-light: #D4A07A;
+      --color-copper-bright: #E8B894;
+      --color-terracotta: #C4704E;
+      --color-gold: #C9A96E;
+      --color-gold-light: #DFC08A;
+      --color-sage: #8A9A7B;
+      --color-cream: #F5F0EB;
+      --color-cream-muted: #D9D2CA;
+      --color-text: #F5F0EB;
+      --color-text-muted: #9C9789;
+      --color-text-subtle: #6B675E;
+      --noise-opacity: 0.025;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    [data-theme="light"] {
+      --color-bg: #F8F6F3;
+      --color-bg-elevated: #EFECE6;
+      --color-bg-card: #FFFFFF;
+      --color-surface: #E5E0D8;
+      --color-cream: #1A1816;
+      --color-cream-muted: #3D3B37;
+      --color-text: #2D2B28;
+      --color-text-muted: #6B675E;
+      --color-text-subtle: #8F8B82;
+      --noise-opacity: 0.015;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      overflow-x: hidden;
+      height: 100%;
+    }
+    
+    body {
+      font-family: var(--font-body);
+      background: var(--color-bg);
+      color: var(--color-text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      transition: background-color 0.4s, color 0.4s;
+      position: relative;
+    }
+    
+    /* Background Noise */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9998;
+      pointer-events: none;
+      opacity: var(--noise-opacity);
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      transition: opacity 0.4s;
+    }
+    
+    .cursor-glow {
+      position: fixed;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(circle, rgba(193,127,89,0.05) 0%, transparent 70%);
+      transform: translate(-50%, -50%);
+      will-change: left, top;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 0 clamp(1rem, 4vw, 2rem);
+    }
+    
+    /* Header (TVS Style) */
+    header {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(193, 127, 89, 0.1);
+      background: rgba(15, 15, 14, 0.3);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      background: linear-gradient(135deg, var(--color-cream) 0%, var(--color-copper-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+    }
+    
+    .theme-toggle-btn {
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      border: 1px solid rgba(193, 127, 89, 0.3);
+      color: var(--color-copper-light);
+      background: none;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .theme-toggle-btn:hover {
+      background: rgba(193, 127, 89, 0.1);
+      transform: scale(1.05);
+    }
+    
+    /* Main Content Wrapper */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      padding: 3rem 0;
+      position: relative;
+      z-index: 1;
+    }
+    
+    /* Step Box Structure */
+    .configurator-card {
+      background: var(--color-bg-elevated);
+      border-radius: 24px;
+      padding: clamp(1.5rem, 5vw, 3rem);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      position: relative;
+      border: 1px solid rgba(193, 127, 89, 0.15);
+      overflow: hidden;
+      width: 100%;
+    }
+    
+    .configurator-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      padding: 1px;
+      background: linear-gradient(160deg, rgba(193, 127, 89, 0.25), transparent 45%, transparent 55%, rgba(201, 169, 110, 0.1));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+    
+    /* Progress Bar */
+    .progress-wrapper {
+      margin-bottom: 2.5rem;
+    }
+    
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: 0.75rem;
+    }
+    
+    .progress-percentage {
+      color: var(--color-copper-light);
+      font-weight: 600;
+    }
+    
+    .progress-track {
+      height: 4px;
+      background: var(--color-surface);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--color-copper), var(--color-gold));
+      width: 12.5%; /* Default Step 1 (1 von 8) */
+      transition: width 0.6s var(--ease-out-expo);
+    }
+    
+    /* Steps styling */
+    .step-content {
+      display: none;
+    }
+    
+    .step-content.active {
+      display: block;
+      animation: fadeInStep 0.5s var(--ease-out-expo) forwards;
+    }
+    
+    @keyframes fadeInStep {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .step-title-area {
+      margin-bottom: 2rem;
+    }
+    
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.8rem;
+      border: 1px solid rgba(193, 127, 89, 0.2);
+      background: rgba(193, 127, 89, 0.08);
+      border-radius: 100px;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-copper-light);
+      margin-bottom: 1rem;
+    }
+    
+    .step-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      font-weight: 400;
+      color: var(--color-cream);
+      line-height: 1.25;
+    }
+    
+    .step-title em {
+      font-style: italic;
+      color: var(--color-copper-light);
+    }
+    
+    .step-subtitle {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      margin-top: 0.5rem;
+    }
+    
+    /* Options Grid (Single Choice) */
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    
+    @media (max-width: 580px) {
+      .options-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    /* Custom Option Card */
+    .option-card {
+      background: var(--color-bg-card);
+      border: 1px solid rgba(193, 127, 89, 0.1);
+      border-radius: 16px;
+      padding: 1.25rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      position: relative;
+      transition: all 0.3s var(--ease-out-expo);
+      user-select: none;
+    }
+    
+    .option-card:hover {
+      border-color: rgba(193, 127, 89, 0.4);
+      background: rgba(193, 127, 89, 0.03);
+      transform: translateY(-2px);
+    }
+    
+    .option-card.selected {
+      border-color: var(--color-copper);
+      background: rgba(193, 127, 89, 0.08);
+      box-shadow: 0 8px 24px rgba(193, 127, 89, 0.15);
+    }
+    
+    .option-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(193, 127, 89, 0.08);
+      border: 1px solid rgba(193, 127, 89, 0.15);
+      color: var(--color-copper-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      transition: all 0.3s;
+    }
+    
+    .option-card.selected .option-icon-box {
+      background: var(--color-copper);
+      color: #fff;
+      border-color: var(--color-copper);
+    }
+    
+    .option-text-wrap {
+      flex: 1;
+    }
+    
+    .option-label-text {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--color-cream);
+      display: block;
+      transition: color 0.3s;
+    }
+    
+    .option-card.selected .option-label-text {
+      color: #fff;
+    }
+    
+    .option-subtext {
+      font-size: 0.72rem;
+      color: var(--color-text-muted);
+      margin-top: 0.15rem;
+    }
+    
+    /* Radio/Checkbox indicator dot */
+    .option-indicator {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid var(--color-surface);
+      position: relative;
+      flex-shrink: 0;
+      transition: all 0.3s;
+    }
+    
+    .option-card.selected .option-indicator {
+      border-color: var(--color-copper);
+    }
+    
+    .option-card.selected .option-indicator::after {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      background: var(--color-copper);
+      border-radius: 50%;
+    }
+    
+    /* Checkbox Indicator Square for step 3 */
+    .option-indicator.square {
+      border-radius: 4px;
+    }
+    
+    .option-card.selected .option-indicator.square::after {
+      border-radius: 1px;
+    }
+    
+    /* Hidden native inputs */
+    .option-card input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    
+    /* Custom Textarea / Inputs in Step Cards */
+    .custom-input-box {
+      margin-top: 1.25rem;
+      display: none;
+      animation: slideDown 0.3s var(--ease-out-expo);
+    }
+    
+    .custom-input-box.active {
+      display: block;
+    }
+    
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .custom-input-box label {
+      display: block;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: 0.5rem;
+    }
+    
+    .text-field {
+      width: 100%;
+      background: rgba(193, 127, 89, 0.04);
+      border: 1px solid rgba(193, 127, 89, 0.15);
+      border-radius: 12px;
+      padding: 0.85rem 1rem;
+      color: var(--color-cream);
+      font-family: inherit;
+      font-size: 0.85rem;
+      outline: none;
+      transition: all 0.3s;
+    }
+    
+    .text-field:focus {
+      border-color: var(--color-copper);
+      background: rgba(193, 127, 89, 0.08);
+      box-shadow: 0 0 15px rgba(193, 127, 89, 0.1);
+    }
+    
+    .textarea-field {
+      resize: vertical;
+      min-height: 80px;
+    }
+    
+    /* Contact Form (Step 7) Styling */
+    .contact-form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    
+    .span-2 {
+      grid-column: span 2;
+    }
+    
+    @media (max-width: 580px) {
+      .contact-form-grid {
+        grid-template-columns: 1fr;
+      }
+      .span-2 {
+        grid-column: span 1;
+      }
+    }
+    
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    
+    .form-group label {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+    
+    /* DSGVO and Privacy checkbox */
+    .checkbox-wrapper {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: var(--color-text-muted);
+    }
+    
+    .checkbox-wrapper input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--color-copper);
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 0.15rem;
+      flex-shrink: 0;
+    }
+    
+    .checkbox-wrapper a {
+      color: var(--color-copper-light);
+      text-decoration: underline;
+      transition: color 0.3s;
+    }
+    
+    .checkbox-wrapper a:hover {
+      color: var(--color-copper-bright);
+    }
+    
+    /* Action Buttons Area */
+    .button-area {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(193, 127, 89, 0.1);
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 1.8rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 500;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: all 0.4s var(--ease-out-expo);
+      border: none;
+      background: none;
+    }
+    
+    .btn-prev {
+      border: 1px solid rgba(193, 127, 89, 0.2);
+      color: var(--color-text-muted);
+      background: rgba(193, 127, 89, 0.02);
+    }
+    
+    .btn-prev:hover {
+      border-color: var(--color-copper-light);
+      background: rgba(193, 127, 89, 0.08);
+      color: var(--color-cream);
+    }
+    
+    .btn-next {
+      background: linear-gradient(135deg, var(--color-copper), var(--color-terracotta));
+      color: #F5F0EB;
+      box-shadow: 0 4px 20px rgba(193, 127, 89, 0.2);
+      margin-left: auto; /* push to the right */
+    }
+    
+    .btn-next:hover {
+      box-shadow: 0 8px 30px rgba(193, 127, 89, 0.3);
+      transform: translateY(-2px);
+    }
+    
+    /* Shimmer effect inside buttons */
+    .btn-next::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--color-terracotta), var(--color-copper));
+      opacity: 0;
+      transition: opacity 0.4s;
+      border-radius: 100px;
+      z-index: -1;
+    }
+    
+    .btn-next:hover::before {
+      opacity: 1;
+    }
+    
+    /* Thank You Page styling */
+    .success-container {
+      text-align: center;
+      padding: 2rem 0;
+    }
+    
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(138, 154, 123, 0.12); /* Sage green */
+      border: 1px solid rgba(138, 154, 123, 0.3);
+      color: var(--color-sage-light);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      animation: scaleUpPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    
+    @keyframes scaleUpPop {
+      0% { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    
+    .success-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 400;
+      color: var(--color-cream);
+      margin-bottom: 1rem;
+    }
+    
+    .success-title em {
+      font-style: italic;
+      color: var(--color-copper-light);
+    }
+    
+    .success-text {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--color-text-muted);
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+    }
+    
+    /* Footer styles (Matching brand) */
+    footer {
+      padding: 2rem 0;
+      background: var(--color-bg-elevated);
+      border-top: 1px solid rgba(193, 127, 89, 0.08);
+      font-size: 0.78rem;
+      color: var(--color-text-subtle);
+    }
+    
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    
+    .footer-links a {
+      color: var(--color-text-muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-links a:hover {
+      color: var(--color-copper-light);
+    }
+    
+    /* Formspree hidden inputs for step-based serialization */
+    #hidden-summary {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- Header -->
+  <header>
+    <div class="container header-inner">
+      <a href="index.html" class="logo">TVS DIGITAL</a>
+      <button id="themeToggle" class="theme-toggle-btn" aria-label="Farbschema wechseln">
+        <iconify-icon icon="solar:sun-linear" style="font-size:1.1rem;display:none;" id="iconSun"></iconify-icon>
+        <iconify-icon icon="solar:moon-linear" style="font-size:1.1rem;" id="iconMoon"></iconify-icon>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Area -->
+  <main>
+    <div class="container">
+      
+      <!-- Konfigurator Box -->
+      <div class="configurator-card" id="configuratorCard">
+        
+        <!-- Formspree Form Integration -->
+        <!-- ERSETZE DIE ID ("yourformspreeid") UNTEN MIT DEINER ECHTEN FORMSPREE-ID -->
+        <form action="https://formspree.io/f/yourformspreeid" method="POST" id="configuratorForm">
+          
+          <!-- Hier speichern wir die aggregierten Daten strukturiert für die E-Mail ab -->
+          <input type="hidden" name="_subject" value="Neue Webseiten-Konfiguration von Instagram!">
+          <input type="hidden" name="Branche" id="data-branche" value="">
+          <input type="hidden" name="Webseite_Art" id="data-webseite" value="">
+          <input type="hidden" name="Funktionen" id="data-funktionen" value="">
+          <input type="hidden" name="Eigene_Funktionen" id="data-funktionen-custom" value="">
+          <input type="hidden" name="Selbst_Pflegen" id="data-pflegen" value="">
+          <input type="hidden" name="Design_Stil" id="data-stil" value="">
+          <input type="hidden" name="Farbschema_Wunsch" id="data-farbschema" value="">
+          <input type="hidden" name="Budget" id="data-budget" value="">
+          <input type="hidden" name="Zeitrahmen" id="data-zeitrahmen" value="">
+
+          <!-- Progress-Bar-Wrapper (wird auf Danke-Seite ausgeblendet) -->
+          <div class="progress-wrapper" id="progressWrapper">
+            <div class="progress-info">
+              <span>Fortschritt</span>
+              <span class="progress-percentage" id="progressText">Schritt 1 von 7</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-bar" id="progressBar"></div>
+            </div>
+          </div>
+
+          <!-- SCHRITT 1: BRANCHE -->
+          <div class="step-content active" data-step="1">
+            <div class="step-title-area">
+              <div class="step-badge">
+                <iconify-icon icon="solar:user-bold" style="vertical-align: middle;"></iconify-icon>
+                Fokus-Sektor
+              </div>
+              <h2 class="step-title">In welcher <em>Branche</em> bist du tätig?</h2>
+              <p class="step-subtitle">Wähle die passende Option aus, um deinen Branchenschwerpunkt zu definieren.</p>
+            </div>
+            
+            <div class="options-grid">
+              <label class="option-card">
+                <input type="radio" name="temp_branche" value="Handwerk & Baugewerbe" required checked>
+                <div class="option-icon-box">
+                  <iconify-icon icon="solar:hammer-bold"></iconify-icon>
+                </div>
+                <div class="option-text-wrap">
+                  <span class="option-label-text">Handwerk & Bau</span>
+                  <span class="option-subtext">Maurer, Maler, Bauunternehmen</span>
+                </div>
+                <div class="option-indicator"></div>
+              </label>
+              
+              <label class="option-card">
+                <input type="radio" name="temp_branche" value="Gastronomie">
+                <div class="option-icon-box">
+                  <iconify-icon icon="solar:cup-hot-bold"></iconify-icon>
+                </div>
+                <div class="option-text-wrap">
+                  <span class="option-label-text">Gastronomie</span>
+                  <span class="option-subtext">Cafés, Restaurants, Foodtrucks</span>
+                </div>
+                <div class="option-indicator"></div>
+              </label>
+              
+              <label class="option-card">
+                <input type="radio" name="temp_branche" value="Gesundheit & Fitness">
+                <div class="option-icon-box">
+                  <iconify-icon icon="solar:heart-bold"></iconify-icon>
+                </div>
+                <div class="option-text-wrap">
+                  <span class="option-label-text">Gesundheit & Sport</span>
+                  <span class="option-subtext">Studios, Therapeuten, Personal Trainer</span>
+                </div>
+                <div class="option-indicator"></div>
+              </label>
+              
+              <label class="option-card">
+                <input type="radio" name="temp_branche" value="Dienstleistung & Beratung">
+                <div class="option-icon-box">
+                  <iconify-icon icon="solar:case-round-bold"></iconify-icon>
+                </div>
+                <div class="option-text-wrap">
+                  <span class="option-label-text">Dienstleistung & B2B</span>
+                  <span class="option-subtext">Kanzleien, Berater, Kreative</span>
+                </div>
+                <div class="option-indicator"></div>
+              </label>
+
+              <label class="option-card">
+                <input type="radio" name="temp_branche" value="Verein / Organisation">
+                <div class="option-icon-box">
+                  <iconify-icon icon="solar:users-group-two-round-bold"></iconify-icon>
+                </div>
+                <div class="option-text-wrap">
+                  <span class="option-label-text">Vereine & Organisationen</span>
+                  <span class="option-subtext">Non-Profits, Stiftungen, Clubs</span>
+                </div>
+                <div class="option-indicator"></div>
+              </label>
+
+              <label class="option-card">
+                <input type="radio" name="temp_branche" value="Sonstiges">
+                <div class="option-icon-box">
+                  <iconify-icon icon="solar:notes-bold"></iconify-icon>
+                </div>
+                <div class="option-text-wrap">
+                  <span class="option-label-text">Sonstiges</span>
+                  <span class="option-subtext">Individuelle Branchen</span>
+                </div>
+                <div class="option-indicator"></div>
+              </label>
+            </div>
+          </div>
+
+          <!-- SCHRITT 2: WEBSEITEN-ART -->
+          <div class="step-content" data-step="2">
+            <div class="step-title-area">
+              <div class="step-badge">
+                <iconify-icon icon="solar:window-frame-bold"></iconify-icon>
+                Webseiten-Architektur
+              </div>
+              <h2 class="step-title">Welches <em>Webseiten-Format</em> suchst du?</h2>
+              <p class="step-subtitle">Die passende Struktur sorgt für den perfekten ersten Eindruck und lenkt Besucher intuitiv.</p>
+            </div>
+
+            <div class="options-grid">
+              <label class="option-card">
+                <input type="radio" name="temp_webseite" value="One Page Website - Alles auf einer Seite" checked>
+                <div class="option-icon-box">
+                  <iconify-icon icon="solar:document-bold"></iconify-icon>
+                </div>
+                <div class="option-text-wrap">
+                  <span class="option-label-text">One-Page Website</span>
+                  <span class="option-subtext">Alles übersichtlich auf einer einzigen Seite</span>
+                </div>
+                <div class="option-indicator"></div>
+              </label>
+
+              <label class="option-card">
+                <input type="radio" name="temp_webseite" value="Business Website - mit mehreren Seiten">
+                <div class="option-icon-box">
+                  <iconify-icon icon="solar:folder-with-files-bold"></iconify-icon>
+                </div>
+                <div class="option-text-wrap">
+                  <span class="option-label-text">Business Website</span>
+                  <span class="option-subtext">Mehrseitig für tiefere Markenpräsentationen</span>
+                </div>
+                <div class="option-indicator"></div>
+              </label>
+
+              <label class="option-card">
+                <input type="radio" name="temp_webseite" value="Landingpage - für eine bestimme Aktion">
+                <div class="option-icon-box">
+                  <iconify-icon icon="solar:target-bold"></iconify-icon>
+                </div>
+                <div class="option-text-wrap">
+                  <span class="option-label-text">Landingpage</span>
+                  <span class="option-subtext">Maximal optimiert auf eine spezifische Aktion</span>
+                </div>
+                <div class="option-indicator"></div>
+              </label>
+            </div>
+          </div>
+
+          <!-- SCHRITT 3: FUNKTIONEN (Mehrfachauswahl) -->
+          <div class="step-content" data-step="3">
+            <div class="step-title-area">
+              <div class="step-badge">
+                <iconify-icon icon="solar:settings-bold"></iconify-icon>
+                Schnittstellen &amp; Features
+              </div>
+              <h2 class="step-title">Welche <em>Funktionen</em> werden benötigt?</h2>
+              <p class="step-subtitle">Mehrfachauswahl möglich. Wähle die Bausteine für dein digitales Unikat.</p>
+            </div>
+
+            <div class="options-grid">
+              <label class="option-card">
+                <input type="checkbox" name="temp_funktionen" value="Kontaktformular">
+                <div class="option-icon-box">
+                  <iconify-icon icon="solar:letter-bold"></iconify-icon>
+                </div>
+                <div class="option-text-wrap">
+                  <span class="option-label-text">Kontaktformular</span>
+                  <span class="option-subtext">Intuitiver Kundenkontakt</span>
+                </div>
+                <div class="option-indicator square"></div>
+              </label>
+
+              <label class="option-card">
+                <input type="checkbox" name="temp_funktionen" value="Galerie / Portfolio">
+                <div class="option-icon-box">
+                  <iconify-icon icon="solar:gallery-wide-bold"></iconify-icon>
+                </div>
+                <div class="option-text-wrap">
+                  <span class="option-label-text">Galerie &amp; Portfolio</span>
+                  <span class="option-subtext">Visuelles Schaufenster für deine Arbeiten</span>
+                </div>
+                <div class="option-indicator square"></div>
+              </label>
+
+              <label class="option-card">
+                <input type="checkbox" name="temp_funktionen" value="Terminbuchung">
+                <div class="option-icon-box">
+                  <iconify-icon icon="solar:calendar-date-bold"></iconify-icon>
+                </div>
+                <div class="option-text-wrap">
+                  <span class="option-label-text">Online-Terminbuchung</span>
+                  <span class="option-subtext">Termine schlafen nie (24/7 Buchungen)</span>
+                </div>
+                <div class="option-indicator square"></div>
+              </label>
+
+              <label class="option-card">
+                <input type="checkbox" name="temp_funktionen" value="SEO Optimierung">
+                <div class="option-icon-box">
+                  <iconify-icon icon="solar:ranking-bold"></iconify-icon>
+                </div>
+                <div class="option-text-wrap">
+                  <span class="option-label-text">SEO-Grundoptimierung</span>
+                  <span class="option-subtext">Damit du in deiner Region gut rankst</span>
+                </div>
+                <div class="option-indicator square"></div>
+              </label>
+
+              <label class="option-card">
+                <input type="checkbox" name="temp_funktionen" value="Dark- / Lightmode">
+                <div class="option-icon-box">
+                  <iconify-icon icon="solar:asteroid-bold"></iconify-icon>
+                </div>
+                <div class="option-text-wrap">
+                  <span class="option-label-text">Dark- &amp; Lightmode</span>
+                  <span class="option-subtext">Erlesene Benutzerfreundlichkeit</span>
+                </div>
+                <div class="option-indicator square"></div>
+              </label>
+
+              <label class="option-card" id="customFuncCard">
+                <input type="checkbox" id="customFuncCheckbox" value="Eigener Wunsch">
+                <div class="option-icon-box">
+                  <iconify-icon icon="solar:pen-bold"></iconify-icon>
+                </div>
+                <div class="option-text-wrap">
+                  <span class="option-label-text">Eigener Wunsch...</span>
+                  <span class="option-subtext">Platz für individuelle Integrationen</span>
+                </div>
+                <div class="option-indicator square"></div>
+              </label>
+            </div>
+
+            <!-- Custom Field (erscheint nur bei Auswahl von "Eigener Wunsch") -->
+            <div class="custom-input-box" id="customFuncInputWrapper">
+              <label for="custom_functions_text">Welche Funktionen wünschst du dir außerdem?</label>
+              <textarea id="custom_functions_text" class="text-field textarea-field" placeholder="z.B. Mitgliederbereich, interaktiver Onlineshop, News-Blog, Mehrsprachigkeit..."></textarea>
+            </div>
+          </div>
+
+          <!-- SCHRITT 4: PFLEGE DER WEBSEITE -->
+          <div class="step-content" data-step="4">
+            <div class="step-title-area">
+              <div class="step-badge">
+                <iconify-icon icon="solar:pen-2-bold"></iconify-icon>
+                Instandhaltung
+              </div>
+              <h2 class="step-title">Möchtest du deine Webseite <em>selbst pflegen</em>?</h2>
+              <p class="step-subtitle">Wir erstellen ein einfaches CMS oder übernehmen die Wartung komplett im Hintergrund für dich.</p>
+            </div>
+
+            <div class="options-grid">
+              <label class="option-card">
+                <input type="radio" name="temp_pflegen" value="Nein, bloß nicht!" checked>
+                <div class="option-icon-box">
+                  <iconify-icon icon="solar:close-circle-bold"></iconify-icon>
+                </div>
+                <div class="option-text-wrap">
+                  <span class="option-label-text">Nein, bloß nicht!</span>
+                  <span class="option-subtext">Möchte mich voll auf mein Kerngeschäft fokussieren</span>
+                </div>
+                <div class="option-indicator"></div>
+              </label>
+
+              <label class="option-card">
+                <input type="radio" name="temp_pflegen" value="Weiß ich nocht nicht...">
+                <div class="option-icon-box">
+                  <iconify-icon icon="solar:question-square-bold"></iconify-icon>
+                </div>
+                <div class="option-text-wrap">
+                  <span class="option-label-text">Weiß ich noch nicht...</span>
+                  <span class="option-subtext">Möchte mich erst beraten lassen</span>
+                </div>
+                <div class="option-indicator"></div>
+              </label>
+
+              <label class="option-card">
+                <input type="radio" name="temp_pflegen" value="Sicher!">
+                <div class="option-icon-box">
+                  <iconify-icon icon="solar:check-circle-bold"></iconify-icon>
+                </div>
+                <div class="option-text-wrap">
+                  <span class="option-label-text">Sicher!</span>
+                  <span class="option-subtext">Texte, Bilder &amp; kleine News passe ich selbst an</span>
+                </div>
+                <div class="option-indicator"></div>
+              </label>
+            </div>
+          </div>
+
+          <!-- SCHRITT 5: DESIGN-STIL & FARBSCHEMA -->
+          <div class="step-content" data-step="5">
+            <div class="step-title-area">
+              <div class="step-badge">
+                <iconify-icon icon="solar:palette-bold"></iconify-icon>
+                Ästhetik &amp; Stil
+              </div>
+              <h2 class="step-title">Wie soll deine Webseite <em>visuell wirken</em>?</h2>
+              <p class="step-subtitle">Ein hervorragendes Interface strahlt Seriosität aus und prägt deine Marke nachhaltig.</p>
+            </div>
+
+            <div class="options-grid" style="margin-bottom: 1.5rem;">
+              <label class="option-card">
+                <input type="radio" name="temp_stil" value="Minimalistisch" checked>
+                <div class="option-icon-box">
+                  <iconify-icon icon="solar:box-minimalistic-bold"></iconify-icon>
+                </div>
+                <div class="option-text-wrap">
+                  <span class="option-label-text">Minimalistisch</span>
+                  <span class="option-subtext">Fokus auf Typografie und Leerraum</span>
+                </div>
+                <div class="option-indicator"></div>
+              </label>
+
+              <label class="option-card">
+                <input type="radio" name="temp_stil" value="Modern">
+                <div class="option-icon-box">
+                  <iconify-icon icon="solar:flash-bold"></iconify-icon>
+                </div>
+                <div class="option-text-wrap">
+                  <span class="option-label-text">Modern &amp; Bold</span>
+                  <span class="option-subtext">Starkes Branding, exzellente Kontraste</span>
+                </div>
+                <div class="option-indicator"></div>
+              </label>
+
+              <label class="option-card">
+                <input type="radio" name="temp_stil" value="Verspielt">
+                <div class="option-icon-box">
+                  <iconify-icon icon="solar:smile-circle-bold"></iconify-icon>
+                </div>
+                <div class="option-text-wrap">
+                  <span class="option-label-text">Verspielt / Organisch</span>
+                  <span class="option-subtext">Weiche Formen, kreative Details</span>
+                </div>
+                <div class="option-indicator"></div>
+              </label>
+
+              <label class="option-card">
+                <input type="radio" name="temp_stil" value="Clean">
+                <div class="option-icon-box">
+                  <iconify-icon icon="solar:shield-up-bold"></iconify-icon>
+                </div>
+                <div class="option-text-wrap">
+                  <span class="option-label-text">Clean &amp; Strukturiert</span>
+                  <span class="option-subtext">Klar aufgeräumt, maximal benutzerfreundlich</span>
+                </div>
+                <div class="option-indicator"></div>
+              </label>
+
+              <label class="option-card">
+                <input type="radio" name="temp_stil" value="Elegant">
+                <div class="option-icon-box">
+                  <iconify-icon icon="solar:crown-bold"></iconify-icon>
+                </div>
+                <div class="option-text-wrap">
+                  <span class="option-label-text">Elegant / Edel</span>
+                  <span class="option-subtext">Premium-Feeling für anspruchsvolle Marken</span>
+                </div>
+                <div class="option-indicator"></div>
+              </label>
+
+              <label class="option-card">
+                <input type="radio" name="temp_stil" value="Corporate">
+                <div class="option-icon-box">
+                  <iconify-icon icon="solar:buildings-bold"></iconify-icon>
+                </div>
+                <div class="option-text-wrap">
+                  <span class="option-label-text">Corporate</span>
+                  <span class="option-subtext">Professionell und klassisch für Unternehmen</span>
+                </div>
+                <div class="option-indicator"></div>
+              </label>
+            </div>
+
+            <div class="custom-input-box active">
+              <label for="colors_schema">Gibt es bereits ein Farbschema oder Farb-Wünsche?</label>
+              <input type="text" id="colors_schema" class="text-field" placeholder="z.B. Blau-Grau, Dunkle Töne, Logo-Farbwerte vorhanden, Gold-Schwarz, etc. (Optional)">
+            </div>
+          </div>
+
+          <!-- SCHRITT 6: PROJEKTRAHMEN (Budget & Zeitrahmen) -->
+          <div class="step-content" data-step="6">
+            <div class="step-title-area">
+              <div class="step-badge">
+                <iconify-icon icon="solar:graph-bold"></iconify-icon>
+                Rahmenbedingungen
+              </div>
+              <h2 class="step-title">Wie sieht der <em>Projektrahmen</em> aus?</h2>
+              <p class="step-subtitle">Damit wir das Projekt ökonomisch und zeitlich perfekt planen können.</p>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 2rem;">
+              <label style="margin-bottom:0.5rem; font-weight: 600;">Geplantes Budget</label>
+              <div class="options-grid">
+                <label class="option-card">
+                  <input type="radio" name="temp_budget" value="Bis 500€" checked>
+                  <div class="option-icon-box">
+                    <iconify-icon icon="solar:banknote-bold"></iconify-icon>
+                  </div>
+                  <div class="option-text-wrap">
+                    <span class="option-label-text">Bis 500 €</span>
+                    <span class="option-subtext">Schlankes Starter-Konzept</span>
+                  </div>
+                  <div class="option-indicator"></div>
+                </label>
+
+                <label class="option-card">
+                  <input type="radio" name="temp_budget" value="Bis 1000€">
+                  <div class="option-icon-box">
+                    <iconify-icon icon="solar:wallet-bold"></iconify-icon>
+                  </div>
+                  <div class="option-text-wrap">
+                    <span class="option-label-text">Bis 1.000 €</span>
+                    <span class="option-subtext">Solide Standardpräsenz</span>
+                  </div>
+                  <div class="option-indicator"></div>
+                </label>
+
+                <label class="option-card">
+                  <input type="radio" name="temp_budget" value="Bis 1500€">
+                  <div class="option-icon-box">
+                    <iconify-icon icon="solar:card-bold"></iconify-icon>
+                  </div>
+                  <div class="option-text-wrap">
+                    <span class="option-label-text">Bis 1.500 €</span>
+                    <span class="option-subtext">Premium &amp; ausgebautes Layout</span>
+                  </div>
+                  <div class="option-indicator"></div>
+                </label>
+
+                <label class="option-card">
+                  <input type="radio" name="temp_budget" value="Bis 2000€+">
+                  <div class="option-icon-box">
+                    <iconify-icon icon="solar:gold-bar-bold"></iconify-icon>
+                  </div>
+                  <div class="option-text-wrap">
+                    <span class="option-label-text">Über 2.000 €</span>
+                    <span class="option-subtext">Umfangreiches High-End Konzept</span>
+                  </div>
+                  <div class="option-indicator"></div>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label style="margin-bottom:0.5rem; font-weight: 600;">Wann wird die neue Webseite benötigt?</label>
+              <div class="options-grid">
+                <label class="option-card">
+                  <input type="radio" name="temp_zeitrahmen" value="So Schnell wie möglich" checked>
+                  <div class="option-icon-box">
+                    <iconify-icon icon="solar:bolt-bold"></iconify-icon>
+                  </div>
+                  <div class="option-text-wrap">
+                    <span class="option-label-text">So schnell wie möglich</span>
+                  </div>
+                  <div class="option-indicator"></div>
+                </label>
+
+                <label class="option-card">
+                  <input type="radio" name="temp_zeitrahmen" value="In 14 Tagen">
+                  <div class="option-icon-box">
+                    <iconify-icon icon="solar:hourglass-line-bold"></iconify-icon>
+                  </div>
+                  <div class="option-text-wrap">
+                    <span class="option-label-text">In 14 Tagen</span>
+                  </div>
+                  <div class="option-indicator"></div>
+                </label>
+
+                <label class="option-card">
+                  <input type="radio" name="temp_zeitrahmen" value="In 30 Tagen">
+                  <div class="option-icon-box">
+                    <iconify-icon icon="solar:calendar-mark-bold"></iconify-icon>
+                  </div>
+                  <div class="option-text-wrap">
+                    <span class="option-label-text">In 30 Tagen</span>
+                  </div>
+                  <div class="option-indicator"></div>
+                </label>
+
+                <label class="option-card">
+                  <input type="radio" name="temp_zeitrahmen" value="In 90 Tagen / Individueller Termin">
+                  <div class="option-icon-box">
+                    <iconify-icon icon="solar:clock-square-bold"></iconify-icon>
+                  </div>
+                  <div class="option-text-wrap">
+                    <span class="option-label-text">Flexibler / Später</span>
+                  </div>
+                  <div class="option-indicator"></div>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- SCHRITT 7: KONTAKTDATEN (Finaler Step) -->
+          <div class="step-content" data-step="7">
+            <div class="step-title-area">
+              <div class="step-badge">
+                <iconify-icon icon="solar:hand-stars-bold"></iconify-icon>
+                Fast geschafft!
+              </div>
+              <h2 class="step-title">Wohin dürfen wir dein <em>Angebot senden</em>?</h2>
+              <p class="step-subtitle">Gib deine Kontaktdaten ein, um die kostenlose, unverbindliche Erst-Kalkulation zu erhalten.</p>
+            </div>
+
+            <div class="contact-form-grid">
+              <div class="form-group">
+                <label for="company">Firma (Optional)</label>
+                <input type="text" id="company" name="Firma" class="text-field" placeholder="z.B. Muster GmbH">
+              </div>
+              
+              <div class="form-group">
+                <label for="full_name">Vollständiger Name *</label>
+                <input type="text" id="full_name" name="Name" class="text-field" placeholder="z.B. Max Mustermann" required>
+              </div>
+
+              <div class="form-group">
+                <label for="email">E-Mail-Adresse *</label>
+                <input type="email" id="email" name="Email" class="text-field" placeholder="z.B. max@firma.de" required>
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Telefonnummer *</label>
+                <input type="tel" id="phone" name="Telefon" class="text-field" placeholder="z.B. +49 170 1234567" required>
+              </div>
+
+              <div class="form-group span-2">
+                <label for="street">Straße &amp; Hausnummer</label>
+                <input type="text" id="street" name="Strasse" class="text-field" placeholder="z.B. Hauptstraße 12">
+              </div>
+
+              <div class="form-group">
+                <label for="zip_code">Postleitzahl</label>
+                <input type="text" id="zip_code" name="PLZ" class="text-field" placeholder="z.B. 26123">
+              </div>
+
+              <div class="form-group">
+                <label for="city">Ort</label>
+                <input type="text" id="city" name="Stadt" class="text-field" placeholder="z.B. Oldenburg">
+              </div>
+            </div>
+
+            <div class="checkbox-wrapper">
+              <input type="checkbox" id="dsgvo_check" name="dsgvo_einwilligung" required>
+              <label for="dsgvo_check">
+                Ich stimme zu, dass meine Angaben zur Kontaktaufnahme und Bearbeitung meiner Anfrage gespeichert werden. Weitere Informationen findest du in unserer <a href="datenschutz.html" target="_blank">Datenschutzerklärung</a>. *
+              </label>
+            </div>
+          </div>
+
+          <!-- BUTTON AREA -->
+          <div class="button-area" id="buttonArea">
+            <button type="button" class="btn btn-prev" id="btnPrev" style="visibility: hidden;">
+              <iconify-icon icon="solar:arrow-left-linear" style="vertical-align: middle;"></iconify-icon>
+              <span>Zurück</span>
+            </button>
+            <button type="button" class="btn btn-next" id="btnNext">
+              <span>Weiter</span>
+              <iconify-icon icon="solar:arrow-right-linear" style="vertical-align: middle;"></iconify-icon>
+            </button>
+          </div>
+        </form>
+
+        <!-- DANKE SEITE (Wird nach erfolgreichem Absenden eingeblendet) -->
+        <div class="success-container hidden" id="successScreen">
+          <div class="success-icon">
+            <iconify-icon icon="solar:check-circle-bold"></iconify-icon>
+          </div>
+          <h2 class="success-title">Vielen Dank für deine <em>Anfrage!</em></h2>
+          <p class="success-text">Wir haben deine Daten erfolgreich erhalten. Wir analysieren deine Wünsche und melden uns so schnell wie möglich mit einem maßgeschneiderten, unverbindlichen Angebot bei dir!</p>
+          <a href="index.html" class="btn btn-next" style="margin: 0 auto; display: inline-flex;">
+            <iconify-icon icon="solar:home-2-bold" style="vertical-align: middle;"></iconify-icon>
+            <span>Zurück zur Website</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <p>© 2026 TVS Digital. Alle Rechte vorbehalten.</p>
+      <div class="footer-links">
+        <a href="impressum.html" target="_blank">Impressum</a>
+        <a href="datenschutz.html" target="_blank">Datenschutz</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Theme Toggle Logic
+    const themeToggle = document.getElementById('themeToggle');
+    const iconSun = document.getElementById('iconSun');
+    const iconMoon = document.getElementById('iconMoon');
+    
+    themeToggle.addEventListener('click', () => {
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      document.documentElement.setAttribute('data-theme', isLight ? 'dark' : 'light');
+      iconSun.style.display = isLight ? 'none' : 'block';
+      iconMoon.style.display = isLight ? 'block' : 'none';
+    });
+
+    // Step Engine Logic
+    let currentStep = 1;
+    const totalSteps = 7;
+    
+    const steps = document.querySelectorAll('.step-content');
+    const progressBar = document.getElementById('progressBar');
+    const progressText = document.getElementById('progressText');
+    const btnNext = document.getElementById('btnNext');
+    const btnPrev = document.getElementById('btnPrev');
+    const form = document.getElementById('configuratorForm');
+    const successScreen = document.getElementById('successScreen');
+    const progressWrapper = document.getElementById('progressWrapper');
+    const buttonArea = document.getElementById('buttonArea');
+    const configuratorCard = document.getElementById('configuratorCard');
+
+    // Custom Interactive Events (Checkboxes/Radios Styling & Behaviors)
+    const optionCards = document.querySelectorAll('.option-card');
+    optionCards.forEach(card => {
+      const input = card.querySelector('input');
+      
+      // Initial Status
+      if(input && input.checked) {
+        card.classList.add('selected');
+      }
+
+      card.addEventListener('click', () => {
+        if (!input) return;
+        
+        if (input.type === 'radio') {
+          // Unselect all other radios in the same step
+          const siblings = card.parentNode.querySelectorAll('.option-card');
+          siblings.forEach(sib => sib.classList.remove('selected'));
+          card.classList.add('selected');
+        } else if (input.type === 'checkbox') {
+          // Toggle checkbox active state
+          if (input.checked) {
+            card.classList.add('selected');
+          } else {
+            card.classList.remove('selected');
+          }
+        }
+      });
+    });
+
+    // Handle Custom functions trigger block
+    const customFuncCheckbox = document.getElementById('customFuncCheckbox');
+    const customFuncCard = document.getElementById('customFuncCard');
+    const customFuncInputWrapper = document.getElementById('customFuncInputWrapper');
+
+    if(customFuncCheckbox && customFuncCard) {
+      customFuncCheckbox.addEventListener('change', () => {
+        if(customFuncCheckbox.checked) {
+          customFuncInputWrapper.classList.add('active');
+        } else {
+          customFuncInputWrapper.classList.remove('active');
+        }
+      });
+      // also hook to card click
+      customFuncCard.addEventListener('click', () => {
+        setTimeout(() => {
+          if(customFuncCheckbox.checked) {
+            customFuncInputWrapper.classList.add('active');
+          } else {
+            customFuncInputWrapper.classList.remove('active');
+          }
+        }, 50);
+      });
+    }
+
+    // Update Progress Indicator
+    function updateProgress() {
+      const percent = (currentStep / totalSteps) * 100;
+      progressBar.style.width = percent + '%';
+      progressText.textContent = `Schritt ${currentStep} von ${totalSteps}`;
+      
+      // Adjust Navigation Buttons
+      if (currentStep === 1) {
+        btnPrev.style.visibility = 'hidden';
+      } else {
+        btnPrev.style.visibility = 'visible';
+      }
+
+      if (currentStep === totalSteps) {
+        btnNext.innerHTML = '<span>Anfrage Senden</span><iconify-icon icon="solar:check-circle-bold" style="vertical-align: middle;"></iconify-icon>';
+      } else {
+        btnNext.innerHTML = '<span>Weiter</span><iconify-icon icon="solar:arrow-right-linear" style="vertical-align: middle;"></iconify-icon>';
+      }
+    }
+
+    // Step Validation helper
+    function validateStep(step) {
+      if (step === 7) {
+        const nameField = document.getElementById('full_name');
+        const emailField = document.getElementById('email');
+        const phoneField = document.getElementById('phone');
+        const dsgvo = document.getElementById('dsgvo_check');
+        
+        if (!nameField.value.trim()) {
+          nameField.focus();
+          return false;
+        }
+        if (!emailField.value.trim() || !emailField.checkValidity()) {
+          emailField.focus();
+          return false;
+        }
+        if (!phoneField.value.trim()) {
+          phoneField.focus();
+          return false;
+        }
+        if (!dsgvo.checked) {
+          dsgvo.focus();
+          return false;
+        }
+      }
+      return true;
+    }
+
+    // Serializes interactive configurations to hidden real inputs right before submission
+    function serializeData() {
+      // Branche
+      const selectedBrancheInput = document.querySelector('input[name="temp_branche"]:checked');
+      if (selectedBrancheInput) {
+        document.getElementById('data-branche').value = selectedBrancheInput.value;
+      }
+
+      // Webseite Format
+      const selectedWebseiteInput = document.querySelector('input[name="temp_webseite"]:checked');
+      if (selectedWebseiteInput) {
+        document.getElementById('data-webseite').value = selectedWebseiteInput.value;
+      }
+
+      // Funktionen (Multiple values)
+      const selectedFuncs = [];
+      const funcInputs = document.querySelectorAll('input[name="temp_funktionen"]:checked');
+      funcInputs.forEach(i => selectedFuncs.push(i.value));
+      document.getElementById('data-funktionen').value = selectedFuncs.join(', ');
+
+      // Eigene Funktionen
+      const customFuncText = document.getElementById('custom_functions_text').value;
+      document.getElementById('data-funktionen-custom').value = customFuncText;
+
+      // Webseite pflegen
+      const pflegenInput = document.querySelector('input[name="temp_pflegen"]:checked');
+      if (pflegenInput) {
+        document.getElementById('data-pflegen').value = pflegenInput.value;
+      }
+
+      // Design Stil
+      const stilInput = document.querySelector('input[name="temp_stil"]:checked');
+      if (stilInput) {
+        document.getElementById('data-stil').value = stilInput.value;
+      }
+
+      // Farbschema
+      const colorsInput = document.getElementById('colors_schema').value;
+      document.getElementById('data-farbschema').value = colorsInput;
+
+      // Budget & Zeit
+      const budgetInput = document.querySelector('input[name="temp_budget"]:checked');
+      if (budgetInput) {
+        document.getElementById('data-budget').value = budgetInput.value;
+      }
+      
+      const zeitrahmenInput = document.querySelector('input[name="temp_zeitrahmen"]:checked');
+      if (zeitrahmenInput) {
+        document.getElementById('data-zeitrahmen').value = zeitrahmenInput.value;
+      }
+    }
+
+    // Button Next Navigation Click
+    btnNext.addEventListener('click', (e) => {
+      if (!validateStep(currentStep)) {
+        return; // Validation fails
+      }
+
+      if (currentStep < totalSteps) {
+        // Go to next Step
+        document.querySelector(`.step-content[data-step="${currentStep}"]`).classList.remove('active');
+        currentStep++;
+        document.querySelector(`.step-content[data-step="${currentStep}"]`).classList.add('active');
+        updateProgress();
+      } else {
+        // Final Step: Submit Form to Formspree
+        serializeData();
+        
+        // Form Submission with dynamic Formspree Success Screen replacement (SPA style)
+        const formData = new FormData(form);
+        btnNext.disabled = true;
+        btnNext.innerHTML = '<span>Wird gesendet...</span>';
+        
+        fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        }).then(response => {
+          if (response.ok) {
+            // Show Success Panel
+            form.classList.add('hidden');
+            progressWrapper.classList.add('hidden');
+            buttonArea.classList.add('hidden');
+            successScreen.classList.remove('hidden');
+          } else {
+            response.json().then(data => {
+              alert("Fehler beim Absenden: " + (data.error || "Unbekannter Fehler"));
+              btnNext.disabled = false;
+              updateProgress();
+            });
+          }
+        }).catch(error => {
+          alert("Fehler bei der Übertragung. Bitte versuche es erneut oder kontaktiere uns per E-Mail.");
+          btnNext.disabled = false;
+          updateProgress();
+        });
+      }
+    });
+
+    // Button Previous Navigation Click
+    btnPrev.addEventListener('click', () => {
+      if (currentStep > 1) {
+        document.querySelector(`.step-content[data-step="${currentStep}"]`).classList.remove('active');
+        currentStep--;
+        document.querySelector(`.step-content[data-step="${currentStep}"]`).classList.add('active');
+        updateProgress();
+      }
+    });
+
+    // Cursor Glow Tracking (TVS Style)
+    const cursorGlow = document.getElementById('cursorGlow');
+    let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2, cx = mouseX, cy = mouseY;
+    window.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
+    
+    (function animate() {
+      cx += (mouseX - cx) * 0.1; cy += (mouseY - cy) * 0.1;
+      if (cursorGlow) {
+        cursorGlow.style.left = cx + 'px';
+        cursorGlow.style.top = cy + 'px';
+      }
+      requestAnimationFrame(animate);
+    })();
+  </script>
+</body>
+</html>
