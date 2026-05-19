@@ -76,7 +76,7 @@
       position: relative;
     }
     
-    /* Background Noise */
+    /* Hintergrundrauschen */
     body::before {
       content: '';
       position: fixed;
@@ -108,7 +108,7 @@
       padding: 0 clamp(1rem, 4vw, 2rem);
     }
     
-    /* Header (TVS Style) */
+    /* Header */
     header {
       padding: 1.5rem 0;
       border-bottom: 1px solid rgba(193, 127, 89, 0.1);
@@ -157,7 +157,7 @@
       transform: scale(1.05);
     }
     
-    /* Main Content Wrapper */
+    /* Main */
     main {
       flex: 1;
       display: flex;
@@ -167,7 +167,7 @@
       z-index: 1;
     }
     
-    /* Step Box Structure */
+    /* Configurator Box */
     .configurator-card {
       background: var(--color-bg-elevated);
       border-radius: 24px;
@@ -192,7 +192,7 @@
       pointer-events: none;
     }
     
-    /* Progress Bar */
+    /* Fortschrittsbalken */
     .progress-wrapper {
       margin-bottom: 2.5rem;
     }
@@ -223,11 +223,11 @@
     .progress-bar {
       height: 100%;
       background: linear-gradient(90deg, var(--color-copper), var(--color-gold));
-      width: 12.5%; /* Default Step 1 (1 von 8) */
+      width: 14.28%; /* Schritt 1 von 7 */
       transition: width 0.6s var(--ease-out-expo);
     }
     
-    /* Steps styling */
+    /* Schritte */
     .step-content {
       display: none;
     }
@@ -286,7 +286,7 @@
       margin-top: 0.5rem;
     }
     
-    /* Options Grid (Single Choice) */
+    /* Optionen Grid */
     .options-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -299,7 +299,7 @@
       }
     }
     
-    /* Custom Option Card */
+    /* Option Cards */
     .option-card {
       background: var(--color-bg-card);
       border: 1px solid rgba(193, 127, 89, 0.1);
@@ -368,7 +368,6 @@
       margin-top: 0.15rem;
     }
     
-    /* Radio/Checkbox indicator dot */
     .option-indicator {
       width: 18px;
       height: 18px;
@@ -391,7 +390,6 @@
       border-radius: 50%;
     }
     
-    /* Checkbox Indicator Square for step 3 */
     .option-indicator.square {
       border-radius: 4px;
     }
@@ -400,7 +398,6 @@
       border-radius: 1px;
     }
     
-    /* Hidden native inputs */
     .option-card input {
       position: absolute;
       opacity: 0;
@@ -408,7 +405,7 @@
       height: 0;
     }
     
-    /* Custom Textarea / Inputs in Step Cards */
+    /* Eigene Felder */
     .custom-input-box {
       margin-top: 1.25rem;
       display: none;
@@ -457,7 +454,7 @@
       min-height: 80px;
     }
     
-    /* Contact Form (Step 7) Styling */
+    /* Kontaktdaten */
     .contact-form-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -490,7 +487,7 @@
       color: var(--color-text-muted);
     }
     
-    /* DSGVO and Privacy checkbox */
+    /* DSGVO */
     .checkbox-wrapper {
       display: flex;
       align-items: flex-start;
@@ -521,7 +518,7 @@
       color: var(--color-copper-bright);
     }
     
-    /* Action Buttons Area */
+    /* Navigation Buttons */
     .button-area {
       display: flex;
       justify-content: space-between;
@@ -563,7 +560,7 @@
       background: linear-gradient(135deg, var(--color-copper), var(--color-terracotta));
       color: #F5F0EB;
       box-shadow: 0 4px 20px rgba(193, 127, 89, 0.2);
-      margin-left: auto; /* push to the right */
+      margin-left: auto;
     }
     
     .btn-next:hover {
@@ -571,32 +568,21 @@
       transform: translateY(-2px);
     }
     
-    /* Shimmer effect inside buttons */
-    .btn-next::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, var(--color-terracotta), var(--color-copper));
-      opacity: 0;
-      transition: opacity 0.4s;
-      border-radius: 100px;
-      z-index: -1;
-    }
-    
-    .btn-next:hover::before {
-      opacity: 1;
-    }
-    
-    /* Thank You Page styling */
+    /* Dankeseite (standardmäßig strikt ausgeblendet) */
     .success-container {
+      display: none;
       text-align: center;
       padding: 2rem 0;
+    }
+    
+    .success-container.visible {
+      display: block;
     }
     
     .success-icon {
       width: 80px;
       height: 80px;
-      background: rgba(138, 154, 123, 0.12); /* Sage green */
+      background: rgba(138, 154, 123, 0.12);
       border: 1px solid rgba(138, 154, 123, 0.3);
       color: var(--color-sage-light);
       border-radius: 50%;
@@ -634,7 +620,7 @@
       margin: 0 auto 2.5rem;
     }
     
-    /* Footer styles (Matching brand) */
+    /* Footer */
     footer {
       padding: 2rem 0;
       background: var(--color-bg-elevated);
@@ -666,9 +652,9 @@
       color: var(--color-copper-light);
     }
     
-    /* Formspree hidden inputs for step-based serialization */
-    #hidden-summary {
-      display: none;
+    /* Utilities */
+    .hidden {
+      display: none !important;
     }
   </style>
 </head>
@@ -676,7 +662,7 @@
 
   <div class="cursor-glow" id="cursorGlow"></div>
 
-  <!-- Header -->
+  <!-- Navigation -->
   <header>
     <div class="container header-inner">
       <a href="index.html" class="logo">TVS DIGITAL</a>
@@ -687,18 +673,15 @@
     </div>
   </header>
 
-  <!-- Main Area -->
+  <!-- Konfigurator-Inhalt -->
   <main>
     <div class="container">
       
-      <!-- Konfigurator Box -->
       <div class="configurator-card" id="configuratorCard">
         
-        <!-- Formspree Form Integration -->
-        <!-- ERSETZE DIE ID ("yourformspreeid") UNTEN MIT DEINER ECHTEN FORMSPREE-ID -->
+        <!-- Formspree Integration (Füge deine Formspree-ID ein) -->
         <form action="https://formspree.io/f/yourformspreeid" method="POST" id="configuratorForm">
           
-          <!-- Hier speichern wir die aggregierten Daten strukturiert für die E-Mail ab -->
           <input type="hidden" name="_subject" value="Neue Webseiten-Konfiguration von Instagram!">
           <input type="hidden" name="Branche" id="data-branche" value="">
           <input type="hidden" name="Webseite_Art" id="data-webseite" value="">
@@ -710,10 +693,10 @@
           <input type="hidden" name="Budget" id="data-budget" value="">
           <input type="hidden" name="Zeitrahmen" id="data-zeitrahmen" value="">
 
-          <!-- Progress-Bar-Wrapper (wird auf Danke-Seite ausgeblendet) -->
+          <!-- Fortschrittsanzeige -->
           <div class="progress-wrapper" id="progressWrapper">
             <div class="progress-info">
-              <span>Fortschritt</span>
+              <span>Dein Fortschritt</span>
               <span class="progress-percentage" id="progressText">Schritt 1 von 7</span>
             </div>
             <div class="progress-track">
@@ -725,22 +708,22 @@
           <div class="step-content active" data-step="1">
             <div class="step-title-area">
               <div class="step-badge">
-                <iconify-icon icon="solar:user-bold" style="vertical-align: middle;"></iconify-icon>
+                <iconify-icon icon="solar:buildings-bold" style="vertical-align: middle;"></iconify-icon>
                 Fokus-Sektor
               </div>
               <h2 class="step-title">In welcher <em>Branche</em> bist du tätig?</h2>
-              <p class="step-subtitle">Wähle die passende Option aus, um deinen Branchenschwerpunkt zu definieren.</p>
+              <p class="step-subtitle">Wähle deinen passenden Branchenschwerpunkt aus.</p>
             </div>
             
             <div class="options-grid">
               <label class="option-card">
-                <input type="radio" name="temp_branche" value="Handwerk & Baugewerbe" required checked>
+                <input type="radio" name="temp_branche" value="Handwerk & Baugewerbe" checked>
                 <div class="option-icon-box">
-                  <iconify-icon icon="solar:hammer-bold"></iconify-icon>
+                  <iconify-icon icon="solar:settings-bold"></iconify-icon>
                 </div>
                 <div class="option-text-wrap">
-                  <span class="option-label-text">Handwerk & Bau</span>
-                  <span class="option-subtext">Maurer, Maler, Bauunternehmen</span>
+                  <span class="option-label-text">Handwerk &amp; Bau</span>
+                  <span class="option-subtext">Maurer, Maler, Schreiner, Bauunternehmer</span>
                 </div>
                 <div class="option-indicator"></div>
               </label>
@@ -748,11 +731,11 @@
               <label class="option-card">
                 <input type="radio" name="temp_branche" value="Gastronomie">
                 <div class="option-icon-box">
-                  <iconify-icon icon="solar:cup-hot-bold"></iconify-icon>
+                  <iconify-icon icon="solar:tea-cup-bold" style="font-size: 1.35rem;"></iconify-icon>
                 </div>
                 <div class="option-text-wrap">
                   <span class="option-label-text">Gastronomie</span>
-                  <span class="option-subtext">Cafés, Restaurants, Foodtrucks</span>
+                  <span class="option-subtext">Restaurants, Bars, Cafés, Bistros</span>
                 </div>
                 <div class="option-indicator"></div>
               </label>
@@ -763,8 +746,8 @@
                   <iconify-icon icon="solar:heart-bold"></iconify-icon>
                 </div>
                 <div class="option-text-wrap">
-                  <span class="option-label-text">Gesundheit & Sport</span>
-                  <span class="option-subtext">Studios, Therapeuten, Personal Trainer</span>
+                  <span class="option-label-text">Gesundheit &amp; Fitness</span>
+                  <span class="option-subtext">Trainer, Praxen, Studios, Therapeuten</span>
                 </div>
                 <div class="option-indicator"></div>
               </label>
@@ -772,11 +755,11 @@
               <label class="option-card">
                 <input type="radio" name="temp_branche" value="Dienstleistung & Beratung">
                 <div class="option-icon-box">
-                  <iconify-icon icon="solar:case-round-bold"></iconify-icon>
+                  <iconify-icon icon="solar:chat-round-dots-bold"></iconify-icon>
                 </div>
                 <div class="option-text-wrap">
-                  <span class="option-label-text">Dienstleistung & B2B</span>
-                  <span class="option-subtext">Kanzleien, Berater, Kreative</span>
+                  <span class="option-label-text">Dienstleistung &amp; Beratung</span>
+                  <span class="option-subtext">Coaches, Agenturen, Berater, Freiberufler</span>
                 </div>
                 <div class="option-indicator"></div>
               </label>
@@ -784,11 +767,11 @@
               <label class="option-card">
                 <input type="radio" name="temp_branche" value="Verein / Organisation">
                 <div class="option-icon-box">
-                  <iconify-icon icon="solar:users-group-two-round-bold"></iconify-icon>
+                  <iconify-icon icon="solar:users-group-rounded-bold"></iconify-icon>
                 </div>
                 <div class="option-text-wrap">
-                  <span class="option-label-text">Vereine & Organisationen</span>
-                  <span class="option-subtext">Non-Profits, Stiftungen, Clubs</span>
+                  <span class="option-label-text">Verein / Organisation</span>
+                  <span class="option-subtext">Lokale Verbände, Clubs, Initiativen</span>
                 </div>
                 <div class="option-indicator"></div>
               </label>
@@ -796,23 +779,23 @@
               <label class="option-card">
                 <input type="radio" name="temp_branche" value="Sonstiges">
                 <div class="option-icon-box">
-                  <iconify-icon icon="solar:notes-bold"></iconify-icon>
+                  <iconify-icon icon="solar:add-circle-bold"></iconify-icon>
                 </div>
                 <div class="option-text-wrap">
                   <span class="option-label-text">Sonstiges</span>
-                  <span class="option-subtext">Individuelle Branchen</span>
+                  <span class="option-subtext">Individuelle Branchen &amp; Bereiche</span>
                 </div>
                 <div class="option-indicator"></div>
               </label>
             </div>
           </div>
 
-          <!-- SCHRITT 2: WEBSEITEN-ART -->
+          <!-- SCHRITT 2: DEINE WEBSEITE -->
           <div class="step-content" data-step="2">
             <div class="step-title-area">
               <div class="step-badge">
-                <iconify-icon icon="solar:window-frame-bold"></iconify-icon>
-                Webseiten-Architektur
+                <iconify-icon icon="solar:target-bold"></iconify-icon>
+                Architektur
               </div>
               <h2 class="step-title">Welches <em>Webseiten-Format</em> suchst du?</h2>
               <p class="step-subtitle">Die passende Struktur sorgt für den perfekten ersten Eindruck und lenkt Besucher intuitiv.</p>
@@ -825,8 +808,8 @@
                   <iconify-icon icon="solar:document-bold"></iconify-icon>
                 </div>
                 <div class="option-text-wrap">
-                  <span class="option-label-text">One-Page Website</span>
-                  <span class="option-subtext">Alles übersichtlich auf einer einzigen Seite</span>
+                  <span class="option-label-text">One Page Website</span>
+                  <span class="option-subtext">Alles strukturiert auf einer einzigen Seite</span>
                 </div>
                 <div class="option-indicator"></div>
               </label>
@@ -834,7 +817,7 @@
               <label class="option-card">
                 <input type="radio" name="temp_webseite" value="Business Website - mit mehreren Seiten">
                 <div class="option-icon-box">
-                  <iconify-icon icon="solar:folder-with-files-bold"></iconify-icon>
+                  <iconify-icon icon="solar:folder-open-bold"></iconify-icon>
                 </div>
                 <div class="option-text-wrap">
                   <span class="option-label-text">Business Website</span>
@@ -857,12 +840,12 @@
             </div>
           </div>
 
-          <!-- SCHRITT 3: FUNKTIONEN (Mehrfachauswahl) -->
+          <!-- SCHRITT 3: FUNKTIONEN -->
           <div class="step-content" data-step="3">
             <div class="step-title-area">
               <div class="step-badge">
                 <iconify-icon icon="solar:settings-bold"></iconify-icon>
-                Schnittstellen &amp; Features
+                Features
               </div>
               <h2 class="step-title">Welche <em>Funktionen</em> werden benötigt?</h2>
               <p class="step-subtitle">Mehrfachauswahl möglich. Wähle die Bausteine für dein digitales Unikat.</p>
@@ -884,11 +867,11 @@
               <label class="option-card">
                 <input type="checkbox" name="temp_funktionen" value="Galerie / Portfolio">
                 <div class="option-icon-box">
-                  <iconify-icon icon="solar:gallery-wide-bold"></iconify-icon>
+                  <iconify-icon icon="solar:pallete-2-bold"></iconify-icon>
                 </div>
                 <div class="option-text-wrap">
-                  <span class="option-label-text">Galerie &amp; Portfolio</span>
-                  <span class="option-subtext">Visuelles Schaufenster für deine Arbeiten</span>
+                  <span class="option-label-text">Galerie / Portfolio</span>
+                  <span class="option-subtext">Visuelles Schaufenster deiner Arbeit</span>
                 </div>
                 <div class="option-indicator square"></div>
               </label>
@@ -896,11 +879,11 @@
               <label class="option-card">
                 <input type="checkbox" name="temp_funktionen" value="Terminbuchung">
                 <div class="option-icon-box">
-                  <iconify-icon icon="solar:calendar-date-bold"></iconify-icon>
+                  <iconify-icon icon="solar:calendar-bold"></iconify-icon>
                 </div>
                 <div class="option-text-wrap">
-                  <span class="option-label-text">Online-Terminbuchung</span>
-                  <span class="option-subtext">Termine schlafen nie (24/7 Buchungen)</span>
+                  <span class="option-label-text">Terminbuchung</span>
+                  <span class="option-subtext">Termine automatisch online annehmen</span>
                 </div>
                 <div class="option-indicator square"></div>
               </label>
@@ -908,10 +891,10 @@
               <label class="option-card">
                 <input type="checkbox" name="temp_funktionen" value="SEO Optimierung">
                 <div class="option-icon-box">
-                  <iconify-icon icon="solar:ranking-bold"></iconify-icon>
+                  <iconify-icon icon="solar:star-bold"></iconify-icon>
                 </div>
                 <div class="option-text-wrap">
-                  <span class="option-label-text">SEO-Grundoptimierung</span>
+                  <span class="option-label-text">SEO Optimierung</span>
                   <span class="option-subtext">Damit du in deiner Region gut rankst</span>
                 </div>
                 <div class="option-indicator square"></div>
@@ -920,11 +903,11 @@
               <label class="option-card">
                 <input type="checkbox" name="temp_funktionen" value="Dark- / Lightmode">
                 <div class="option-icon-box">
-                  <iconify-icon icon="solar:asteroid-bold"></iconify-icon>
+                  <iconify-icon icon="solar:sun-linear"></iconify-icon>
                 </div>
                 <div class="option-text-wrap">
-                  <span class="option-label-text">Dark- &amp; Lightmode</span>
-                  <span class="option-subtext">Erlesene Benutzerfreundlichkeit</span>
+                  <span class="option-label-text">Dark- / Lightmode</span>
+                  <span class="option-subtext">Individuelle Benutzeroberfläche</span>
                 </div>
                 <div class="option-indicator square"></div>
               </label>
@@ -936,24 +919,24 @@
                 </div>
                 <div class="option-text-wrap">
                   <span class="option-label-text">Eigener Wunsch...</span>
-                  <span class="option-subtext">Platz für individuelle Integrationen</span>
+                  <span class="option-subtext">Platz für eigene Ideen und Plugins</span>
                 </div>
                 <div class="option-indicator square"></div>
               </label>
             </div>
 
-            <!-- Custom Field (erscheint nur bei Auswahl von "Eigener Wunsch") -->
+            <!-- Custom Field für eigene Wunsch-Antwort -->
             <div class="custom-input-box" id="customFuncInputWrapper">
-              <label for="custom_functions_text">Welche Funktionen wünschst du dir außerdem?</label>
-              <textarea id="custom_functions_text" class="text-field textarea-field" placeholder="z.B. Mitgliederbereich, interaktiver Onlineshop, News-Blog, Mehrsprachigkeit..."></textarea>
+              <label for="custom_functions_text">Welche Funktionen wünschst du dir zusätzlich?</label>
+              <textarea id="custom_functions_text" class="text-field textarea-field" placeholder="z.B. Mitgliederbereich, Blog, interaktive Filter, Webshop..."></textarea>
             </div>
           </div>
 
-          <!-- SCHRITT 4: PFLEGE DER WEBSEITE -->
+          <!-- SCHRITT 4: PFLEGE -->
           <div class="step-content" data-step="4">
             <div class="step-title-area">
               <div class="step-badge">
-                <iconify-icon icon="solar:pen-2-bold"></iconify-icon>
+                <iconify-icon icon="solar:pen-bold"></iconify-icon>
                 Instandhaltung
               </div>
               <h2 class="step-title">Möchtest du deine Webseite <em>selbst pflegen</em>?</h2>
@@ -968,7 +951,7 @@
                 </div>
                 <div class="option-text-wrap">
                   <span class="option-label-text">Nein, bloß nicht!</span>
-                  <span class="option-subtext">Möchte mich voll auf mein Kerngeschäft fokussieren</span>
+                  <span class="option-subtext">Ich möchte mich voll auf meine Arbeit konzentrieren</span>
                 </div>
                 <div class="option-indicator"></div>
               </label>
@@ -976,11 +959,11 @@
               <label class="option-card">
                 <input type="radio" name="temp_pflegen" value="Weiß ich nocht nicht...">
                 <div class="option-icon-box">
-                  <iconify-icon icon="solar:question-square-bold"></iconify-icon>
+                  <iconify-icon icon="solar:question-circle-bold"></iconify-icon>
                 </div>
                 <div class="option-text-wrap">
                   <span class="option-label-text">Weiß ich noch nicht...</span>
-                  <span class="option-subtext">Möchte mich erst beraten lassen</span>
+                  <span class="option-subtext">Lass uns dazu im Gespräch beraten</span>
                 </div>
                 <div class="option-indicator"></div>
               </label>
@@ -992,33 +975,33 @@
                 </div>
                 <div class="option-text-wrap">
                   <span class="option-label-text">Sicher!</span>
-                  <span class="option-subtext">Texte, Bilder &amp; kleine News passe ich selbst an</span>
+                  <span class="option-subtext">Texte und Bilder passe ich gerne eigenständig an</span>
                 </div>
                 <div class="option-indicator"></div>
               </label>
             </div>
           </div>
 
-          <!-- SCHRITT 5: DESIGN-STIL & FARBSCHEMA -->
+          <!-- SCHRITT 5: DESIGN & FARBSCHEMA -->
           <div class="step-content" data-step="5">
             <div class="step-title-area">
               <div class="step-badge">
-                <iconify-icon icon="solar:palette-bold"></iconify-icon>
-                Ästhetik &amp; Stil
+                <iconify-icon icon="solar:pallete-2-bold"></iconify-icon>
+                Stilrichtung
               </div>
-              <h2 class="step-title">Wie soll deine Webseite <em>visuell wirken</em>?</h2>
-              <p class="step-subtitle">Ein hervorragendes Interface strahlt Seriosität aus und prägt deine Marke nachhaltig.</p>
+              <h2 class="step-title">Wie soll deine Webseite <em>aussehen</em>?</h2>
+              <p class="step-subtitle">Wähle deinen präferierten Stil und trage optional Farbwünsche ein.</p>
             </div>
 
             <div class="options-grid" style="margin-bottom: 1.5rem;">
               <label class="option-card">
                 <input type="radio" name="temp_stil" value="Minimalistisch" checked>
                 <div class="option-icon-box">
-                  <iconify-icon icon="solar:box-minimalistic-bold"></iconify-icon>
+                  <iconify-icon icon="solar:box-bold"></iconify-icon>
                 </div>
                 <div class="option-text-wrap">
                   <span class="option-label-text">Minimalistisch</span>
-                  <span class="option-subtext">Fokus auf Typografie und Leerraum</span>
+                  <span class="option-subtext">Weniger ist mehr – Fokus auf Inhalt</span>
                 </div>
                 <div class="option-indicator"></div>
               </label>
@@ -1026,11 +1009,11 @@
               <label class="option-card">
                 <input type="radio" name="temp_stil" value="Modern">
                 <div class="option-icon-box">
-                  <iconify-icon icon="solar:flash-bold"></iconify-icon>
+                  <iconify-icon icon="solar:bolt-bold"></iconify-icon>
                 </div>
                 <div class="option-text-wrap">
-                  <span class="option-label-text">Modern &amp; Bold</span>
-                  <span class="option-subtext">Starkes Branding, exzellente Kontraste</span>
+                  <span class="option-label-text">Modern</span>
+                  <span class="option-subtext">Innovative Elemente und Kontraste</span>
                 </div>
                 <div class="option-indicator"></div>
               </label>
@@ -1038,11 +1021,11 @@
               <label class="option-card">
                 <input type="radio" name="temp_stil" value="Verspielt">
                 <div class="option-icon-box">
-                  <iconify-icon icon="solar:smile-circle-bold"></iconify-icon>
+                  <iconify-icon icon="solar:heart-bold"></iconify-icon>
                 </div>
                 <div class="option-text-wrap">
-                  <span class="option-label-text">Verspielt / Organisch</span>
-                  <span class="option-subtext">Weiche Formen, kreative Details</span>
+                  <span class="option-label-text">Verspielt</span>
+                  <span class="option-subtext">Weiche Linien, kreative Details</span>
                 </div>
                 <div class="option-indicator"></div>
               </label>
@@ -1050,11 +1033,11 @@
               <label class="option-card">
                 <input type="radio" name="temp_stil" value="Clean">
                 <div class="option-icon-box">
-                  <iconify-icon icon="solar:shield-up-bold"></iconify-icon>
+                  <iconify-icon icon="solar:star-bold"></iconify-icon>
                 </div>
                 <div class="option-text-wrap">
-                  <span class="option-label-text">Clean &amp; Strukturiert</span>
-                  <span class="option-subtext">Klar aufgeräumt, maximal benutzerfreundlich</span>
+                  <span class="option-label-text">Clean</span>
+                  <span class="option-subtext">Klare Strukturen, helle Ästhetik</span>
                 </div>
                 <div class="option-indicator"></div>
               </label>
@@ -1065,8 +1048,8 @@
                   <iconify-icon icon="solar:crown-bold"></iconify-icon>
                 </div>
                 <div class="option-text-wrap">
-                  <span class="option-label-text">Elegant / Edel</span>
-                  <span class="option-subtext">Premium-Feeling für anspruchsvolle Marken</span>
+                  <span class="option-label-text">Elegant</span>
+                  <span class="option-subtext">Dezente Animationen, edles Farbspiel</span>
                 </div>
                 <div class="option-indicator"></div>
               </label>
@@ -1078,27 +1061,27 @@
                 </div>
                 <div class="option-text-wrap">
                   <span class="option-label-text">Corporate</span>
-                  <span class="option-subtext">Professionell und klassisch für Unternehmen</span>
+                  <span class="option-subtext">Seriös, geradlinig und geschäftsmäßig</span>
                 </div>
                 <div class="option-indicator"></div>
               </label>
             </div>
 
             <div class="custom-input-box active">
-              <label for="colors_schema">Gibt es bereits ein Farbschema oder Farb-Wünsche?</label>
-              <input type="text" id="colors_schema" class="text-field" placeholder="z.B. Blau-Grau, Dunkle Töne, Logo-Farbwerte vorhanden, Gold-Schwarz, etc. (Optional)">
+              <label for="colors_schema">Hast du schon Farb-Wünsche oder ein Farbschema vor Augen?</label>
+              <input type="text" id="colors_schema" class="text-field" placeholder="z.B. Kupfer-Weiß, Dunkle Farbtöne, bereits vorhandene Markenfarben... (Optional)">
             </div>
           </div>
 
-          <!-- SCHRITT 6: PROJEKTRAHMEN (Budget & Zeitrahmen) -->
+          <!-- SCHRITT 6: PROJEKTRAHMEN -->
           <div class="step-content" data-step="6">
             <div class="step-title-area">
               <div class="step-badge">
-                <iconify-icon icon="solar:graph-bold"></iconify-icon>
-                Rahmenbedingungen
+                <iconify-icon icon="solar:pie-chart-2-bold" style="vertical-align: middle;"></iconify-icon>
+                Planung
               </div>
-              <h2 class="step-title">Wie sieht der <em>Projektrahmen</em> aus?</h2>
-              <p class="step-subtitle">Damit wir das Projekt ökonomisch und zeitlich perfekt planen können.</p>
+              <h2 class="step-title">Wie sieht dein <em>Projektrahmen</em> aus?</h2>
+              <p class="step-subtitle">So können wir das Vorhaben zeitlich und budgetär perfekt einordnen.</p>
             </div>
 
             <div class="form-group" style="margin-bottom: 2rem;">
@@ -1107,11 +1090,11 @@
                 <label class="option-card">
                   <input type="radio" name="temp_budget" value="Bis 500€" checked>
                   <div class="option-icon-box">
-                    <iconify-icon icon="solar:banknote-bold"></iconify-icon>
+                    <iconify-icon icon="solar:wallet-bold"></iconify-icon>
                   </div>
                   <div class="option-text-wrap">
                     <span class="option-label-text">Bis 500 €</span>
-                    <span class="option-subtext">Schlankes Starter-Konzept</span>
+                    <span class="option-subtext">Idealer Einstieg / One-Pager</span>
                   </div>
                   <div class="option-indicator"></div>
                 </label>
@@ -1123,7 +1106,7 @@
                   </div>
                   <div class="option-text-wrap">
                     <span class="option-label-text">Bis 1.000 €</span>
-                    <span class="option-subtext">Solide Standardpräsenz</span>
+                    <span class="option-subtext">Für solide Präsenzen im Detail</span>
                   </div>
                   <div class="option-indicator"></div>
                 </label>
@@ -1135,7 +1118,7 @@
                   </div>
                   <div class="option-text-wrap">
                     <span class="option-label-text">Bis 1.500 €</span>
-                    <span class="option-subtext">Premium &amp; ausgebautes Layout</span>
+                    <span class="option-subtext">Premium-Auftritt mit vollem Feature-Satz</span>
                   </div>
                   <div class="option-indicator"></div>
                 </label>
@@ -1143,11 +1126,11 @@
                 <label class="option-card">
                   <input type="radio" name="temp_budget" value="Bis 2000€+">
                   <div class="option-icon-box">
-                    <iconify-icon icon="solar:gold-bar-bold"></iconify-icon>
+                    <iconify-icon icon="solar:box-bold"></iconify-icon>
                   </div>
                   <div class="option-text-wrap">
-                    <span class="option-label-text">Über 2.000 €</span>
-                    <span class="option-subtext">Umfangreiches High-End Konzept</span>
+                    <span class="option-label-text">Bis 2.000 €+</span>
+                    <span class="option-subtext">Maßgeschneiderter Branchenführer</span>
                   </div>
                   <div class="option-indicator"></div>
                 </label>
@@ -1155,7 +1138,7 @@
             </div>
 
             <div class="form-group">
-              <label style="margin-bottom:0.5rem; font-weight: 600;">Wann wird die neue Webseite benötigt?</label>
+              <label style="margin-bottom:0.5rem; font-weight: 600;">Wann wird die Webseite benötigt?</label>
               <div class="options-grid">
                 <label class="option-card">
                   <input type="radio" name="temp_zeitrahmen" value="So Schnell wie möglich" checked>
@@ -1171,7 +1154,7 @@
                 <label class="option-card">
                   <input type="radio" name="temp_zeitrahmen" value="In 14 Tagen">
                   <div class="option-icon-box">
-                    <iconify-icon icon="solar:hourglass-line-bold"></iconify-icon>
+                    <iconify-icon icon="solar:hourglass-bold"></iconify-icon>
                   </div>
                   <div class="option-text-wrap">
                     <span class="option-label-text">In 14 Tagen</span>
@@ -1182,7 +1165,7 @@
                 <label class="option-card">
                   <input type="radio" name="temp_zeitrahmen" value="In 30 Tagen">
                   <div class="option-icon-box">
-                    <iconify-icon icon="solar:calendar-mark-bold"></iconify-icon>
+                    <iconify-icon icon="solar:calendar-bold"></iconify-icon>
                   </div>
                   <div class="option-text-wrap">
                     <span class="option-label-text">In 30 Tagen</span>
@@ -1193,7 +1176,7 @@
                 <label class="option-card">
                   <input type="radio" name="temp_zeitrahmen" value="In 90 Tagen / Individueller Termin">
                   <div class="option-icon-box">
-                    <iconify-icon icon="solar:clock-square-bold"></iconify-icon>
+                    <iconify-icon icon="solar:history-bold"></iconify-icon>
                   </div>
                   <div class="option-text-wrap">
                     <span class="option-label-text">Flexibler / Später</span>
@@ -1204,41 +1187,41 @@
             </div>
           </div>
 
-          <!-- SCHRITT 7: KONTAKTDATEN (Finaler Step) -->
+          <!-- SCHRITT 7: KONTAKT -->
           <div class="step-content" data-step="7">
             <div class="step-title-area">
               <div class="step-badge">
-                <iconify-icon icon="solar:hand-stars-bold"></iconify-icon>
-                Fast geschafft!
+                <iconify-icon icon="solar:user-bold" style="vertical-align: middle;"></iconify-icon>
+                Fast geschafft
               </div>
               <h2 class="step-title">Wohin dürfen wir dein <em>Angebot senden</em>?</h2>
-              <p class="step-subtitle">Gib deine Kontaktdaten ein, um die kostenlose, unverbindliche Erst-Kalkulation zu erhalten.</p>
+              <p class="step-subtitle">Trage hier deine Kontaktdaten ein, um dein maßgeschneidertes, unverbindliches Angebot zu erhalten.</p>
             </div>
 
             <div class="contact-form-grid">
               <div class="form-group">
                 <label for="company">Firma (Optional)</label>
-                <input type="text" id="company" name="Firma" class="text-field" placeholder="z.B. Muster GmbH">
+                <input type="text" id="company" name="Firma" class="text-field" placeholder="z.B. TVS Digital">
               </div>
               
               <div class="form-group">
                 <label for="full_name">Vollständiger Name *</label>
-                <input type="text" id="full_name" name="Name" class="text-field" placeholder="z.B. Max Mustermann" required>
+                <input type="text" id="full_name" name="Name" class="text-field" placeholder="z.B. Tim von Seggern" required>
               </div>
 
               <div class="form-group">
                 <label for="email">E-Mail-Adresse *</label>
-                <input type="email" id="email" name="Email" class="text-field" placeholder="z.B. max@firma.de" required>
+                <input type="email" id="email" name="Email" class="text-field" placeholder="z.B. kontakt@tvs-digital.de" required>
               </div>
 
               <div class="form-group">
                 <label for="phone">Telefonnummer *</label>
-                <input type="tel" id="phone" name="Telefon" class="text-field" placeholder="z.B. +49 170 1234567" required>
+                <input type="tel" id="phone" name="Telefon" class="text-field" placeholder="z.B. +49 162 7472104" required>
               </div>
 
               <div class="form-group span-2">
                 <label for="street">Straße &amp; Hausnummer</label>
-                <input type="text" id="street" name="Strasse" class="text-field" placeholder="z.B. Hauptstraße 12">
+                <input type="text" id="street" name="Strasse" class="text-field" placeholder="z.B. Am Marktplatz 4">
               </div>
 
               <div class="form-group">
@@ -1273,16 +1256,16 @@
           </div>
         </form>
 
-        <!-- DANKE SEITE (Wird nach erfolgreichem Absenden eingeblendet) -->
-        <div class="success-container hidden" id="successScreen">
+        <!-- DANKE SEITE (strikt getrennt und erst nach dem Absenden sichtbar) -->
+        <div class="success-container" id="successScreen">
           <div class="success-icon">
             <iconify-icon icon="solar:check-circle-bold"></iconify-icon>
           </div>
-          <h2 class="success-title">Vielen Dank für deine <em>Anfrage!</em></h2>
-          <p class="success-text">Wir haben deine Daten erfolgreich erhalten. Wir analysieren deine Wünsche und melden uns so schnell wie möglich mit einem maßgeschneiderten, unverbindlichen Angebot bei dir!</p>
+          <h2 class="success-title">Vielen Dank für deine <em>unverbindliche Anfrage!</em></h2>
+          <p class="success-text">Wir haben deine Wünsche erfolgreich erfasst und analysieren sie umgehend. Wir melden uns so schnell wie möglich mit einem maßgeschneiderten, unverbindlichen Angebot bei dir!</p>
           <a href="index.html" class="btn btn-next" style="margin: 0 auto; display: inline-flex;">
             <iconify-icon icon="solar:home-2-bold" style="vertical-align: middle;"></iconify-icon>
-            <span>Zurück zur Website</span>
+            <span>Zurück zur Startseite</span>
           </a>
         </div>
 
@@ -1302,7 +1285,7 @@
   </footer>
 
   <script>
-    // Theme Toggle Logic
+    // Theme Switcher
     const themeToggle = document.getElementById('themeToggle');
     const iconSun = document.getElementById('iconSun');
     const iconMoon = document.getElementById('iconMoon');
@@ -1314,7 +1297,7 @@
       iconMoon.style.display = isLight ? 'block' : 'none';
     });
 
-    // Step Engine Logic
+    // Step Engine
     let currentStep = 1;
     const totalSteps = 7;
     
@@ -1327,14 +1310,12 @@
     const successScreen = document.getElementById('successScreen');
     const progressWrapper = document.getElementById('progressWrapper');
     const buttonArea = document.getElementById('buttonArea');
-    const configuratorCard = document.getElementById('configuratorCard');
 
-    // Custom Interactive Events (Checkboxes/Radios Styling & Behaviors)
+    // Visual State der Option Cards synchronisieren
     const optionCards = document.querySelectorAll('.option-card');
     optionCards.forEach(card => {
       const input = card.querySelector('input');
       
-      // Initial Status
       if(input && input.checked) {
         card.classList.add('selected');
       }
@@ -1343,36 +1324,29 @@
         if (!input) return;
         
         if (input.type === 'radio') {
-          // Unselect all other radios in the same step
           const siblings = card.parentNode.querySelectorAll('.option-card');
           siblings.forEach(sib => sib.classList.remove('selected'));
           card.classList.add('selected');
         } else if (input.type === 'checkbox') {
-          // Toggle checkbox active state
-          if (input.checked) {
-            card.classList.add('selected');
-          } else {
-            card.classList.remove('selected');
-          }
+          // Kleiner Delay um Klicks innerhalb von Labels einwandfrei zu tracken
+          setTimeout(() => {
+            if (input.checked) {
+              card.classList.add('selected');
+            } else {
+              card.classList.remove('selected');
+            }
+          }, 10);
         }
       });
     });
 
-    // Handle Custom functions trigger block
+    // Eigener Wunsch-Trigger
     const customFuncCheckbox = document.getElementById('customFuncCheckbox');
     const customFuncCard = document.getElementById('customFuncCard');
     const customFuncInputWrapper = document.getElementById('customFuncInputWrapper');
 
     if(customFuncCheckbox && customFuncCard) {
-      customFuncCheckbox.addEventListener('change', () => {
-        if(customFuncCheckbox.checked) {
-          customFuncInputWrapper.classList.add('active');
-        } else {
-          customFuncInputWrapper.classList.remove('active');
-        }
-      });
-      // also hook to card click
-      customFuncCard.addEventListener('click', () => {
+      const handleToggleCustom = () => {
         setTimeout(() => {
           if(customFuncCheckbox.checked) {
             customFuncInputWrapper.classList.add('active');
@@ -1380,22 +1354,26 @@
             customFuncInputWrapper.classList.remove('active');
           }
         }, 50);
-      });
+      };
+      
+      customFuncCheckbox.addEventListener('change', handleToggleCustom);
+      customFuncCard.addEventListener('click', handleToggleCustom);
     }
 
-    // Update Progress Indicator
+    // Fortschrittsbalken-Aktualisierung
     function updateProgress() {
       const percent = (currentStep / totalSteps) * 100;
       progressBar.style.width = percent + '%';
       progressText.textContent = `Schritt ${currentStep} von ${totalSteps}`;
       
-      // Adjust Navigation Buttons
+      // Zurück-Button anzeigen/verstecken
       if (currentStep === 1) {
         btnPrev.style.visibility = 'hidden';
       } else {
         btnPrev.style.visibility = 'visible';
       }
 
+      // Senden oder Weiter anzeigen
       if (currentStep === totalSteps) {
         btnNext.innerHTML = '<span>Anfrage Senden</span><iconify-icon icon="solar:check-circle-bold" style="vertical-align: middle;"></iconify-icon>';
       } else {
@@ -1403,7 +1381,7 @@
       }
     }
 
-    // Step Validation helper
+    // Schritte validieren
     function validateStep(step) {
       if (step === 7) {
         const nameField = document.getElementById('full_name');
@@ -1431,7 +1409,7 @@
       return true;
     }
 
-    // Serializes interactive configurations to hidden real inputs right before submission
+    // Formulardaten sammeln
     function serializeData() {
       // Branche
       const selectedBrancheInput = document.querySelector('input[name="temp_branche"]:checked');
@@ -1445,7 +1423,7 @@
         document.getElementById('data-webseite').value = selectedWebseiteInput.value;
       }
 
-      // Funktionen (Multiple values)
+      // Funktionen (Mehrfachauswahl)
       const selectedFuncs = [];
       const funcInputs = document.querySelectorAll('input[name="temp_funktionen"]:checked');
       funcInputs.forEach(i => selectedFuncs.push(i.value));
@@ -1483,23 +1461,22 @@
       }
     }
 
-    // Button Next Navigation Click
-    btnNext.addEventListener('click', (e) => {
+    // Weiter / Senden Trigger
+    btnNext.addEventListener('click', () => {
       if (!validateStep(currentStep)) {
-        return; // Validation fails
+        return;
       }
 
       if (currentStep < totalSteps) {
-        // Go to next Step
+        // Nächster Schritt
         document.querySelector(`.step-content[data-step="${currentStep}"]`).classList.remove('active');
         currentStep++;
         document.querySelector(`.step-content[data-step="${currentStep}"]`).classList.add('active');
         updateProgress();
       } else {
-        // Final Step: Submit Form to Formspree
+        // Finale Übermittlung
         serializeData();
         
-        // Form Submission with dynamic Formspree Success Screen replacement (SPA style)
         const formData = new FormData(form);
         btnNext.disabled = true;
         btnNext.innerHTML = '<span>Wird gesendet...</span>';
@@ -1512,27 +1489,26 @@
           }
         }).then(response => {
           if (response.ok) {
-            // Show Success Panel
+            // Formular ausblenden und Dankeseite exklusiv anzeigen
             form.classList.add('hidden');
             progressWrapper.classList.add('hidden');
-            buttonArea.classList.add('hidden');
-            successScreen.classList.remove('hidden');
+            successScreen.classList.add('visible');
           } else {
             response.json().then(data => {
-              alert("Fehler beim Absenden: " + (data.error || "Unbekannter Fehler"));
+              alert("Fehler beim Absenden: " + (data.error || "Umfeld-Fehler"));
               btnNext.disabled = false;
               updateProgress();
             });
           }
         }).catch(error => {
-          alert("Fehler bei der Übertragung. Bitte versuche es erneut oder kontaktiere uns per E-Mail.");
+          alert("Ein Übertragungsfehler ist aufgetreten. Bitte versuche es noch einmal.");
           btnNext.disabled = false;
           updateProgress();
         });
       }
     });
 
-    // Button Previous Navigation Click
+    // Zurück Button Trigger
     btnPrev.addEventListener('click', () => {
       if (currentStep > 1) {
         document.querySelector(`.step-content[data-step="${currentStep}"]`).classList.remove('active');
@@ -1542,7 +1518,7 @@
       }
     });
 
-    // Cursor Glow Tracking (TVS Style)
+    // Cursor Glow Effekt
     const cursorGlow = document.getElementById('cursorGlow');
     let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2, cx = mouseX, cy = mouseY;
     window.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
