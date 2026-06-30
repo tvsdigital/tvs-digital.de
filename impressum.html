@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impressum — TVS Digital</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandBlack: '#0B0B0C',
+                        brandBlackLight: '#141416',
+                        brandWhite: '#FFFFFF',
+                        brandWhiteMuted: '#E2E8F0',
+                        brandSilver: '#C0C0C0',
+                        brandSilverDark: '#8E8E93',
+                        brandSilverGlow: 'rgba(192, 192, 192, 0.15)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #0B0B0C;
+            color: #FFFFFF;
+        }
+        .font-serif-premium {
+            font-family: 'Playfair Display', Georgia, Cambria, "Times New Roman", Times, serif;
+        }
+        /* Custom scrollbar matching silver-black aesthetic */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0B0C;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2C2C2E;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #C0C0C0;
+        }
+        /* Metallic hover border transitions */
+        .silver-border-glow {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(192, 192, 192, 0.1);
+        }
+        .silver-border-glow:hover {
+            border-color: rgba(192, 192, 192, 0.6);
+            box-shadow: 0 0 25px rgba(192, 192, 192, 0.1);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden selection:bg-brandSilver selection:text-brandBlack min-h-screen flex flex-col justify-between">
+
+    <header class="fixed top-0 left-0 w-full z-50 bg-brandBlack/85 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="index.html" class="flex items-center space-x-3 group">
+                <img src="favicon.png" alt="TVS Digital Logo" class="w-9 h-9 object-contain rounded-lg border border-brandSilver/40 group-hover:border-brandWhite transition-colors duration-300" onerror="this.onerror=null; this.src='https://placehold.co/36x36/0B0B0C/FFFFFF?text=TVS'">
+                <div class="flex flex-col">
+                    <span class="font-bold tracking-widest text-lg text-brandWhite uppercase">TVS DIGITAL</span>
+                    <span class="text-[9px] tracking-widest text-brandSilverDark uppercase -mt-1">Oldenburg & Umgebung</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu (Links pointing back to Home Anchor Sections) -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
+                <a href="index.html#vorteile" class="text-brandWhiteMuted hover:text-brandWhite transition-colors duration-200">Vorteile</a>
+                <a href="index.html#leistungen" class="text-brandWhiteMuted hover:text-brandWhite transition-colors duration-200">Leistungen</a>
+                <a href="index.html#methode" class="text-brandWhiteMuted hover:text-brandWhite transition-colors duration-200">Methode</a>
+                <a href="index.html#referenzen" class="text-brandWhiteMuted hover:text-brandWhite transition-colors duration-200">Referenzen</a>
+                <a href="index.html#kundenstimmen" class="text-brandWhiteMuted hover:text-brandWhite transition-colors duration-200">Kundenstimmen</a>
+            </nav>
+
+            <!-- Direct Quick Action CTAs with real user data -->
+            <div class="hidden lg:flex items-center space-x-4">
+                <a href="tel:+491627472104" class="text-sm font-medium text-brandWhiteMuted hover:text-brandWhite transition-colors flex items-center gap-2">
+                    <svg class="w-4 h-4 text-brandSilver" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    +49 162 7472104
+                </a>
+                <a href="index.html#kontakt" class="bg-white text-brandBlack hover:bg-brandSilver font-semibold text-xs uppercase tracking-widest px-5 py-2.5 rounded-md transition-all duration-300">
+                    Kontakt aufnehmen
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-btn" class="md:hidden p-2 text-brandWhite focus:outline-none" aria-label="Menü öffnen">
+                <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+                <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brandBlack border-b border-white/5 px-6 py-8 space-y-6 flex flex-col transition-all duration-300">
+            <a href="index.html#vorteile" class="mobile-nav-link text-lg text-brandWhiteMuted hover:text-brandWhite">Vorteile</a>
+            <a href="index.html#leistungen" class="mobile-nav-link text-lg text-brandWhiteMuted hover:text-brandWhite">Leistungen</a>
+            <a href="index.html#methode" class="mobile-nav-link text-lg text-brandWhiteMuted hover:text-brandWhite">Methode</a>
+            <a href="index.html#referenzen" class="mobile-nav-link text-lg text-brandWhiteMuted hover:text-brandWhite">Referenzen</a>
+            <a href="index.html#kundenstimmen" class="mobile-nav-link text-lg text-brandWhiteMuted hover:text-brandWhite">Kundenstimmen</a>
+            <hr class="border-white/10 my-2">
+            <div class="flex flex-col space-y-4 pt-2">
+                <a href="tel:+491627472104" class="flex items-center gap-3 text-brandWhiteMuted">
+                    <svg class="w-5 h-5 text-brandSilver" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    +49 162 7472104
+                </a>
+                <a href="mailto:vonseggern@tvs-digital.de" class="flex items-center gap-3 text-brandWhiteMuted">
+                    <svg class="w-5 h-5 text-brandSilver" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    vonseggern@tvs-digital.de
+                </a>
+                <a href="index.html#kontakt" class="mobile-nav-link text-center bg-white text-brandBlack hover:bg-brandSilver font-bold text-sm uppercase tracking-wider py-3.5 rounded-md transition-colors">
+                    Direkt anfragen
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-20 flex-grow">
+        <!-- Hero Title Section -->
+        <section class="relative py-20 px-6 overflow-hidden border-b border-white/5">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-brandSilver/5 rounded-full blur-[140px] pointer-events-none"></div>
+
+            <div class="max-w-4xl mx-auto text-center relative z-10 space-y-4">
+                <div class="inline-flex items-center space-x-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full text-[10px] text-brandSilver uppercase tracking-widest font-semibold">
+                    <span>Rechtliche Angaben</span>
+                </div>
+                <h1 class="text-4xl sm:text-5xl font-serif-premium leading-tight tracking-tight text-white">
+                    Impressum
+                </h1>
+                <p class="text-brandWhiteMuted text-sm max-w-xl mx-auto leading-relaxed">
+                    Verantwortlich für den Inhalt dieses Internetauftritts gemäß den gesetzlichen Offenlegungspflichten des Digitalen-Dienste-Gesetzes (DDG).
+                </p>
+            </div>
+        </section>
+
+        <!-- Content Section -->
+        <section class="py-16 px-6 max-w-5xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Quick Copy Details Column (Sticky on Desktop) -->
+                <div class="lg:col-span-5 lg:sticky lg:top-28 h-fit space-y-6">
+                    <div class="bg-brandBlackLight border border-white/10 rounded-2xl p-6 silver-border-glow">
+                        <h2 class="text-xs uppercase tracking-widest text-brandSilver font-bold mb-4 border-b border-white/5 pb-2">Schnellkontakt</h2>
+                        
+                        <div class="space-y-4">
+                            <!-- Provider Name -->
+                            <div>
+                                <p class="text-xs text-brandSilverDark uppercase tracking-wider">Diensteanbieter</p>
+                                <p class="text-base font-serif-premium text-brandWhite mt-1">Tim von Seggern</p>
+                            </div>
+
+                            <!-- Address -->
+                            <div>
+                                <p class="text-xs text-brandSilverDark uppercase tracking-wider">Anschrift</p>
+                                <p class="text-sm text-brandWhiteMuted mt-1 leading-relaxed">
+                                    Korsorsstraße 162<br>
+                                    26203 Wardenburg
+                                </p>
+                            </div>
+
+                            <!-- Phone -->
+                            <div>
+                                <p class="text-xs text-brandSilverDark uppercase tracking-wider">Telefon</p>
+                                <a href="tel:+491627472104" class="text-sm font-semibold text-brandWhite hover:text-brandSilver transition-colors mt-1 block">
+                                    +49 162 7472104
+                                </a>
+                            </div>
+
+                            <!-- Email -->
+                            <div>
+                                <p class="text-xs text-brandSilverDark uppercase tracking-wider">E-Mail</p>
+                                <a href="mailto:vonseggern@tvs-digital.de" class="text-sm font-semibold text-brandWhite hover:text-brandSilver transition-colors mt-1 block break-all">
+                                    vonseggern@tvs-digital.de
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Utility button to easily copy all details to clipboard -->
+                        <button onclick="copyLegalInfo()" id="copy-btn" class="w-full mt-6 bg-white/5 hover:bg-white text-brandWhite hover:text-brandBlack text-xs font-bold uppercase tracking-widest py-3 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 border border-white/10 hover:border-white">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                            <span>Daten kopieren</span>
+                        </button>
+                        
+                        <!-- Small self-fading notification toast inside the container -->
+                        <p id="copy-toast" class="text-[10px] text-green-400 text-center mt-2 opacity-0 transition-opacity duration-300">Erfolgreich in Zwischenablage kopiert!</p>
+                    </div>
+                    
+                    <div class="bg-brandBlackLight/40 border border-white/5 rounded-xl p-5 text-xs text-brandSilverDark leading-relaxed">
+                        <span class="font-bold text-brandWhite block mb-1">Hinweis für Abmahnversuche:</span>
+                        Keine Abmahnung ohne vorherigen Kontakt! Sollten Inhalte oder die Aufmachung dieses Internetauftritts Rechte Dritter oder gesetzliche Bestimmungen verletzen, bitten wir um eine entsprechende Nachricht ohne Kostennote.
+                    </div>
+                </div>
+
+                <!-- Detailed Legal Text Column -->
+                <div class="lg:col-span-7 space-y-10">
+                    
+                    <!-- Section: § 5 DDG -->
+                    <div class="space-y-4">
+                        <h2 class="text-xl font-serif-premium text-brandWhite border-b border-white/5 pb-2">Angaben gemäß § 5 DDG</h2>
+                        <div class="text-sm text-brandWhiteMuted space-y-2 leading-relaxed">
+                            <p class="font-bold text-brandWhite">Tim von Seggern</p>
+                            <p>TVS Digital</p>
+                            <p>Korsorsstraße 162</p>
+                            <p>26203 Wardenburg</p>
+                        </div>
+                    </div>
+
+                    <!-- Section: Kontakt -->
+                    <div class="space-y-4">
+                        <h2 class="text-xl font-serif-premium text-brandWhite border-b border-white/5 pb-2">Kontakt</h2>
+                        <div class="text-sm text-brandWhiteMuted space-y-2 leading-relaxed">
+                            <p><span class="inline-block w-24 text-brandSilverDark">Telefon:</span> +49 162 7472104</p>
+                            <p><span class="inline-block w-24 text-brandSilverDark">E-Mail:</span> vonseggern@tvs-digital.de</p>
+                        </div>
+                    </div>
+
+                    <!-- Section: Inhaltlich Verantwortlicher -->
+                    <div class="space-y-4">
+                        <h2 class="text-xl font-serif-premium text-brandWhite border-b border-white/5 pb-2">Verantwortlich für den Inhalt</h2>
+                        <div class="text-sm text-brandWhiteMuted space-y-2 leading-relaxed">
+                            <p>Gemäß § 18 Abs. 2 MStV (Medienstaatsvertrag):</p>
+                            <p class="font-bold text-brandWhite">Tim von Seggern</p>
+                            <p>Korsorsstraße 162</p>
+                            <p>26203 Wardenburg</p>
+                        </div>
+                    </div>
+
+                    <!-- Section: Berufshaftpflichtversicherung -->
+                    <div class="space-y-4">
+                        <h2 class="text-xl font-serif-premium text-brandWhite border-b border-white/5 pb-2">Umsatzsteuer-ID &amp; Gewerbe</h2>
+                        <div class="text-sm text-brandWhiteMuted leading-relaxed space-y-3">
+                            <p>
+                                <span class="font-semibold text-brandWhite">Umsatzsteuer-Identifikationsnummer</span> gemäß § 27 a Umsatzsteuergesetz: <br>
+                                <span class="italic text-brandSilverDark text-xs">Umsatzsteuerfrei aufgrund der Kleinunternehmerregelung nach § 19 UStG.</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Section: Streitschlichtung -->
+                    <div class="space-y-4">
+                        <h2 class="text-xl font-serif-premium text-brandWhite border-b border-white/5 pb-2">EU-Streitschlichtung</h2>
+                        <p class="text-sm text-brandWhiteMuted leading-relaxed">
+                            Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: 
+                            <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer" class="text-brandSilver hover:text-brandWhite underline transition-colors">https://ec.europa.eu/consumers/odr/</a>.<br>
+                            Unsere E-Mail-Adresse finden Sie oben im Impressum.
+                        </p>
+                    </div>
+
+                    <!-- Section: Verbraucherstreitbeilegung -->
+                    <div class="space-y-4">
+                        <h2 class="text-xl font-serif-premium text-brandWhite border-b border-white/5 pb-2">Verbraucher­streit­beilegung</h2>
+                        <p class="text-sm text-brandWhiteMuted leading-relaxed">
+                            Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
+                        </p>
+                    </div>
+
+                    <!-- Section: Haftung für Inhalte / Links -->
+                    <div class="space-y-4">
+                        <h2 class="text-xl font-serif-premium text-brandWhite border-b border-white/5 pb-2">Rechtliche Hinweise</h2>
+                        <div class="space-y-4 text-xs text-brandSilverDark leading-relaxed">
+                            <div>
+                                <h3 class="font-bold text-brandWhite text-sm mb-1">Haftung für Inhalte</h3>
+                                <p>
+                                    Als Diensteanbieter sind wir gemäß § 7 Abs.1 DDG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 DDG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.
+                                </p>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-brandWhite text-sm mb-1">Haftung für Links</h3>
+                                <p>
+                                    Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.
+                                </p>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-brandWhite text-sm mb-1">Urheberrecht</h3>
+                                <p>
+                                    Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-brandBlack border-t border-white/5 py-12 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 text-sm">
+            
+            <div class="flex items-center space-x-3">
+                <img src="favicon.png" alt="TVS Digital Logo" class="w-8 h-8 object-contain rounded-lg border border-white/10" onerror="this.onerror=null; this.src='https://placehold.co/32x32/0B0B0C/FFFFFF?text=TVS'">
+                <span class="font-bold tracking-widest text-brandWhite uppercase">TVS DIGITAL</span>
+            </div>
+
+            <!-- Footer links to separate pages (with Impressum visually distinct) -->
+            <div class="flex flex-wrap justify-center gap-6 text-brandSilverDark">
+                <a href="#" class="text-brandWhite font-semibold transition-colors">Impressum</a>
+                <a href="datenschutz.html" class="hover:text-brandWhite transition-colors">Datenschutz</a>
+                <span class="flex items-center gap-1.5 text-brandSilver font-medium select-none">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                    100% DSGVO-konform
+                </span>
+            </div>
+
+            <p class="text-xs text-brandSilverDark/70 text-center md:text-right">
+                © 2026 TVS Digital. Alle Rechte vorbehalten. <br>
+                <span class="text-[10px] opacity-50">Entwickelt in Oldenburg — 100% Trackingfrei & lokal gehostet.</span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Toggle Mobile Navigation
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            hamburgerIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        });
+
+        // Close Mobile Menu on clicking a link
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                hamburgerIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            });
+        });
+
+        // Copy Legal Info to Clipboard Function (using iframe-safe fallback method)
+        function copyLegalInfo() {
+            const rawText = "Tim von Seggern\nKorsorsstraße 162\n26203 Wardenburg\nTelefon: +49 162 7472104\nE-Mail: vonseggern@tvs-digital.de";
+            
+            // Create a temporary hidden textarea to perform the select & copy command
+            const el = document.createElement('textarea');
+            el.value = rawText;
+            el.setAttribute('readonly', '');
+            el.style.position = 'absolute';
+            el.style.left = '-9999px';
+            document.body.appendChild(el);
+            el.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    const toast = document.getElementById('copy-toast');
+                    toast.classList.remove('opacity-0');
+                    toast.classList.add('opacity-100');
+                    
+                    // Fade toast back out after 2.5 seconds
+                    setTimeout(() => {
+                        toast.classList.remove('opacity-100');
+                        toast.classList.add('opacity-0');
+                    }, 2500);
+                }
+            } catch (err) {
+                console.error('Inhalt konnte nicht kopiert werden', err);
+            }
+            
+            document.body.removeChild(el);
+        }
+    </script>
+</body>
+</html>
