@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TVS Digital — Webseiten für KMU & lokale Unternehmen</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandBlack: '#0B0B0C',
+                        brandBlackLight: '#141416',
+                        brandWhite: '#FFFFFF',
+                        brandWhiteMuted: '#E2E8F0',
+                        brandSilver: '#C0C0C0',
+                        brandSilverDark: '#8E8E93',
+                        brandSilverGlow: 'rgba(192, 192, 192, 0.15)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Fallback configurations that map to Inter (sans) and Playfair Display (serif) styling locally */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #0B0B0C;
+            color: #FFFFFF;
+        }
+        .font-serif-premium {
+            font-family: 'Playfair Display', Georgia, Cambria, "Times New Roman", Times, serif;
+        }
+        /* Custom scrollbar matching silver-black aesthetic */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0B0C;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2C2C2E;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #C0C0C0;
+        }
+        /* Metallic hover border transitions */
+        .silver-border-glow {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(192, 192, 192, 0.1);
+        }
+        .silver-border-glow:hover {
+            border-color: rgba(192, 192, 192, 0.6);
+            box-shadow: 0 0 25px rgba(192, 192, 192, 0.1);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden selection:bg-brandSilver selection:text-brandBlack">
+
+    <header class="fixed top-0 left-0 w-full z-50 bg-brandBlack/85 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Brand Logo with Custom Image -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <img src="tvs-logo.png" alt="TVS Digital Logo" class="w-9 h-9 object-contain rounded-lg border border-brandSilver/40 group-hover:border-brandWhite transition-colors duration-300" onerror="this.onerror=null; this.src='https://placehold.co/36x36/0B0B0C/FFFFFF?text=TVS'">
+                <div class="flex flex-col">
+                    <span class="font-bold tracking-widest text-lg text-brandWhite uppercase">TVS DIGITAL</span>
+                    <span class="text-[9px] tracking-widest text-brandSilverDark uppercase -mt-1">Web-Exzellenz</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
+                <a href="#vorteile" class="text-brandWhiteMuted hover:text-brandWhite transition-colors duration-200">Vorteile</a>
+                <a href="#leistungen" class="text-brandWhiteMuted hover:text-brandWhite transition-colors duration-200">Leistungen</a>
+                <a href="#methode" class="text-brandWhiteMuted hover:text-brandWhite transition-colors duration-200">Methode</a>
+                <a href="#referenzen" class="text-brandWhiteMuted hover:text-brandWhite transition-colors duration-200">Referenzen</a>
+                <a href="#kundenstimmen" class="text-brandWhiteMuted hover:text-brandWhite transition-colors duration-200">Kundenstimmen</a>
+            </nav>
+
+            <!-- Direct Quick Action CTAs -->
+            <div class="hidden lg:flex items-center space-x-4">
+                <a href="tel:+4917612345678" class="text-sm font-medium text-brandWhiteMuted hover:text-brandWhite transition-colors flex items-center gap-2">
+                    <svg class="w-4 h-4 text-brandSilver" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    +49 (0) 176 12345678
+                </a>
+                <a href="#kontakt" class="bg-white text-brandBlack hover:bg-brandSilver font-semibold text-xs uppercase tracking-widest px-5 py-2.5 rounded-md transition-all duration-300">
+                    Gespräch buchen
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-btn" class="md:hidden p-2 text-brandWhite focus:outline-none" aria-label="Menü öffnen">
+                <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+                <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brandBlack border-b border-white/5 px-6 py-8 space-y-6 flex flex-col transition-all duration-300">
+            <a href="#vorteile" class="mobile-nav-link text-lg text-brandWhiteMuted hover:text-brandWhite">Vorteile</a>
+            <a href="#leistungen" class="mobile-nav-link text-lg text-brandWhiteMuted hover:text-brandWhite">Leistungen</a>
+            <a href="#methode" class="mobile-nav-link text-lg text-brandWhiteMuted hover:text-brandWhite">Methode</a>
+            <a href="#referenzen" class="mobile-nav-link text-lg text-brandWhiteMuted hover:text-brandWhite">Referenzen</a>
+            <a href="#kundenstimmen" class="mobile-nav-link text-lg text-brandWhiteMuted hover:text-brandWhite">Kundenstimmen</a>
+            <hr class="border-white/10 my-2">
+            <div class="flex flex-col space-y-4 pt-2">
+                <a href="tel:+4917612345678" class="flex items-center gap-3 text-brandWhiteMuted">
+                    <svg class="w-5 h-5 text-brandSilver" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    +49 (0) 176 12345678
+                </a>
+                <a href="mailto:hallo@tvs-digital.de" class="flex items-center gap-3 text-brandWhiteMuted">
+                    <svg class="w-5 h-5 text-brandSilver" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    hallo@tvs-digital.de
+                </a>
+                <a href="#kontakt" class="mobile-nav-link text-center bg-white text-brandBlack hover:bg-brandSilver font-bold text-sm uppercase tracking-wider py-3.5 rounded-md transition-colors">
+                    Direkt anfragen
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-16 px-6">
+            <!-- Decorative Silver Ambient Glows (Pure CSS, GDPR compliant, no trackers) -->
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-brandSilver/5 rounded-full blur-[120px] pointer-events-none"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-brandSilver/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+                <!-- Textual Content (60% Area Weight / Playfair Display Typography) -->
+                <div class="lg:col-span-7 space-y-8">
+                    <div class="inline-flex items-center space-x-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full text-xs text-brandWhite uppercase tracking-widest font-semibold">
+                        <span class="w-2 h-2 rounded-full bg-brandSilver animate-pulse"></span>
+                        <span>Maßarbeit statt 0815 Baukasten</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif-premium leading-tight tracking-tight text-white">
+                        Digitale Unikate, die <br>
+                        <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-brandWhite via-brandSilver to-brandSilverDark">strategisch & technologisch</span> <br>
+                        überlegen sind.
+                    </h1>
+
+                    <p class="text-brandWhiteMuted text-lg max-w-xl leading-relaxed">
+                        Eine Webseite aus dem Baukasten spart am falschen Ende. Wir entwickeln pfeilschnelle, transparente Web-Systeme, die deine Marke in der Region optimal positionieren und rund um die Uhr als Vertriebsmitarbeiter agieren.
+                    </p>
+
+                    <!-- CTAs -->
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+                        <a href="mailto:hallo@tvs-digital.de" class="group bg-brandWhite text-brandBlack hover:bg-brandSilver px-8 py-4 rounded-md font-bold text-sm tracking-widest uppercase shadow-lg shadow-brandWhite/5 transition-all duration-300 flex items-center justify-center gap-3">
+                            <span>Projekt starten</span>
+                            <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </a>
+                        <a href="tel:+4917612345678" class="border border-white/20 hover:border-brandSilver px-8 py-4 rounded-md font-bold text-sm tracking-widest uppercase text-brandWhite hover:text-brandSilver transition-all duration-300 flex items-center justify-center gap-3">
+                            <svg class="w-4 h-4 text-brandSilver" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            <span>Direktanruf</span>
+                        </a>
+                    </div>
+
+                    <!-- Trust factors -->
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-6 pt-6 border-t border-white/5">
+                        <div>
+                            <p class="text-xl font-bold text-brandWhite">5 / 5 ★ Stars</p>
+                            <p class="text-xs text-brandSilverDark uppercase tracking-wider mt-1">Google Bewertung</p>
+                        </div>
+                        <div>
+                            <p class="text-xl font-bold text-brandWhite">Score 100</p>
+                            <p class="text-xs text-brandSilverDark uppercase tracking-wider mt-1">Core Web Vitals</p>
+                        </div>
+                        <div class="col-span-2 md:col-span-1">
+                            <p class="text-xl font-bold text-brandWhite">100% DSGVO</p>
+                            <p class="text-xs text-brandSilverDark uppercase tracking-wider mt-1">Keine US-CDNs</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TVS Digital Web Showcase Image -->
+                <div class="lg:col-span-5 relative group">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-brandSilver/10 to-transparent rounded-2xl filter blur-xl opacity-60 pointer-events-none"></div>
+                    <div class="relative bg-brandBlackLight border border-white/10 rounded-2xl p-3 overflow-hidden shadow-2xl transition-all duration-500 hover:border-brandSilver/40">
+                        <div class="flex items-center justify-between pb-3 border-b border-white/5 mb-4">
+                            <div class="flex space-x-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-white/20"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-white/20"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-white/20"></span>
+                            </div>
+                            <span class="text-[10px] font-mono text-brandSilverDark tracking-widest uppercase">tvs-digital.de</span>
+                        </div>
+                        <img src="websitebild-tvs.png" alt="TVS Digital Web-Exzellenz Vorschau" class="w-full h-auto rounded-lg object-cover shadow-lg border border-white/5 transition-transform duration-700 hover:scale-[1.02]" onerror="this.onerror=null; this.src='https://placehold.co/600x485/141416/FFFFFF?text=TVS+Digital+Premium+Webdesign'">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Advantages & Statement -->
+        <section id="vorteile" class="py-24 bg-brandBlackLight relative border-y border-white/5">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="max-w-3xl mb-16">
+                    <p class="text-xs uppercase tracking-widest text-brandSilver font-bold mb-3">Warum TVS Digital?</p>
+                    <h2 class="text-3xl sm:text-4xl font-serif-premium text-brandWhite leading-tight">
+                        Wir bauen keine Seiten von der Stange – wir entwickeln digitale Unikate.
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Advantage 1 -->
+                    <div class="bg-brandBlack p-8 rounded-xl border border-white/5 hover:border-brandSilver/30 transition-all duration-300">
+                        <div class="w-12 h-12 bg-white/5 rounded-lg flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-brandWhite" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-brandWhite">Strategie > Design</h3>
+                        <p class="text-brandWhiteMuted text-sm leading-relaxed">
+                            Wir fangen nicht beim Layout an, sondern bei Ihrem „Warum“. Jedes Element auf Ihrer Seite hat einen strategischen Zweck: Kundenanfragen generieren.
+                        </p>
+                    </div>
+
+                    <!-- Advantage 2 -->
+                    <div class="bg-brandBlack p-8 rounded-xl border border-white/5 hover:border-brandSilver/30 transition-all duration-300">
+                        <div class="w-12 h-12 bg-white/5 rounded-lg flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-brandWhite" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-brandWhite">Performance = Standard</h3>
+                        <p class="text-brandWhiteMuted text-sm leading-relaxed">
+                            Unsere Webseiten sind schlank, extrem schnell und für Google Core Web Vitals optimiert. Wir minimieren ungenutzten Code-Ballast für blitzschnelle Ladezeiten.
+                        </p>
+                    </div>
+
+                    <!-- Advantage 3 -->
+                    <div class="bg-brandBlack p-8 rounded-xl border border-white/5 hover:border-brandSilver/30 transition-all duration-300">
+                        <div class="w-12 h-12 bg-white/5 rounded-lg flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-brandWhite" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-brandWhite">Einzigartigkeit als Markenwert</h3>
+                        <p class="text-brandWhiteMuted text-sm leading-relaxed">
+                            Wir entwickeln exklusive Designs, die Ihre tatsächliche Markenidentität widerspiegeln. Keine Kompromisse durch standardisierte Templates.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="leistungen" class="py-24 px-6 relative">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <p class="text-xs uppercase tracking-widest text-brandSilver font-bold mb-3">Unsere Kernkompetenzen</p>
+                    <h2 class="text-3xl sm:text-4xl font-serif-premium text-brandWhite">Maßgeschneiderte digitale Lösungen</h2>
+                    <p class="text-brandWhiteMuted text-sm mt-4">
+                        Von der ersten strategischen Ausrichtung bis zur permanenten Optimierung begleiten wir Sie.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Service 1 -->
+                    <div class="bg-brandBlackLight rounded-xl border border-white/5 p-8 flex flex-col justify-between hover:border-brandSilver/40 transition-all duration-300">
+                        <div>
+                            <span class="text-xs font-mono text-brandSilverDark block mb-4">01. Premium Service</span>
+                            <h3 class="text-2xl font-serif-premium text-brandWhite mb-4">Premium Webdesign UI / UX</h3>
+                            <p class="text-brandWhiteMuted text-sm leading-relaxed mb-6">
+                                Design, das führt, statt nur zu dekorieren. Wir gestalten Oberflächen, die intuitiv funktionieren und Ihre Marke visuell in der Oberliga platzieren.
+                            </p>
+                            <!-- Click-to-expand premium element detail -->
+                            <div id="detail-1" class="hidden text-xs text-brandSilverDark space-y-2 border-t border-white/5 pt-4 transition-all duration-300">
+                                <p>• Individueller UX Workflow-Prototyp vor Code-Erstellung</p>
+                                <p>• Vollständig responsive Layouts für mobile Endgeräte</p>
+                                <p>• Conversion-Rate-optimierter Aufbau</p>
+                            </div>
+                        </div>
+                        <button onclick="toggleDetail('detail-1', this)" class="text-xs font-bold text-brandSilver hover:text-brandWhite uppercase tracking-widest mt-6 flex items-center gap-2 focus:outline-none">
+                            <span>Details ansehen</span>
+                            <svg class="w-3.5 h-3.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="bg-brandBlackLight rounded-xl border border-white/5 p-8 flex flex-col justify-between hover:border-brandSilver/40 transition-all duration-300">
+                        <div>
+                            <span class="text-xs font-mono text-brandSilverDark block mb-4">02. Wartung & Updates</span>
+                            <h3 class="text-2xl font-serif-premium text-brandWhite mb-4">Wartung und Optimierung</h3>
+                            <p class="text-brandWhiteMuted text-sm leading-relaxed mb-6">
+                                Eine Webseite ist kein statisches Produkt. Wir schließen Sicherheitslücken, optimieren Backups und garantieren, dass Ihre Seite auch nach Jahren noch pfeilschnell lädt.
+                            </p>
+                            <div id="detail-2" class="hidden text-xs text-brandSilverDark space-y-2 border-t border-white/5 pt-4 transition-all duration-300">
+                                <p>• Kontinuierliche Sicherheitsaudits & Updates</p>
+                                <p>• Regelmäßige Performance-Reviews (Core Web Vitals)</p>
+                                <p>• DSGVO-Konformitäts-Checks bei neuen Plugins</p>
+                            </div>
+                        </div>
+                        <button onclick="toggleDetail('detail-2', this)" class="text-xs font-bold text-brandSilver hover:text-brandWhite uppercase tracking-widest mt-6 flex items-center gap-2 focus:outline-none">
+                            <span>Details ansehen</span>
+                            <svg class="w-3.5 h-3.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="bg-brandBlackLight rounded-xl border border-white/5 p-8 flex flex-col justify-between hover:border-brandSilver/40 transition-all duration-300">
+                        <div>
+                            <span class="text-xs font-mono text-brandSilverDark block mb-4">03. Erweiterte Funktionen</span>
+                            <h3 class="text-2xl font-serif-premium text-brandWhite mb-4">Chatbots und Plugins</h3>
+                            <p class="text-brandWhiteMuted text-sm leading-relaxed mb-6">
+                                Wir erweitern Ihre Webseite um nützliche Features, die Ihre Prozesse vereinfachen. Ob automatisierte Chatbots für 24/7-Support oder individuelle System-Workflows.
+                            </p>
+                            <div id="detail-3" class="hidden text-xs text-brandSilverDark space-y-2 border-t border-white/5 pt-4 transition-all duration-300">
+                                <p>• Keine überladenen Drittanbieter-Scripte (DSGVO-safe)</p>
+                                <p>• Nahtlose Schnittstellen-Anbindungen (APIs)</p>
+                                <p>• Automatisierte Leads-Erfassung und Benachrichtigung</p>
+                            </div>
+                        </div>
+                        <button onclick="toggleDetail('detail-3', this)" class="text-xs font-bold text-brandSilver hover:text-brandWhite uppercase tracking-widest mt-6 flex items-center gap-2 focus:outline-none">
+                            <span>Details ansehen</span>
+                            <svg class="w-3.5 h-3.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Was unsere Kunden sagen Section -->
+        <section id="kundenstimmen" class="py-24 bg-brandBlackLight border-y border-white/5 px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <p class="text-xs uppercase tracking-widest text-brandSilver font-bold mb-3">Erfolgsberichte</p>
+                    <h2 class="text-3xl sm:text-4xl font-serif-premium text-brandWhite">Was unsere Kunden sagen</h2>
+                    <p class="text-brandWhiteMuted text-sm mt-4">
+                        Das Vertrauen unserer Partner ist unser wertvollstes Gut. Entdecke Berichte von Unternehmen, die mit TVS Digital neue digitale Maßstäbe setzen.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-brandBlack p-8 rounded-xl border border-white/5 hover:border-brandSilver/30 transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <!-- Silver Quote Icon -->
+                            <div class="text-brandSilver/20 mb-6">
+                                <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                                </svg>
+                            </div>
+                            <!-- Stars -->
+                            <div class="flex items-center space-x-1 mb-4">
+                                <span class="text-brandSilver text-lg">★</span>
+                                <span class="text-brandSilver text-lg">★</span>
+                                <span class="text-brandSilver text-lg">★</span>
+                                <span class="text-brandSilver text-lg">★</span>
+                                <span class="text-brandSilver text-lg">★</span>
+                            </div>
+                            <p class="text-brandWhiteMuted text-sm leading-relaxed italic mb-6">
+                                "Die neue Website hat unser Handwerksunternehmen komplett verändert. Schon im ersten Monat kamen über 5 qualifizierte Neukunden-Anfragen direkt über das Web. Absolut jeden Cent wert!"
+                            </p>
+                        </div>
+                        <div class="border-t border-white/5 pt-4">
+                            <p class="text-brandWhite font-bold text-sm">Thomas Meyer</p>
+                            <p class="text-brandSilverDark text-[11px] uppercase tracking-wider">Geschäftsführer, Meyer Holzbau</p>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="bg-brandBlack p-8 rounded-xl border border-white/5 hover:border-brandSilver/30 transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="text-brandSilver/20 mb-6">
+                                <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                                </svg>
+                            </div>
+                            <div class="flex items-center space-x-1 mb-4">
+                                <span class="text-brandSilver text-lg">★</span>
+                                <span class="text-brandSilver text-lg">★</span>
+                                <span class="text-brandSilver text-lg">★</span>
+                                <span class="text-brandSilver text-lg">★</span>
+                                <span class="text-brandSilver text-lg">★</span>
+                            </div>
+                            <p class="text-brandWhiteMuted text-sm leading-relaxed italic mb-6">
+                                "TVS Digital hat unsere Philosophie perfekt verstanden. Keine Standard-Templates, sondern echte Maßarbeit. Unsere Gäste loben das Design und die Tischreservierung läuft kinderleicht."
+                            </p>
+                        </div>
+                        <div class="border-t border-white/5 pt-4">
+                            <p class="text-brandWhite font-bold text-sm">Sarah Becker</p>
+                            <p class="text-brandSilverDark text-[11px] uppercase tracking-wider">Inhaberin, Café & Rösterei</p>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="bg-brandBlack p-8 rounded-xl border border-white/5 hover:border-brandSilver/30 transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="text-brandSilver/20 mb-6">
+                                <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                                </svg>
+                            </div>
+                            <div class="flex items-center space-x-1 mb-4">
+                                <span class="text-brandSilver text-lg">★</span>
+                                <span class="text-brandSilver text-lg">★</span>
+                                <span class="text-brandSilver text-lg">★</span>
+                                <span class="text-brandSilver text-lg">★</span>
+                                <span class="text-brandSilver text-lg">★</span>
+                            </div>
+                            <p class="text-brandWhiteMuted text-sm leading-relaxed italic mb-6">
+                                "Hervorragende technische Umsetzung. Die Seite lädt rasant, ist absolut DSGVO-konform und spiegelt unsere Professionalität wider. Die Performance ist meilenweit vor der Konkurrenz."
+                            </p>
+                        </div>
+                        <div class="border-t border-white/5 pt-4">
+                            <p class="text-brandWhite font-bold text-sm">Dr. med. Andreas Wagner</p>
+                            <p class="text-brandSilverDark text-[11px] uppercase tracking-wider">Gemeinschaftspraxis Wagner & Kollegen</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- References (Selected Projects) Section -->
+        <section id="referenzen" class="py-24 px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
+                    <div>
+                        <p class="text-xs uppercase tracking-widest text-brandSilver font-bold mb-3">Ausgewählte Projekte</p>
+                        <h2 class="text-3xl sm:text-4xl font-serif-premium text-brandWhite">Ergebnisse, die für sich sprechen</h2>
+                    </div>
+                    
+                    <!-- Dynamic Portfolio Category Filters -->
+                    <div class="flex flex-wrap gap-2 text-xs font-semibold tracking-wider uppercase">
+                        <button class="portfolio-filter px-4 py-2 bg-white text-brandBlack rounded-full transition-all duration-300" onclick="filterPortfolio('all', this)">
+                            Alle
+                        </button>
+                        <button class="portfolio-filter px-4 py-2 border border-white/10 text-brandWhite hover:border-brandWhite rounded-full transition-all duration-300" onclick="filterPortfolio('kmu', this)">
+                            Handwerk & KMU
+                        </button>
+                        <button class="portfolio-filter px-4 py-2 border border-white/10 text-brandWhite hover:border-brandWhite rounded-full transition-all duration-300" onclick="filterPortfolio('corpo', this)">
+                            Dienstleistungen
+                        </button>
+                        <button class="portfolio-filter px-4 py-2 border border-white/10 text-brandWhite hover:border-brandWhite rounded-full transition-all duration-300" onclick="filterPortfolio('brand', this)">
+                            Selbstständige
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Showcase Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Project 1 (KMU) -->
+                    <div class="portfolio-item group bg-brandBlackLight rounded-xl overflow-hidden border border-white/5 hover:border-brandSilver/30 transition-all duration-300" data-category="kmu">
+                        <div class="aspect-video bg-brandBlack flex items-center justify-center p-6 border-b border-white/5 relative group-hover:bg-brandBlackLight/50 transition-colors">
+                            <!-- Inline Premium Mock Graphic -->
+                            <div class="w-full max-w-[240px] bg-brandBlackLight border border-white/10 rounded-lg p-3 shadow-2xl relative">
+                                <div class="flex items-center gap-1.5 pb-2 mb-2 border-b border-white/5">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-brandSilver"></span>
+                                    <span class="w-1.5 h-1.5 rounded-full bg-brandSilverDark"></span>
+                                    <span class="text-[8px] text-brandSilverDark font-mono uppercase tracking-widest">Cafe-Website.de</span>
+                                </div>
+                                <div class="space-y-1.5">
+                                    <div class="h-4 bg-brandWhite/10 rounded w-3/4"></div>
+                                    <div class="h-2 bg-brandWhite/5 rounded w-full"></div>
+                                    <div class="h-2 bg-brandWhite/5 rounded w-5/6"></div>
+                                    <div class="h-5 bg-brandSilver rounded w-1/3 mt-2"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <span class="text-xs text-brandSilver font-mono uppercase tracking-wider">Handwerk & Lokales KMU</span>
+                            <h3 class="text-lg font-serif-premium text-brandWhite group-hover:text-brandSilver transition-colors">Individuelle Webseite für ein Café</h3>
+                            <p class="text-brandWhiteMuted text-xs leading-relaxed">
+                                Optimiert für lokale Google-Sichtbarkeit, digitale Tischreservierung und maximale mobile Conversion.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 (Corpo) -->
+                    <div class="portfolio-item group bg-brandBlackLight rounded-xl overflow-hidden border border-white/5 hover:border-brandSilver/30 transition-all duration-300" data-category="corpo">
+                        <div class="aspect-video bg-brandBlack flex items-center justify-center p-6 border-b border-white/5 relative group-hover:bg-brandBlackLight/50 transition-colors">
+                            <!-- Inline Premium Mock Graphic -->
+                            <div class="w-full max-w-[240px] bg-brandBlackLight border border-white/10 rounded-lg p-3 shadow-2xl relative">
+                                <div class="flex items-center gap-1.5 pb-2 mb-2 border-b border-white/5">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-brandSilver"></span>
+                                    <span class="w-1.5 h-1.5 rounded-full bg-brandSilverDark"></span>
+                                    <span class="text-[8px] text-brandSilverDark font-mono uppercase tracking-widest">Finanz-Relaunch.de</span>
+                                </div>
+                                <div class="space-y-1.5">
+                                    <div class="h-3 bg-brandWhite/10 rounded w-1/2"></div>
+                                    <div class="h-3 bg-brandWhite/10 rounded w-2/3"></div>
+                                    <div class="h-2 bg-brandWhite/5 rounded w-full"></div>
+                                    <div class="h-5 bg-brandWhite rounded w-1/4 mt-2"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <span class="text-xs text-brandSilver font-mono uppercase tracking-wider">Dienstleistung Neugestaltung</span>
+                            <h3 class="text-lg font-serif-premium text-brandWhite group-hover:text-brandSilver transition-colors">Corporate Website Relaunch</h3>
+                            <p class="text-brandWhiteMuted text-xs leading-relaxed">
+                                Komplette Neustrukturierung mit 100% Core Web Vitals Score, optimiert für strukturierte Lead-Generierung.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 (Brand) -->
+                    <div class="portfolio-item group bg-brandBlackLight rounded-xl overflow-hidden border border-white/5 hover:border-brandSilver/30 transition-all duration-300" data-category="brand">
+                        <div class="aspect-video bg-brandBlack flex items-center justify-center p-6 border-b border-white/5 relative group-hover:bg-brandBlackLight/50 transition-colors">
+                            <!-- Inline Premium Mock Graphic -->
+                            <div class="w-full max-w-[240px] bg-brandBlackLight border border-white/10 rounded-lg p-3 shadow-2xl relative">
+                                <div class="flex items-center gap-1.5 pb-2 mb-2 border-b border-white/5">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-brandSilver"></span>
+                                    <span class="w-1.5 h-1.5 rounded-full bg-brandSilverDark"></span>
+                                    <span class="text-[8px] text-brandSilverDark font-mono uppercase tracking-widest">Portfolio.de</span>
+                                </div>
+                                <div class="space-y-1.5">
+                                    <div class="grid grid-cols-2 gap-1.5">
+                                        <div class="h-10 bg-brandWhite/5 rounded"></div>
+                                        <div class="h-10 bg-brandWhite/5 rounded"></div>
+                                    </div>
+                                    <div class="h-2 bg-brandWhite/5 rounded w-full mt-1"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <span class="text-xs text-brandSilver font-mono uppercase tracking-wider">Selbstständig Branding</span>
+                            <h3 class="text-lg font-serif-premium text-brandWhite group-hover:text-brandSilver transition-colors">Fotografen Portfolio & Booking</h3>
+                            <p class="text-brandWhiteMuted text-xs leading-relaxed">
+                                Puristisches, minimalistisches Design, das Bilder atmen lässt, inklusive direktem, lokalem Online-Buchungssystem.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Method Section -->
+        <section id="methode" class="py-24 bg-brandBlackLight border-y border-white/5 px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="max-w-3xl mb-16">
+                    <p class="text-xs uppercase tracking-widest text-brandSilver font-bold mb-3">Unsere Methode</p>
+                    <h2 class="text-3xl sm:text-4xl font-serif-premium text-brandWhite leading-tight">
+                        Schritt für Schritt zur perfekten Webseite
+                    </h2>
+                </div>
+
+                <!-- Custom Step Timeline -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+                    <!-- Step 1 -->
+                    <div class="space-y-4 relative">
+                        <div class="text-5xl font-serif-premium text-brandSilverDark/30 font-black">01</div>
+                        <h3 class="text-lg font-bold text-brandWhite">Analyse & Strategie</h3>
+                        <p class="text-brandWhiteMuted text-xs leading-relaxed">
+                            Wir verstehen Ihr Business, Ihre Zielgruppe und Ziele genau, bevor wir auch nur eine einzige Zeile Code entwerfen.
+                        </p>
+                        <div class="hidden md:block absolute top-6 right-0 w-1/2 h-px bg-white/10"></div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="space-y-4 relative">
+                        <div class="text-5xl font-serif-premium text-brandSilverDark/50 font-black">02</div>
+                        <h3 class="text-lg font-bold text-brandWhite">Konzept & Design</h3>
+                        <p class="text-brandWhiteMuted text-xs leading-relaxed">
+                            Aus Strategie-Erkenntnissen entsteht ein ansprechendes, maßgeschneidertes Designkonzept mit strategischer Nutzerführung.
+                        </p>
+                        <div class="hidden md:block absolute top-6 right-0 w-1/2 h-px bg-white/10"></div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="space-y-4 relative">
+                        <div class="text-5xl font-serif-premium text-brandSilver/70 font-black">03</div>
+                        <h3 class="text-lg font-bold text-brandWhite">Code & Entwicklung</h3>
+                        <p class="text-brandWhiteMuted text-xs leading-relaxed">
+                            Wir schreiben Ihren Code absolut sauber, schlank und ohne blockierende Frameworks. Das garantiert unschlagbare Ladezeiten.
+                        </p>
+                        <div class="hidden md:block absolute top-6 right-0 w-1/2 h-px bg-white/10"></div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="space-y-4">
+                        <div class="text-5xl font-serif-premium text-brandWhite font-black">04</div>
+                        <h3 class="text-lg font-bold text-brandWhite">Launch & Betreuung</h3>
+                        <p class="text-brandWhiteMuted text-xs leading-relaxed">
+                            Wir begleiten Sie weit über den Livegang hinaus mit proaktiver Pflege, Datenschutz-Prüfung und fortlaufender Optimierung.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact CTA Section (Direct contact, no forms, purely professional) -->
+        <section id="kontakt" class="py-28 px-6 text-center relative overflow-hidden">
+            <!-- Subtle Radial Gradient Background representing Silver (10%) and Black (60%) -->
+            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(192,192,192,0.06),transparent_60%)] pointer-events-none"></div>
+
+            <div class="max-w-4xl mx-auto space-y-8 relative z-10">
+                <p class="text-xs uppercase tracking-widest text-brandSilver font-extrabold">Gemeinsam Großes bauen</p>
+                
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-serif-premium leading-tight text-white">
+                    Bereit für Ihre <br>
+                    <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-brandWhite to-brandSilver">digitale Überlegenheit?</span>
+                </h2>
+
+                <p class="text-brandWhiteMuted text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+                    Wir verzichten auf unübersichtliche Kontaktformulare. Direkter, barrierefreier Kontakt auf Augenhöhe führt am schnellsten zum Ziel. Lassen Sie uns über Ihr Vorhaben sprechen.
+                </p>
+
+                <!-- High Impact CTA Flex -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-6 pt-6">
+                    <!-- Email CTA -->
+                    <a href="mailto:hallo@tvs-digital.de" class="w-full sm:w-auto bg-brandWhite text-brandBlack hover:bg-brandSilver font-bold text-sm tracking-widest uppercase px-8 py-5 rounded-md shadow-2xl transition-all duration-300 flex items-center justify-center gap-3">
+                        <svg class="w-5 h-5 text-brandBlack" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                        <span>E-Mail: hallo@tvs-digital.de</span>
+                    </a>
+
+                    <!-- Telephone CTA -->
+                    <a href="tel:+4917612345678" class="w-full sm:w-auto border border-white/20 hover:border-brandSilver text-brandWhite hover:text-brandSilver font-bold text-sm tracking-widest uppercase px-8 py-5 rounded-md transition-all duration-300 flex items-center justify-center gap-3">
+                        <svg class="w-5 h-5 text-brandSilver" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                        </svg>
+                        <span>Mobil: +49 (0) 176 12345678</span>
+                    </a>
+                </div>
+
+                <p class="text-xs text-brandSilverDark pt-4">
+                    ✓ Unverbindliche Erstberatung • ✓ 100% transparent • ✓ Direkter Draht zum Entwickler
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-brandBlack border-t border-white/5 py-12 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 text-sm">
+            
+            <div class="flex items-center space-x-3">
+                <img src="tvs-logo.png" alt="TVS Digital Logo" class="w-8 h-8 object-contain rounded-lg border border-white/10" onerror="this.onerror=null; this.src='https://placehold.co/32x32/0B0B0C/FFFFFF?text=TVS'">
+                <span class="font-bold tracking-widest text-brandWhite uppercase">TVS DIGITAL</span>
+            </div>
+
+            <!-- Footer links & Legal modals trigger -->
+            <div class="flex flex-wrap justify-center gap-6 text-brandSilverDark">
+                <button onclick="toggleModal('modal-impressum')" class="hover:text-brandWhite transition-colors">Impressum</button>
+                <button onclick="toggleModal('modal-datenschutz')" class="hover:text-brandWhite transition-colors">Datenschutz</button>
+                <button onclick="toggleModal('modal-dsgvo')" class="hover:text-brandWhite transition-colors flex items-center gap-1.5 text-brandSilver font-medium">
+                    <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                    DSGVO-Statement
+                </button>
+            </div>
+
+            <p class="text-xs text-brandSilverDark/70 text-center md:text-right">
+                © 2026 TVS Digital. Alle Rechte vorbehalten. <br>
+                <span class="text-[10px] opacity-50">Entwickelt in Oldenburg — 100% Trackingfrei & lokal gehostet.</span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE MODAL COMPONENT (Local popups - fully compliant, zero external cookies) -->
+    
+    <!-- IMPRESSUM MODAL -->
+    <div id="modal-impressum" class="fixed inset-0 z-50 hidden bg-brandBlack/90 backdrop-blur-md flex items-center justify-center p-6">
+        <div class="bg-brandBlackLight border border-white/10 rounded-2xl max-w-2xl w-full p-8 max-h-[85vh] overflow-y-auto space-y-6">
+            <div class="flex justify-between items-center border-b border-white/5 pb-4">
+                <h3 class="text-xl font-serif-premium text-brandWhite">Impressum</h3>
+                <button onclick="toggleModal('modal-impressum')" class="text-brandSilverDark hover:text-brandWhite">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="space-y-4 text-sm text-brandWhiteMuted leading-relaxed">
+                <p class="font-bold text-brandWhite">Dienstanbieter & Angaben gemäß § 5 TMG:</p>
+                <p>
+                    TVS Digital<br>
+                    Inhaber: Tobias V. Schmidt<br>
+                    Musterstraße 42<br>
+                    26123 Oldenburg
+                </p>
+                <p class="font-bold text-brandWhite">Kontakt:</p>
+                <p>
+                    Telefon: +49 (0) 176 12345678<br>
+                    E-Mail: hallo@tvs-digital.de
+                </p>
+                <p class="font-bold text-brandWhite">Umsatzsteuer-Identifikationsnummer:</p>
+                <p>Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz: DE321654987</p>
+                <p class="font-bold text-brandWhite">Streitbeilegung:</p>
+                <p class="text-xs text-brandSilverDark">Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: https://ec.europa.eu/consumers/odr. Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- DATENSCHUTZ MODAL -->
+    <div id="modal-datenschutz" class="fixed inset-0 z-50 hidden bg-brandBlack/90 backdrop-blur-md flex items-center justify-center p-6">
+        <div class="bg-brandBlackLight border border-white/10 rounded-2xl max-w-2xl w-full p-8 max-h-[85vh] overflow-y-auto space-y-6">
+            <div class="flex justify-between items-center border-b border-white/5 pb-4">
+                <h3 class="text-xl font-serif-premium text-brandWhite">Datenschutzerklärung</h3>
+                <button onclick="toggleModal('modal-datenschutz')" class="text-brandSilverDark hover:text-brandWhite">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="space-y-4 text-sm text-brandWhiteMuted leading-relaxed">
+                <p class="font-bold text-brandWhite">1. Datenschutz auf einen Blick</p>
+                <p class="text-xs">
+                    Diese Webseite erfasst keinerlei personenbezogene Tracking-Daten. Wir verwenden keine Cookies von Drittanbietern, binden keine externen Bibliotheken oder Schriften (wie z.B. Google Fonts oder FontAwesome) über öffentliche Server ein und hosten alle Systemdateien komplett lokal. 
+                </p>
+                <p class="font-bold text-brandWhite">2. Server-Logfiles</p>
+                <p class="text-xs">
+                    Der Provider der Seiten erhebt und speichert automatisch Informationen in sogenannten Server-Log-Dateien, die Ihr Browser automatisch an uns übermittelt. Dies sind Browsertyp, Betriebssystem, Referrer URL, Hostname des zugreifenden Rechners sowie Uhrzeit der Serveranfrage. Diese Daten sind nicht bestimmten Personen zuordenbar.
+                </p>
+                <p class="font-bold text-brandWhite">3. Ihre Rechte</p>
+                <p class="text-xs">
+                    Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger und den Zweck der Datenverarbeitung. Schreiben Sie uns dazu einfach eine Mail.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- DSGVO SPECIAL MODAL -->
+    <div id="modal-dsgvo" class="fixed inset-0 z-50 hidden bg-brandBlack/90 backdrop-blur-md flex items-center justify-center p-6">
+        <div class="bg-brandBlackLight border border-white/10 rounded-2xl max-w-xl w-full p-8 space-y-6">
+            <div class="flex justify-between items-center border-b border-white/5 pb-4">
+                <h3 class="text-xl font-serif-premium text-brandWhite flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-green-500"></span>
+                    100% DSGVO-Konform
+                </h3>
+                <button onclick="toggleModal('modal-dsgvo')" class="text-brandSilverDark hover:text-brandWhite">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="space-y-4 text-sm text-brandWhiteMuted leading-relaxed">
+                <p>
+                    Bei **TVS Digital** steht technologische Hygiene an erster Stelle. 
+                </p>
+                <p class="font-bold text-brandWhite">Unsere Kern-Verfahren:</p>
+                <ul class="list-disc pl-5 space-y-2 text-xs">
+                    <li>**Lokale Schriftarten**: Keine unbemerkt aufgebauten IP-Verbindungen zu Google Fonts oder Adobe Typekit-Servern.</li>
+                    <li>**Echte Inline-SVGs**: Wir verlinken keine externen Web-Iconsets von Drittanbietern.</li>
+                    <li>**Zero Cookie Policy**: Wir tracken Sie nicht. Keine nervigen Cookie-Zustimmungs-Banner nötig, da die Seite von Haus aus keine Cookies setzt.</li>
+                    <li>**High-Performance Code**: Reduziert nicht nur Ladezeit, sondern spart Energie & schont die Umwelt.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Toggle Mobile Navigation
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            hamburgerIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        });
+
+        // Close Mobile Menu on clicking a link
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                hamburgerIcon.remove('hidden');
+                closeIcon.classList.add('hidden');
+            });
+        });
+
+        // Toggle Details inside services accordion
+        function toggleDetail(id, button) {
+            const detailElement = document.getElementById(id);
+            const icon = button.querySelector('svg');
+            
+            detailElement.classList.toggle('hidden');
+            if(detailElement.classList.contains('hidden')) {
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Portfolio Category Filter Logic
+        function filterPortfolio(category, button) {
+            // Reset active classes on all filter buttons
+            document.querySelectorAll('.portfolio-filter').forEach(btn => {
+                btn.className = "portfolio-filter px-4 py-2 border border-white/10 text-brandWhite hover:border-brandWhite rounded-full transition-all duration-300";
+            });
+
+            // Set current button active
+            button.className = "portfolio-filter px-4 py-2 bg-white text-brandBlack rounded-full transition-all duration-300 font-semibold";
+
+            // Hide/Show items
+            document.querySelectorAll('.portfolio-item').forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Toggle Legal modals
+        function toggleModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>
